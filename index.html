@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simeon Palla - Data Scientist Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.20.15/babel.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Space+Mono:wght@400&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            color: #1e3a8a;
+            margin: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-family: 'Space Mono', monospace;
+            font-size: 3rem;
+            color: #1e40af;
+            text-shadow: 0 0 10px rgba(30, 64, 175, 0.3);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #2563eb;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        h2:hover {
+            color: #1e40af;
+        }
+
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section.hidden {
+            display: none;
+        }
+
+        .skill-card, .experience-card, .education-card, .internship-card, .certification-card, .language-card {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background: #bfdbfe;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover, .experience-card:hover, .education-card:hover, .internship-card:hover, .certification-card:hover, .language-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #1e3a8a;
+        }
+
+        li:before {
+            content: '➤';
+            color: #2563eb;
+            margin-right: 10px;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #1e40af;
+        }
+
+        .nav-menu {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-menu ul {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .nav-menu a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2563eb;
+            padding: 10px;
+        }
+
+        .nav-menu a:hover {
+            color: #1e40af;
+            background: #dbeafe;
+            border-radius: 5px;
+        }
+
+        /* Brain Mapping Graphics */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #4b6cb7;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="brainCanvas"></canvas>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useEffect, useState } = React;
+
+        const Header = () => (
+            <header>
+                <h1>Simeon Palla</h1>
+                <p>Data Scientist | Analyst | Storyteller</p>
+                <div>
+                    <a href="tel:+919160123448">+91 9160123448</a> | 
+                    <a href="mailto:simeonpalla@gmail.com"> simeonpalla@gmail.com</a> | 
+                    <a href="www.linkedin.com/in/simeon-palla"> LinkedIn</a>
+                </div>
+            </header>
+        );
+
+        const NavMenu = ({ setActiveSection }) => (
+            <nav className="nav-menu">
+                <ul>
+                    <li><a href="#expertise" onClick={() => setActiveSection('expertise')}>Expertise</a></li>
+                    <li><a href="#experience" onClick={() => setActiveSection('experience')}>Experience</a></li>
+                    <li><a href="#education" onClick={() => setActiveSection('education')}>Education</a></li>
+                    <li><a href="#internship" onClick={() => setActiveSection('internship')}>Internship</a></li>
+                    <li><a href="#certifications" onClick={() => setActiveSection('certifications')}>Certifications</a></li>
+                    <li><a href="#languages" onClick={() => setActiveSection('languages')}>Languages</a></li>
+                </ul>
+            </nav>
+        );
+
+        const Section = ({ id, title, children, isActive }) => {
+            const [isVisible, setIsVisible] = useState(false);
+
+            useEffect(() => {
+                const observer = new IntersectionObserver(
+                    ([entry]) => {
+                        if (entry.isIntersecting) {
+                            setIsVisible(true);
+                            observer.disconnect();
+                        }
+                    },
+                    { threshold: 0.1 }
+                );
+                const section = document.getElementById(id);
+                if (section) observer.observe(section);
+                return () => observer.disconnect();
+            }, [id]);
+
+            return (
+                <section id={id} className={`section ${isVisible ? 'visible' : ''} ${isActive ? '' : 'hidden'}`}>
+                    <h2 onClick={() => window.location.hash = id}>{title}</h2>
+                    {children}
+                </section>
+            );
+        };
+
+        const SkillCard = ({ title, skills }) => (
+            <div className="skill-card">
+                <h3>{title}</h3>
+                <ul>
+                    {skills.map((skill, index) => (
+                        <li key={index}>{skill}</li>
+                    ))}
+                </ul>
+            </div>
+        );
+
+        const ExperienceCard = ({ title, company, location, duration, points }) => (
+            <div className="experience-card">
+                <h3>{title}</h3>
+                <p>{company} | {location}</p>
+                <p>{duration}</p>
+                <ul>
+                    {points.map((point, index) => (
+                        <li key={index}>{point}</li>
+                    ))}
+                </ul>
+            </div>
+        );
+
+        const App = () => {
+            const [activeSection, setActiveSection] = useState('expertise');
+
+            useEffect(() => {
+                // Brain Mapping Animation
+                const canvas = document.getElementById('brainCanvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const nodes = [];
+                const edges = [];
+                const nodeCount = 20;
+
+                for (let i = 0; i < nodeCount; i++) {
+                    nodes.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 2,
+                        vy: (Math.random() - 0.5) * 2
+                    });
+                }
+
+                for (let i = 0; i < nodeCount; i++) {
+                    for (let j = i + 1; j < nodeCount; j++) {
+                        if (Math.random() > 0.7) {
+                            edges.push([i, j]);
+                        }
+                    }
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.strokeStyle = 'rgba(37, 99, 235, 0.4)';
+                    ctx.fillStyle = 'rgba(30, 64, 175, 0.8)';
+
+                    nodes.forEach(node => {
+                        node.x += node.vx;
+                        node.y += node.vy;
+
+                        if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                        if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+
+                        ctx.beginPath();
+                        ctx.arc(node.x, node.y, 5, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+
+                    edges.forEach(([i, j]) => {
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    });
+
+                    requestAnimationFrame(animate);
+                }
+
+                animate();
+
+                window.addEventListener('resize', () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
+            }, []);
+
+            return (
+                <div className="container">
+                    <Header />
+                    <NavMenu setActiveSection={setActiveSection} />
+                    <Section id="expertise" title="Expertise" isActive={activeSection === 'expertise'}>
+                        <div>
+                            <SkillCard
+                                title="Core Competencies"
+                                skills={[
+                                    "Data Analysis",
+                                    "Strategic Thinking",
+                                    "Cross-Team Collaboration",
+                                    "Executive-Level Presentation & Storytelling",
+                                    "Cross-Team Stakeholder Management",
+                                    "Predictive & Descriptive Analytics"
+                                ]}
+                            />
+                            <SkillCard
+                                title="Technical Skills"
+                                skills={[
+                                    "Data Analysis and Visualisation (Excel, Alteryx, Tableau, PowerBI, DAX)",
+                                    "Data Collection and Analysis (XLSForms, wqFramework, Kobotoolbox)",
+                                    "Programming Languages and Databases (Python, R, SQL, HTML, CSS, Relational Databases, MongoDB, Spark)",
+                                    "Analytical Reporting",
+                                    "Policy Research",
+                                    "Presentation Skills",
+                                    "Project Management",
+                                    "Microsoft Suite"
+                                ]}
+                            />
+                        </div>
+                    </Section>
+                    <Section id="experience" title="Work Experience" isActive={activeSection === 'experience'}>
+                        <ExperienceCard
+                            title="Data Scientist"
+                            company="Bharti Institute of Public Policy, ISB, Government of Meghalaya"
+                            location="Mohali"
+                            duration="February 2025 - Current"
+                            points={[
+                                "Led state-level analytics under the MDRF initiative to support district research & governance improvements.",
+                                "Delivered state-level business insights and performance tracking to support strategic decision-making.",
+                                "Built dynamic dashboards and structured reports in Power BI & Looker Studio for leadership and policymakers.",
+                                "Synthesized data from multiple departments to assess program impact, risks, and growth opportunities."
+                            ]}
+                        />
+                        <ExperienceCard
+                            title="Data Consultant"
+                            company="Myriad Concepts & Strategies Pvt Ltd"
+                            location="Visakhapatnam"
+                            duration="June 2024 - January 2025"
+                            points={[
+                                "Conducted analytics for tourism, investment promotion, and SDG projects, delivering strategic recommendations.",
+                                "Designed reporting templates to correlate policy programs with measurable outcomes and performance KPIs.",
+                                "Generated insights from structured and qualitative data to guide leadership on future initiatives.",
+                                "Assessed business risks and opportunities by analyzing cross-sectoral datasets (SDG, Tourism, Investment)."
+                            ]}
+                        />
+                        <ExperienceCard
+                            title="Project Lead Analyst"
+                            company="GVWV & GSWS Dept., Government Of Andhra Pradesh"
+                            location="Visakhapatnam"
+                            duration="November 2022 - June 2024"
+                            points={[
+                                "Led analytics and reporting for the Spandana Public Grievance Cell, enhancing program reach through data-driven campaign strategies.",
+                                "Led end-to-end analytics for the Spandana grievance platform, correlating service delivery metrics to program performance.",
+                                "Designed reporting templates and dashboards for CMO-level reviews, incorporating risk attribution and trend forecasting.",
+                                "Partnered with multiple departments to consolidate data for city/state-level insights and actionables."
+                            ]}
+                        />
+                        <ExperienceCard
+                            title="Data Analyst"
+                            company="Pradical Works"
+                            location="Hyderabad"
+                            duration="August 2022 - October 2022"
+                            points={[
+                                "Created real-time business dashboards using Plotly-Dash for internal and client performance review.",
+                                "Extracted and processed unstructured data via scraping & OCR to build insights for sales and outreach programs.",
+                                "Built templates to evaluate post-implementation performance vs. planned outcomes of field campaigns."
+                            ]}
+                        />
+                        <ExperienceCard
+                            title="Data Analyst"
+                            company="The Ballot House UK (India)"
+                            location="Jaipur"
+                            duration="August 2021 - August 2022"
+                            points={[
+                                "Analyzed regional performance using demographic and polling data, identifying strategic levers for campaign success.",
+                                "Reported qualitative and quantitative insights to leadership for sales-style campaign refinement."
+                            ]}
+                        />
+                    </Section>
+                    <Section id="education" title="Education" isActive={activeSection === 'education'}>
+                        <div className="education-card">
+                            <h3>Post Graduate Certificate in Software Engineering for Data Science</h3>
+                            <p>The International Institute of Information Technology (IIITH)</p>
+                            <h3>Bachelor of Technology in Mechanical Engineering</h3>
+                            <p>Jawaharlal Nehru Technological University, Kakinada (JNTUK)</p>
+                        </div>
+                    </Section>
+                    <Section id="internship" title="Internship" isActive={activeSection === 'internship'}>
+                        <div className="internship-card">
+                            <h3>Intern Trainee</h3>
+                            <p>Rashtriya Ispat Nigam Limited (RINL) | June 2018</p>
+                            <p>Contributed to the Engineering Shops & Foundry department, gaining hands-on experience in the complete design, melting, and casting processes, from initial concept to final product.</p>
+                        </div>
+                    </Section>
+                    <Section id="certifications" title="Certifications" isActive={activeSection === 'certifications'}>
+                        <div className="certification-card">
+                            <p>Alteryx Designer Core | Alteryx | July 2024-2026</p>
+                            <p>Data Analysis with Python | Jovian | June 2022</p>
+                        </div>
+                    </Section>
+                    <Section id="languages" title="Languages" isActive={activeSection === 'languages'}>
+                        <div className="language-card">
+                            <p>English | Telugu | Hindi</p>
+                        </div>
+                    </Section>
+                    <footer>
+                        <p>© 2025 Simeon Palla. All rights reserved.</p>
+                    </footer>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
