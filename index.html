@@ -7,446 +7,420 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
       gtag('config', 'G-SN3M6Y651M');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simeon Palla - Data Scientist Portfolio</title>
-    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.20.15/babel.min.js"></script>
+    <title>Simeon Palla | Data, Policy, Energy &amp; Products</title>
+    <meta name="description" content="Simeon Palla is a data-driven generalist working across governance, energy, education, road safety and software.">
+    <meta name="theme-color" content="#0b7285">
+    <meta property="og:title" content="Simeon Palla | Data, Policy, Energy &amp; Products">
+    <meta property="og:description" content="A generalist who goes where the problem is: governance, energy, education, road safety and software.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://simeonpalla.github.io/portfolio/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Space+Mono:wght@400&display=swap');
+        :root {
+            --bg: #f7f9fb;
+            --surface: #ffffff;
+            --ink: #0f1d2e;
+            --muted: #55657a;
+            --line: #dde4ec;
+            --accent: #0b7285;
+            --accent-soft: #e3f3f6;
+            --shadow: 0 1px 2px rgba(15, 29, 46, .05), 0 8px 24px rgba(15, 29, 46, .06);
+        }
+        :root[data-theme="dark"] {
+            --bg: #0b1420;
+            --surface: #121e2e;
+            --ink: #e6edf5;
+            --muted: #96a6b9;
+            --line: #223247;
+            --accent: #4dc3d8;
+            --accent-soft: #10303a;
+            --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+        }
 
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 76px; }
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            color: #1e3a8a;
             margin: 0;
-            overflow-x: hidden;
-            position: relative;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+        .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Nav */
+        nav {
+            position: sticky; top: 0; z-index: 10;
+            background: color-mix(in srgb, var(--bg) 88%, transparent);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+        }
+        nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 12px; }
+        .brand { font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+        .brand:hover { text-decoration: none; }
+        .links { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+        .links::-webkit-scrollbar { display: none; }
+        .links a { color: var(--muted); font-size: .9rem; font-weight: 500; padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+        .links a:hover { color: var(--ink); text-decoration: none; }
+        .links a.active { background: var(--accent-soft); color: var(--accent); }
+        #theme {
+            background: none; border: 1px solid var(--line); color: var(--ink);
+            width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; flex: none;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
+        /* Hero */
+        .hero { padding: 88px 0 56px; }
+        .eyebrow { color: var(--accent); font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; }
+        h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); line-height: 1.08; letter-spacing: -.03em; margin: 12px 0 16px; }
+        .lead { font-size: 1.15rem; color: var(--muted); max-width: 680px; margin: 0; }
+        .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+        .btn {
+            display: inline-block; padding: 11px 20px; border-radius: 10px; font-weight: 600; font-size: .95rem;
+            border: 1px solid var(--line); color: var(--ink); background: var(--surface);
         }
+        .btn:hover { text-decoration: none; border-color: var(--accent); }
+        .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+        :root[data-theme="dark"] .btn.primary { color: #06222a; }
+        .meta { margin-top: 20px; color: var(--muted); font-size: .9rem; }
 
-        header {
-            text-align: center;
-            padding: 50px 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: 48px; }
+        .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); }
+        .stat b { display: block; font-size: 1.9rem; letter-spacing: -.02em; color: var(--accent); }
+        .stat span { color: var(--muted); font-size: .88rem; }
+
+        /* Sections */
+        section { padding: 56px 0; border-top: 1px solid var(--line); }
+        h2 { font-size: 1.7rem; letter-spacing: -.02em; margin: 0 0 8px; }
+        .sub { color: var(--muted); margin: 0 0 32px; max-width: 640px; }
+        h3 { margin: 0; font-size: 1.1rem; letter-spacing: -.01em; }
+
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
+        .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; box-shadow: var(--shadow); }
+        .card p { margin: 8px 0 0; color: var(--muted); font-size: .95rem; }
+
+        /* Timeline */
+        .job { display: grid; grid-template-columns: 170px 1fr; gap: 8px 32px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+        .job:last-child { border-bottom: 0; }
+        .when { color: var(--muted); font-size: .85rem; padding-top: 4px; }
+        .org { color: var(--accent); font-weight: 500; font-size: .95rem; margin-top: 2px; }
+        .tag { display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); margin-left: 8px; vertical-align: middle; }
+        .job ul, .project ul { margin: 12px 0 0; padding-left: 18px; color: var(--muted); font-size: .95rem; }
+        .job li, .project li { margin: 6px 0; }
+        .job li::marker, .project li::marker { color: var(--accent); }
+        .blurb { margin: 10px 0 0; color: var(--muted); font-size: .95rem; font-style: italic; }
+
+        /* Project */
+        .project { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; box-shadow: var(--shadow); }
+        .project .badge { display: inline-block; background: var(--accent); color: #fff; font-weight: 700; font-size: .78rem; padding: 3px 10px; border-radius: 999px; margin-bottom: 10px; }
+        :root[data-theme="dark"] .project .badge { color: #06222a; }
+        .formula { font-family: 'JetBrains Mono', monospace; background: var(--accent-soft); color: var(--accent); padding: 2px 8px; border-radius: 6px; font-size: .88rem; }
+
+        /* Skills */
+        .skillrow { margin-bottom: 22px; }
+        .skillrow h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; font-weight: 600; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 13px; font-size: .88rem; }
+
+        .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+        .item { padding: 14px 0; border-bottom: 1px solid var(--line); }
+        .item:last-child { border-bottom: 0; }
+        .item small { color: var(--muted); display: block; }
+
+        footer { border-top: 1px solid var(--line); padding: 36px 0 48px; color: var(--muted); font-size: .9rem; text-align: center; }
+
+        .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+        .reveal.in { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .reveal { opacity: 1; transform: none; transition: none; }
         }
-
-        h1 {
-            font-family: 'Space Mono', monospace;
-            font-size: 3rem;
-            color: #1e40af;
-            text-shadow: 0 0 10px rgba(30, 64, 175, 0.3);
-        }
-
-        h2 {
-            font-size: 2rem;
-            color: #2563eb;
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        h2:hover {
-            color: #1e40af;
-        }
-
-        .section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-            margin-bottom: 40px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section.hidden {
-            display: none;
-        }
-
-        .skill-card, .experience-card, .education-card, .internship-card, .certification-card, .language-card {
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            background: #bfdbfe;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .skill-card:hover, .experience-card:hover, .education-card:hover, .internship-card:hover, .certification-card:hover, .language-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            margin: 10px 0;
-            font-size: 1rem;
-            color: #1e3a8a;
-        }
-
-        li:before {
-            content: '➤';
-            color: #2563eb;
-            margin-right: 10px;
-        }
-
-        a {
-            color: #2563eb;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #1e40af;
-        }
-
-        .nav-menu {
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        .nav-menu ul {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .nav-menu a {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2563eb;
-            padding: 10px;
-        }
-
-        .nav-menu a:hover {
-            color: #1e40af;
-            background: #dbeafe;
-            border-radius: 5px;
-        }
-
-        /* Brain Mapping Graphics */
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.3;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #4b6cb7;
-            font-size: 0.9rem;
+        @media (max-width: 720px) {
+            .job { grid-template-columns: 1fr; gap: 4px; }
+            .hero { padding-top: 56px; }
+            .brand { display: none; }
         }
     </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLNCLXQ5"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <canvas id="brainCanvas"></canvas>
-    <div id="root"></div>
-    <script type="text/babel">
-        const { useEffect, useState } = React;
+    <nav>
+        <div class="wrap">
+            <a class="brand" href="#top">Simeon Palla</a>
+            <div class="links" id="links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#project">Project</a>
+                <a href="#research">Research</a>
+                <a href="#skills">Skills</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button id="theme" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+        </div>
+    </nav>
 
-        const Header = () => (
-            <header>
-                <h1>Simeon Palla</h1>
-                <p>Data Scientist | Analyst | Storyteller</p>
-                <div>
-                    <a href="tel:+919160123448">+91 9160123448</a> | 
-                    <a href="mailto:simeonpalla@gmail.com"> simeonpalla@gmail.com</a> | 
-                    <a href="www.linkedin.com/in/simeon-palla"> LinkedIn</a>
+    <header class="hero wrap" id="top">
+        <div class="eyebrow mono">Data · Policy · Energy · Engineering · Products</div>
+        <h1>A generalist who goes where the problem is.</h1>
+        <p class="lead">I'm Simeon Palla, a mechanical engineer turned data and product builder. In five years I've worked with state governments, a university and research institutes, on everything from grievance systems and road safety to scholarship models and web apps. Right now I'm a Consultant, Power Sector Analytics at the Centre for Policy Research.</p>
+        <div class="cta">
+            <a class="btn primary" href="mailto:simeonpalla@gmail.com">Get in touch</a>
+            <a class="btn" href="https://www.linkedin.com/in/simeon-palla/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="https://github.com/simeonpalla" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="meta">📍 Visakhapatnam, Andhra Pradesh, India</div>
+        <div class="stats">
+            <div class="stat"><b>5 yrs</b><span>Across government, academia and research</span></div>
+            <div class="stat"><b>8+</b><span>Sectors worked in</span></div>
+            <div class="stat"><b>14,711</b><span>Road segments scored for safety</span></div>
+            <div class="stat"><b>Top 10</b><span>ADB AI for Safer Roads 2026</span></div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="reveal">
+            <div class="wrap">
+                <h2>The range</h2>
+                <p class="sub">I learn a domain fast, work out what the data can and can't say, and ship something people use. That has taken me across very different fields.</p>
+                <div class="cards">
+                    <div class="card"><h3>🏛️ Governance &amp; policy</h3><p>Grievance redressal for a state government, district programmes in Meghalaya, SDG, tourism and investment work, and election analytics across three cycles.</p></div>
+                    <div class="card"><h3>⚡ Energy &amp; infrastructure</h3><p>Analytics and evaluation work in the power sector, turning operational data into evidence for infrastructure decisions. Project details are confidential.</p></div>
+                    <div class="card"><h3>🎓 Education &amp; finance</h3><p>Data for a 10,000+ candidate scholarship exam, plus revenue and scholarship simulation models that set a university's budget.</p></div>
+                    <div class="card"><h3>🚦 Road safety &amp; geospatial</h3><p>Scored 14,711 road segments for the ADB Safer Roads Challenge (Top 10) and mapped forest cover and land use with QGIS.</p></div>
+                    <div class="card"><h3>💻 Software &amp; products</h3><p>Dashboards, scraping and OCR pipelines, field-data systems, and web apps such as an expense tracker and a grievance-intelligence platform.</p></div>
+                    <div class="card"><h3>🔬 Research &amp; engineering</h3><p>Quasi-experimental evaluation, MST radar signal research, gender and development policy briefs, and an e-bike from my engineering degree.</p></div>
                 </div>
-            </header>
-        );
-
-        const NavMenu = ({ setActiveSection }) => (
-            <nav className="nav-menu">
-                <ul>
-                    <li><a href="#expertise" onClick={() => setActiveSection('expertise')}>Expertise</a></li>
-                    <li><a href="#experience" onClick={() => setActiveSection('experience')}>Experience</a></li>
-                    <li><a href="#education" onClick={() => setActiveSection('education')}>Education</a></li>
-                    <li><a href="#internship" onClick={() => setActiveSection('internship')}>Internship</a></li>
-                    <li><a href="#certifications" onClick={() => setActiveSection('certifications')}>Certifications</a></li>
-                    <li><a href="#languages" onClick={() => setActiveSection('languages')}>Languages</a></li>
-                </ul>
-            </nav>
-        );
-
-        const Section = ({ id, title, children, isActive }) => {
-            const [isVisible, setIsVisible] = useState(false);
-
-            useEffect(() => {
-                const observer = new IntersectionObserver(
-                    ([entry]) => {
-                        if (entry.isIntersecting) {
-                            setIsVisible(true);
-                            observer.disconnect();
-                        }
-                    },
-                    { threshold: 0.1 }
-                );
-                const section = document.getElementById(id);
-                if (section) observer.observe(section);
-                return () => observer.disconnect();
-            }, [id]);
-
-            return (
-                <section id={id} className={`section ${isVisible ? 'visible' : ''} ${isActive ? '' : 'hidden'}`}>
-                    <h2 onClick={() => window.location.hash = id}>{title}</h2>
-                    {children}
-                </section>
-            );
-        };
-
-        const SkillCard = ({ title, skills }) => (
-            <div className="skill-card">
-                <h3>{title}</h3>
-                <ul>
-                    {skills.map((skill, index) => (
-                        <li key={index}>{skill}</li>
-                    ))}
-                </ul>
             </div>
-        );
+        </section>
 
-        const ExperienceCard = ({ title, company, location, duration, points }) => (
-            <div className="experience-card">
-                <h3>{title}</h3>
-                <p>{company} | {location}</p>
-                <p>{duration}</p>
-                <ul>
-                    {points.map((point, index) => (
-                        <li key={index}>{point}</li>
-                    ))}
-                </ul>
+        <section id="experience" class="reveal">
+            <div class="wrap">
+                <h2>Experience</h2>
+                <p class="sub">From state government analytics to embedded utility research.</p>
+
+                <div class="job">
+                    <div class="when mono">May 2026 – Present</div>
+                    <div>
+                        <h3>Consultant, Power Sector Analytics <span class="tag">Current</span></h3>
+                        <div class="org">Centre for Policy Research (CPR), New Delhi · Visakhapatnam</div>
+                        <p class="blurb">Embedded in the analytics team of a state power distribution utility, supporting M&amp;E, operational analytics and institutional capacity building.</p>
+                        <ul>
+                            <li>Reconstructed distribution transformer-to-feeder linkages across the utility circle using temporal event-matching against network records, establishing the asset baseline for reliability and loss analysis.</li>
+                            <li>Evaluated a demand-side street-lighting intervention with a difference-in-differences design using treatment and control groups.</li>
+                            <li>Leading the impact evaluation of a feeder bifurcation programme under the Revamped Distribution Sector Scheme (RDSS) using quasi-experimental methods (ongoing).</li>
+                            <li>Assessed transformer performance against operational indicators to identify phase imbalances, asset anomalies and implementation priorities.</li>
+                            <li>Built reproducible methods and documentation to strengthen in-house M&amp;E capacity; prepared technical progress reports for the Research Coordination Committee.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="when mono">Jul 2025 – May 2026</div>
+                    <div>
+                        <h3>Business Analyst</h3>
+                        <div class="org">GITAM Deemed University · Visakhapatnam</div>
+                        <ul>
+                            <li>Managed operational data for <b>Pathway 2026</b>, a President's Office initiative supporting meritorious students from marginalised communities: ~150 exam centres, 10,000+ registered and 8,000+ appearing candidates.</li>
+                            <li>Built revenue simulation models from historical admissions data to project fee-income scenarios for university leadership.</li>
+                            <li>Stress-tested scholarship models against prior-year enrolment; one scenario was adopted by leadership to set the next year's budget allocations.</li>
+                            <li>Produced governance-level performance reports and diagnostics to find programme implementation gaps.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="when mono">Feb 2025 – Jul 2025</div>
+                    <div>
+                        <h3>Data Scientist</h3>
+                        <div class="org">Bharti Institute of Public Policy, ISB · Govt. of Meghalaya (MDRF)</div>
+                        <ul>
+                            <li>Supported M&amp;E of district-level governance programmes under the Meghalaya Data and Research Fellowship.</li>
+                            <li>Built Power BI dashboards and structured reports for state leadership from multi-departmental administrative data.</li>
+                            <li>Ran QGIS analysis of forest cover and land use/land cover, computing land composition shares by constituency and district.</li>
+                            <li>Deployed and tested KoboToolbox for field data collection, including non-containerised installation.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="when mono">Jun 2024 – Jan 2025</div>
+                    <div>
+                        <h3>Data Consultant</h3>
+                        <div class="org">Myriad Concepts &amp; Strategies Pvt Ltd · Visakhapatnam</div>
+                        <ul>
+                            <li>Monitoring and performance analysis across SDG, tourism and investment programmes, synthesising quantitative and qualitative evidence for evaluation and strategic planning.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="when mono">Nov 2022 – Jun 2024</div>
+                    <div>
+                        <h3>Project Lead Analyst</h3>
+                        <div class="org">GVWV &amp; VSWS Dept., Govt. of Andhra Pradesh · Visakhapatnam</div>
+                        <p class="blurb">Led monitoring and analytical reporting for the state's public grievance redressal system, Spandana.</p>
+                        <ul>
+                            <li>Co-developed SOPs and KPIs with senior government officials to institutionalise programme monitoring.</li>
+                            <li>Designed executive dashboards to track service delivery, surface bottlenecks and support administrative decisions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="when mono">Aug 2022 – Oct 2022</div>
+                    <div>
+                        <h3>Senior Data Analyst</h3>
+                        <div class="org">Pradical Works · Hyderabad</div>
+                        <ul>
+                            <li>Built automated data-collection pipelines for policy research and programme assessment.</li>
+                            <li>Built dynamic Plotly Dash dashboards on Heroku for field reporting.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="when mono">Aug 2021 – Aug 2022</div>
+                    <div>
+                        <h3>Data Analyst</h3>
+                        <div class="org">The Ballot House UK (India) · Jaipur</div>
+                        <ul>
+                            <li>Quantitative analysis of demographic and electoral datasets across three election cycles.</li>
+                            <li>Designed dashboards and led field data collection in southern Rajasthan.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        );
+        </section>
 
-        const App = () => {
-            const [activeSection, setActiveSection] = useState('expertise');
+        <section id="project" class="reveal">
+            <div class="wrap">
+                <h2>Featured project</h2>
+                <p class="sub">Analytical work outside the day job.</p>
+                <div class="project">
+                    <span class="badge">Top 10</span>
+                    <h3>ADB AI for Safer Roads Challenge 2026: Speed Safety Score</h3>
+                    <div class="org">Three-person team · Jun – Jul 2026 · Maharashtra (India) and Thailand</div>
+                    <p class="blurb" style="font-style:normal">Are posted speed limits appropriate for the road, rather than just how many drivers break them? We used ADB-provided GPS speed data enriched with population, infrastructure, settlement and street-imagery layers to assess 14,711 road segments.</p>
+                    <ul>
+                        <li>Built a composite <b>Speed Safety Score</b> combining Safe System alignment, speed-limit credibility gap and vulnerable-road-user risk.</li>
+                        <li>Designed a <span class="formula">Priority Index = Exposure × Likelihood × Severity</span> to rank roads for intervention under resource constraints, using population density, junction density and proximity to schools, hospitals, markets and transit.</li>
+                        <li>Grounded findings in the WHO Safe System approach, the Nilsson Power Model and AASHTO guidance.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-            useEffect(() => {
-                // Brain Mapping Animation
-                const canvas = document.getElementById('brainCanvas');
-                const ctx = canvas.getContext('2d');
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
+        <section id="research" class="reveal">
+            <div class="wrap">
+                <h2>Research &amp; writing</h2>
+                <p class="sub">Research Volunteer, Our Gender Lens (Apr 2026 – Present).</p>
+                <div class="cards">
+                    <div class="card"><h3>Understanding the Female Happiness Paradox in India</h3><p>Policy Brief No. 1 · Under revision</p></div>
+                    <div class="card"><h3>Gender, Child Development, and the Gap Between School and Work in India</h3><p>Forthcoming</p></div>
+                </div>
+                <p class="sub" style="margin-top:24px"><b>Research interests:</b> M&amp;E systems, climate resilience and adaptation, energy access and distribution utility reform, public-sector performance, infrastructure governance, administrative data systems, evidence-based policymaking.</p>
+            </div>
+        </section>
 
-                const nodes = [];
-                const edges = [];
-                const nodeCount = 20;
+        <section id="skills" class="reveal">
+            <div class="wrap">
+                <h2>Skills</h2>
+                <p class="sub">Methods first, tools second.</p>
+                <div class="skillrow"><h3>Monitoring &amp; evaluation</h3><div class="chips">
+                    <span class="chip">Impact evaluation</span><span class="chip">Difference-in-differences</span><span class="chip">Quasi-experimental design</span><span class="chip">Regression</span><span class="chip">Time-series</span><span class="chip">Predictive modelling</span><span class="chip">Indicator development</span><span class="chip">Data quality assessment</span><span class="chip">Evidence synthesis</span><span class="chip">Results-based management</span>
+                </div></div>
+                <div class="skillrow"><h3>Programming &amp; data</h3><div class="chips">
+                    <span class="chip">Python (pandas, scikit-learn)</span><span class="chip">SQL (MySQL, PostgreSQL)</span><span class="chip">R</span><span class="chip">MongoDB</span><span class="chip">Spark</span><span class="chip">Excel VBA</span><span class="chip">Power Query</span>
+                </div></div>
+                <div class="skillrow"><h3>Geospatial &amp; visualisation</h3><div class="chips">
+                    <span class="chip">QGIS</span><span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Looker Studio</span><span class="chip">Plotly</span><span class="chip">Excel</span>
+                </div></div>
+                <div class="skillrow"><h3>Tooling &amp; field data</h3><div class="chips">
+                    <span class="chip">Git</span><span class="chip">Docker</span><span class="chip">Jupyter</span><span class="chip">Linux</span><span class="chip">KoboToolbox</span><span class="chip">XLSForms</span>
+                </div></div>
+                <div class="skillrow"><h3>Sectors</h3><div class="chips">
+                    <span class="chip">Energy &amp; power distribution</span><span class="chip">Transport &amp; road safety</span><span class="chip">Public service delivery</span><span class="chip">Gender &amp; human development</span><span class="chip">Higher education</span><span class="chip">Sub-national governance</span><span class="chip">SDG monitoring</span><span class="chip">Tourism</span>
+                </div></div>
+            </div>
+        </section>
 
-                for (let i = 0; i < nodeCount; i++) {
-                    nodes.push({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height,
-                        vx: (Math.random() - 0.5) * 2,
-                        vy: (Math.random() - 0.5) * 2
-                    });
-                }
+        <section id="education" class="reveal">
+            <div class="wrap">
+                <h2>Education &amp; credentials</h2>
+                <p class="sub">Formal training, certifications and languages.</p>
+                <div class="two">
+                    <div class="card">
+                        <h3>Education</h3>
+                        <div class="item"><b>PG Certificate, Software Engineering for Data Science</b><small>IIIT Hyderabad · 2023 – 2024</small></div>
+                        <div class="item"><b>B.Tech, Mechanical Engineering</b><small>JNTU Kakinada · 2015 – 2019</small></div>
+                    </div>
+                    <div class="card">
+                        <h3>Certifications &amp; other</h3>
+                        <div class="item"><b>Alteryx Designer Core</b><small>Alteryx · 2024 – 2026</small></div>
+                        <div class="item"><b>Data Analysis with Python</b><small>Jovian · June 2022</small></div>
+                        <div class="item"><b>Intern Trainee, Engineering Shops &amp; Foundry</b><small>Rashtriya Ispat Nigam Limited (RINL) · June 2018</small></div>
+                        <div class="item"><b>Languages</b><small>English (professional) · Telugu (native) · Hindi (basic)</small></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                for (let i = 0; i < nodeCount; i++) {
-                    for (let j = i + 1; j < nodeCount; j++) {
-                        if (Math.random() > 0.7) {
-                            edges.push([i, j]);
-                        }
-                    }
-                }
+        <section id="contact" class="reveal">
+            <div class="wrap">
+                <h2>Let's talk</h2>
+                <p class="sub">Open to conversations on monitoring and evaluation, power-sector reform and public-sector analytics.</p>
+                <div class="cta" style="margin-top:0">
+                    <a class="btn primary" href="mailto:simeonpalla@gmail.com">simeonpalla@gmail.com</a>
+                    <a class="btn" href="https://www.linkedin.com/in/simeon-palla/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="btn" href="https://github.com/simeonpalla" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-                function animate() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.strokeStyle = 'rgba(37, 99, 235, 0.4)';
-                    ctx.fillStyle = 'rgba(30, 64, 175, 0.8)';
+    <footer>
+        <div class="wrap">© <span id="year">2026</span> Simeon Palla</div>
+    </footer>
 
-                    nodes.forEach(node => {
-                        node.x += node.vx;
-                        node.y += node.vy;
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var saved = null;
+            try { saved = localStorage.getItem('theme'); } catch (e) {}
+            var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+            root.setAttribute('data-theme', dark ? 'dark' : 'light');
+            document.getElementById('theme').addEventListener('click', function () {
+                var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                root.setAttribute('data-theme', next);
+                try { localStorage.setItem('theme', next); } catch (e) {}
+            });
 
-                        if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-                        if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+            document.getElementById('year').textContent = new Date().getFullYear();
 
-                        ctx.beginPath();
-                        ctx.arc(node.x, node.y, 5, 0, Math.PI * 2);
-                        ctx.fill();
-                    });
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+            }, { threshold: 0.05 });
+            document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
-                    edges.forEach(([i, j]) => {
-                        ctx.beginPath();
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.stroke();
-                    });
-
-                    requestAnimationFrame(animate);
-                }
-
-                animate();
-
-                window.addEventListener('resize', () => {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
+            var links = document.querySelectorAll('#links a');
+            var spy = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (!e.isIntersecting) return;
+                    links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
                 });
-            }, []);
-
-            return (
-                <div className="container">
-                    <Header />
-                    <NavMenu setActiveSection={setActiveSection} />
-                    <Section id="expertise" title="Expertise" isActive={activeSection === 'expertise'}>
-                        <div>
-                            <SkillCard
-                                title="Core Competencies"
-                                skills={[
-                                    "Data Analysis",
-                                    "Strategic Thinking",
-                                    "Cross-Team Collaboration",
-                                    "Executive-Level Presentation & Storytelling",
-                                    "Cross-Team Stakeholder Management",
-                                    "Predictive & Descriptive Analytics"
-                                ]}
-                            />
-                            <SkillCard
-                                title="Technical Skills"
-                                skills={[
-                                    "Data Analysis and Visualisation (Excel, Alteryx, Tableau, PowerBI, DAX)",
-                                    "Data Collection and Analysis (XLSForms, wqFramework, Kobotoolbox)",
-                                    "Programming Languages and Databases (Python, R, SQL, HTML, CSS, Relational Databases, MongoDB, Spark)",
-                                    "Analytical Reporting",
-                                    "Policy Research",
-                                    "Presentation Skills",
-                                    "Project Management",
-                                    "Microsoft Suite"
-                                ]}
-                            />
-                        </div>
-                    </Section>
-                    <Section id="experience" title="Work Experience" isActive={activeSection === 'experience'}>
-                        <ExperienceCard
-                            title="Data Scientist"
-                            company="Bharti Institute of Public Policy, ISB, Government of Meghalaya"
-                            location="Mohali"
-                            duration="February 2025 - Current"
-                            points={[
-                                "Led state-level analytics under the MDRF initiative to support district research & governance improvements.",
-                                "Delivered state-level business insights and performance tracking to support strategic decision-making.",
-                                "Built dynamic dashboards and structured reports in Power BI & Looker Studio for leadership and policymakers.",
-                                "Synthesized data from multiple departments to assess program impact, risks, and growth opportunities."
-                            ]}
-                        />
-                        <ExperienceCard
-                            title="Data Consultant"
-                            company="Myriad Concepts & Strategies Pvt Ltd"
-                            location="Visakhapatnam"
-                            duration="June 2024 - January 2025"
-                            points={[
-                                "Conducted analytics for tourism, investment promotion, and SDG projects, delivering strategic recommendations.",
-                                "Designed reporting templates to correlate policy programs with measurable outcomes and performance KPIs.",
-                                "Generated insights from structured and qualitative data to guide leadership on future initiatives.",
-                                "Assessed business risks and opportunities by analyzing cross-sectoral datasets (SDG, Tourism, Investment)."
-                            ]}
-                        />
-                        <ExperienceCard
-                            title="Project Lead Analyst"
-                            company="GVWV & GSWS Dept., Government Of Andhra Pradesh"
-                            location="Visakhapatnam"
-                            duration="November 2022 - June 2024"
-                            points={[
-                                "Led analytics and reporting for the Spandana Public Grievance Cell, enhancing program reach through data-driven campaign strategies.",
-                                "Led end-to-end analytics for the Spandana grievance platform, correlating service delivery metrics to program performance.",
-                                "Designed reporting templates and dashboards for CMO-level reviews, incorporating risk attribution and trend forecasting.",
-                                "Partnered with multiple departments to consolidate data for city/state-level insights and actionables."
-                            ]}
-                        />
-                        <ExperienceCard
-                            title="Data Analyst"
-                            company="Pradical Works"
-                            location="Hyderabad"
-                            duration="August 2022 - October 2022"
-                            points={[
-                                "Created real-time business dashboards using Plotly-Dash for internal and client performance review.",
-                                "Extracted and processed unstructured data via scraping & OCR to build insights for sales and outreach programs.",
-                                "Built templates to evaluate post-implementation performance vs. planned outcomes of field campaigns."
-                            ]}
-                        />
-                        <ExperienceCard
-                            title="Data Analyst"
-                            company="The Ballot House UK (India)"
-                            location="Jaipur"
-                            duration="August 2021 - August 2022"
-                            points={[
-                                "Analyzed regional performance using demographic and polling data, identifying strategic levers for campaign success.",
-                                "Reported qualitative and quantitative insights to leadership for sales-style campaign refinement."
-                            ]}
-                        />
-                    </Section>
-                    <Section id="education" title="Education" isActive={activeSection === 'education'}>
-                        <div className="education-card">
-                            <h3>Post Graduate Certificate in Software Engineering for Data Science</h3>
-                            <p>The International Institute of Information Technology (IIITH)</p>
-                            <h3>Bachelor of Technology in Mechanical Engineering</h3>
-                            <p>Jawaharlal Nehru Technological University, Kakinada (JNTUK)</p>
-                        </div>
-                    </Section>
-                    <Section id="internship" title="Internship" isActive={activeSection === 'internship'}>
-                        <div className="internship-card">
-                            <h3>Intern Trainee</h3>
-                            <p>Rashtriya Ispat Nigam Limited (RINL) | June 2018</p>
-                            <p>Contributed to the Engineering Shops & Foundry department, gaining hands-on experience in the complete design, melting, and casting processes, from initial concept to final product.</p>
-                        </div>
-                    </Section>
-                    <Section id="certifications" title="Certifications" isActive={activeSection === 'certifications'}>
-                        <div className="certification-card">
-                            <p>Alteryx Designer Core | Alteryx | July 2024-2026</p>
-                            <p>Data Analysis with Python | Jovian | June 2022</p>
-                        </div>
-                    </Section>
-                    <Section id="languages" title="Languages" isActive={activeSection === 'languages'}>
-                        <div className="language-card">
-                            <p>English | Telugu | Hindi</p>
-                        </div>
-                    </Section>
-                    <footer>
-                        <p>© 2025 Simeon Palla. All rights reserved.</p>
-                    </footer>
-                </div>
-            );
-        };
-
-        ReactDOM.render(<App />, document.getElementById('root'));
+            }, { rootMargin: '-40% 0px -55% 0px' });
+            document.querySelectorAll('main section').forEach(function (s) { spy.observe(s); });
+        })();
     </script>
 </body>
 </html>

@@ -1,13 +1,29 @@
-# Simeon Palla's Portfolio
+# Simeon Palla | Portfolio
 
-## About
+Personal portfolio of Simeon Palla, a Monitoring, Evaluation and Policy Analytics professional working on impact evaluation, power-sector analytics and public-sector performance measurement.
 
-This portfolio is built as a single-page application using HTML, CSS, and React (via CDN). It features:
-- A sleek, blue-themed aesthetic with shades of blue for a professional and modern look.
-- Interactive brain mapping graphics as a background animation, representing data connections and analytical thinking.
-- Clickable navigation allows seamless exploration of sections such as Expertise, Work Experience, Education, Internship, Certifications, and Languages.
-- Responsive design optimized for desktop and mobile viewing.
+**Live:** [simeonpalla.github.io/portfolio](https://simeonpalla.github.io/portfolio/)
 
-## Live
+## Sections
 
-Visit the live portfolio at: [https://simeonpalla.github.io/portfolio/](https://simeonpalla.github.io/portfolio/)
+Experience, featured project (ADB AI for Safer Roads 2026, Top 10), research and writing, skills, education and credentials, contact.
+
+## Tech
+
+A single static `index.html` with inline CSS and about 30 lines of vanilla JavaScript. No build step and no framework.
+
+- Light and dark themes (follows system preference, with a manual toggle)
+- Responsive down to phone width, with scroll-spy navigation
+- Respects `prefers-reduced-motion`
+
+## Run locally
+
+Open `index.html` in a browser, or serve the folder:
+
+```bash
+python -m http.server 8000
+```
+
+## Deploy
+
+Served by GitHub Pages from the `main` branch root.
