@@ -13,424 +13,588 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simeon Palla | Data, Policy, Energy &amp; Products</title>
     <meta name="description" content="Simeon Palla is a data-driven generalist working across governance, energy, education, road safety and software.">
-    <meta name="theme-color" content="#0b7285">
+    <meta name="theme-color" content="#070b16">
     <meta property="og:title" content="Simeon Palla | Data, Policy, Energy &amp; Products">
     <meta property="og:description" content="A generalist who goes where the problem is: governance, energy, education, road safety and software.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://simeonpalla.github.io/portfolio/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
     <style>
         :root {
-            --bg: #f7f9fb;
-            --surface: #ffffff;
-            --ink: #0f1d2e;
-            --muted: #55657a;
-            --line: #dde4ec;
-            --accent: #0b7285;
-            --accent-soft: #e3f3f6;
-            --shadow: 0 1px 2px rgba(15, 29, 46, .05), 0 8px 24px rgba(15, 29, 46, .06);
+            --bg: #070b16;
+            --ink: #eef2ff;
+            --muted: #98a2c3;
+            --line: rgba(255,255,255,.09);
+            --glass: rgba(255,255,255,.045);
+            --c1: #22d3ee;
+            --c2: #8b5cf6;
+            --c3: #f472b6;
+            --c4: #fbbf24;
+            --grad: linear-gradient(120deg, var(--c1), var(--c2) 55%, var(--c3));
         }
-        :root[data-theme="dark"] {
-            --bg: #0b1420;
-            --surface: #121e2e;
-            --ink: #e6edf5;
-            --muted: #96a6b9;
-            --line: #223247;
-            --accent: #4dc3d8;
-            --accent-soft: #10303a;
-            --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
-        }
-
         * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+        html { scroll-behavior: smooth; scroll-padding-top: 70px; }
         body {
-            margin: 0;
-            font-family: 'Inter', system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--ink);
-            line-height: 1.65;
-            -webkit-font-smoothing: antialiased;
+            margin: 0; background: var(--bg); color: var(--ink);
+            font-family: 'Space Grotesk', system-ui, sans-serif; line-height: 1.6;
+            -webkit-font-smoothing: antialiased; overflow-x: hidden;
         }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-        .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+        a { color: inherit; text-decoration: none; }
+        a:focus-visible, button:focus-visible { outline: 2px solid var(--c1); outline-offset: 3px; border-radius: 6px; }
+        .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; position: relative; z-index: 2; }
         .mono { font-family: 'JetBrains Mono', monospace; }
+        .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+        /* Backdrop art: aurora blobs + grain */
+        .aurora { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+        .aurora i { position: absolute; width: 55vmax; height: 55vmax; border-radius: 50%; filter: blur(90px); opacity: .32; animation: drift 24s ease-in-out infinite alternate; }
+        .aurora i:nth-child(1) { background: var(--c2); top: -20vmax; left: -15vmax; }
+        .aurora i:nth-child(2) { background: var(--c1); bottom: -25vmax; right: -12vmax; animation-delay: -8s; opacity: .22; }
+        .aurora i:nth-child(3) { background: var(--c3); top: 35vh; left: 45vw; width: 34vmax; height: 34vmax; animation-delay: -15s; opacity: .16; }
+        @keyframes drift { to { transform: translate(6vmax, 4vmax) scale(1.12) rotate(20deg); } }
+        .grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+        #gl { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; transition: opacity .3s; }
+        .glow { position: fixed; width: 420px; height: 420px; margin: -210px 0 0 -210px; z-index: 1; pointer-events: none; border-radius: 50%;
+            background: radial-gradient(circle, rgba(139,92,246,.16), transparent 65%); transform: translate3d(-500px,-500px,0); }
 
         /* Nav */
-        nav {
-            position: sticky; top: 0; z-index: 10;
-            background: color-mix(in srgb, var(--bg) 88%, transparent);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--line);
-        }
-        nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 12px; }
-        .brand { font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
-        .brand:hover { text-decoration: none; }
-        .links { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
-        .links::-webkit-scrollbar { display: none; }
-        .links a { color: var(--muted); font-size: .9rem; font-weight: 500; padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
-        .links a:hover { color: var(--ink); text-decoration: none; }
-        .links a.active { background: var(--accent-soft); color: var(--accent); }
-        #theme {
-            background: none; border: 1px solid var(--line); color: var(--ink);
-            width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; flex: none;
-        }
+        nav { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 20; max-width: calc(100% - 24px);
+            display: flex; gap: 2px; padding: 6px; border-radius: 999px; background: rgba(12,17,32,.6);
+            border: 1px solid var(--line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); overflow-x: auto; scrollbar-width: none; }
+        nav::-webkit-scrollbar { display: none; }
+        nav a { padding: 7px 14px; border-radius: 999px; font-size: .86rem; font-weight: 500; color: var(--muted); white-space: nowrap; transition: .2s; }
+        nav a:hover { color: var(--ink); }
+        nav a.active { background: rgba(255,255,255,.1); color: var(--ink); }
 
         /* Hero */
-        .hero { padding: 88px 0 56px; }
-        .eyebrow { color: var(--accent); font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; }
-        h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); line-height: 1.08; letter-spacing: -.03em; margin: 12px 0 16px; }
-        .lead { font-size: 1.15rem; color: var(--muted); max-width: 680px; margin: 0; }
-        .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-        .btn {
-            display: inline-block; padding: 11px 20px; border-radius: 10px; font-weight: 600; font-size: .95rem;
-            border: 1px solid var(--line); color: var(--ink); background: var(--surface);
-        }
-        .btn:hover { text-decoration: none; border-color: var(--accent); }
-        .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-        :root[data-theme="dark"] .btn.primary { color: #06222a; }
-        .meta { margin-top: 20px; color: var(--muted); font-size: .9rem; }
+        .hero { min-height: 100svh; display: flex; align-items: center; padding: 110px 0 70px; }
+        .hero .wrap { width: 100%; }
+        .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: .8rem; color: var(--c1); letter-spacing: .12em; text-transform: uppercase; }
+        .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--c1); }
+        h1 { font-size: clamp(2.8rem, 8.5vw, 6.4rem); line-height: .98; letter-spacing: -.045em; margin: 18px 0 22px; font-weight: 700; max-width: 900px; }
+        .lead { font-size: clamp(1.02rem, 2vw, 1.25rem); color: var(--muted); max-width: 560px; margin: 0; }
+        .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: .95rem;
+            background: var(--glass); border: 1px solid var(--line); backdrop-filter: blur(8px); transition: transform .2s, border-color .2s; }
+        .btn:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.35); }
+        .btn.primary { background: var(--grad); border: 0; color: #08101f; }
+        .scrollhint { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); font-size: .75rem; color: var(--muted); letter-spacing: .2em; text-transform: uppercase; z-index: 2; }
+        .scrollhint::after { content: ""; display: block; width: 1px; height: 34px; margin: 8px auto 0; background: linear-gradient(var(--c1), transparent); animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 50% { transform: scaleY(.4); opacity: .4; } }
 
-        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: 48px; }
-        .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); }
-        .stat b { display: block; font-size: 1.9rem; letter-spacing: -.02em; color: var(--accent); }
-        .stat span { color: var(--muted); font-size: .88rem; }
+        /* Marquee */
+        .marquee { position: relative; z-index: 2; overflow: hidden; border-block: 1px solid var(--line); background: rgba(7,11,22,.6); backdrop-filter: blur(6px); padding: 16px 0; }
+        .track { display: flex; gap: 46px; width: max-content; animation: slide 38s linear infinite; }
+        .track span { font-size: clamp(1.1rem, 3vw, 1.7rem); font-weight: 600; letter-spacing: -.02em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.4); white-space: nowrap; }
+        .track span b { color: var(--c1); -webkit-text-stroke: 0; margin-left: 46px; }
+        @keyframes slide { to { transform: translateX(-50%); } }
 
         /* Sections */
-        section { padding: 56px 0; border-top: 1px solid var(--line); }
-        h2 { font-size: 1.7rem; letter-spacing: -.02em; margin: 0 0 8px; }
-        .sub { color: var(--muted); margin: 0 0 32px; max-width: 640px; }
-        h3 { margin: 0; font-size: 1.1rem; letter-spacing: -.01em; }
+        section { padding: 96px 0 40px; position: relative; z-index: 2; }
+        .kicker { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--c1); }
+        h2 { font-size: clamp(2rem, 5vw, 3.3rem); letter-spacing: -.035em; line-height: 1.05; margin: 8px 0 14px; }
+        .sub { color: var(--muted); max-width: 540px; margin: 0 0 40px; }
 
-        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
-        .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; box-shadow: var(--shadow); }
-        .card p { margin: 8px 0 0; color: var(--muted); font-size: .95rem; }
+        .glassy { background: var(--glass); border: 1px solid var(--line); border-radius: 24px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); position: relative; overflow: hidden; }
+        .tilt { transform-style: preserve-3d; transition: transform .25s ease, border-color .25s; will-change: transform; }
+        .tilt::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .25s;
+            background: radial-gradient(360px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.12), transparent 60%); }
+        .tilt:hover { border-color: rgba(255,255,255,.28); }
+        .tilt:hover::after { opacity: 1; }
 
-        /* Timeline */
-        .job { display: grid; grid-template-columns: 170px 1fr; gap: 8px 32px; padding: 26px 0; border-bottom: 1px solid var(--line); }
-        .job:last-child { border-bottom: 0; }
-        .when { color: var(--muted); font-size: .85rem; padding-top: 4px; }
-        .org { color: var(--accent); font-weight: 500; font-size: .95rem; margin-top: 2px; }
-        .tag { display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); margin-left: 8px; vertical-align: middle; }
-        .job ul, .project ul { margin: 12px 0 0; padding-left: 18px; color: var(--muted); font-size: .95rem; }
-        .job li, .project li { margin: 6px 0; }
-        .job li::marker, .project li::marker { color: var(--accent); }
-        .blurb { margin: 10px 0 0; color: var(--muted); font-size: .95rem; font-style: italic; }
+        /* Bento range */
+        .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+        .tile { padding: 24px; min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; }
+        .tile .ico { font-size: 2.1rem; filter: drop-shadow(0 0 16px currentColor); }
+        .tile h3 { margin: 0; font-size: 1.5rem; letter-spacing: -.03em; line-height: 1.1; }
+        .tile p { margin: 6px 0 0; color: var(--muted); font-size: .92rem; }
+        .tile::before { content: ""; position: absolute; width: 220px; height: 220px; border-radius: 50%; right: -70px; top: -70px; background: var(--tint); filter: blur(60px); opacity: .35; }
+        .t-a { grid-column: span 3; --tint: var(--c2); }
+        .t-b { grid-column: span 3; --tint: var(--c4); }
+        .t-c { grid-column: span 2; --tint: var(--c3); }
+        .t-d { grid-column: span 2; --tint: var(--c1); }
+        .t-e { grid-column: span 2; --tint: #34d399; }
 
-        /* Project */
-        .project { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; box-shadow: var(--shadow); }
-        .project .badge { display: inline-block; background: var(--accent); color: #fff; font-weight: 700; font-size: .78rem; padding: 3px 10px; border-radius: 999px; margin-bottom: 10px; }
-        :root[data-theme="dark"] .project .badge { color: #06222a; }
-        .formula { font-family: 'JetBrains Mono', monospace; background: var(--accent-soft); color: var(--accent); padding: 2px 8px; border-radius: 6px; font-size: .88rem; }
+        /* Featured: ADB */
+        .feature { padding: 34px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 34px; align-items: center; }
+        .badge { display: inline-block; background: var(--grad); color: #08101f; font-weight: 700; font-size: .78rem; padding: 4px 12px; border-radius: 999px; margin-bottom: 14px; }
+        .feature h3 { font-size: clamp(1.5rem, 3.4vw, 2.2rem); margin: 0 0 10px; letter-spacing: -.03em; line-height: 1.1; }
+        .feature p { color: var(--muted); margin: 0 0 18px; }
+        .formula { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: .85rem; padding: 8px 14px; border-radius: 10px; background: rgba(34,211,238,.1); color: var(--c1); border: 1px solid rgba(34,211,238,.25); }
+        .fstats { display: flex; gap: 26px; margin-top: 20px; flex-wrap: wrap; }
+        .fstats b { display: block; font-size: 1.7rem; letter-spacing: -.03em; }
+        .fstats span { color: var(--muted); font-size: .8rem; }
+        .gauge { width: 100%; max-width: 320px; margin: 0 auto; display: block; }
+        .gauge .arc { stroke-dasharray: 251; stroke-dashoffset: 251; transition: stroke-dashoffset 1.8s cubic-bezier(.2,.8,.2,1); }
+        .in .gauge .arc { stroke-dashoffset: 62; }
+        .gauge text { font-family: 'Space Grotesk'; }
 
-        /* Skills */
-        .skillrow { margin-bottom: 22px; }
-        .skillrow h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; font-weight: 600; }
+        /* Projects */
+        .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+        .proj { display: flex; flex-direction: column; }
+        .art { height: 168px; background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,0)); border-bottom: 1px solid var(--line); }
+        .art svg { width: 100%; height: 100%; display: block; }
+        .pbody { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+        .pbody h3 { margin: 0; font-size: 1.35rem; letter-spacing: -.02em; }
+        .pbody p { margin: 0; color: var(--muted); font-size: .93rem; flex: 1; }
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .tags span { font-size: .72rem; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+        .links { display: flex; gap: 16px; margin-top: 4px; font-weight: 600; font-size: .9rem; }
+        .links a { color: var(--c1); }
+        .links a:hover { text-decoration: underline; }
+        /* art animation */
+        .dash { stroke-dasharray: 400; stroke-dashoffset: 400; animation: draw 3.2s ease forwards infinite alternate; }
+        @keyframes draw { to { stroke-dashoffset: 0; } }
+        .ping { transform-origin: center; transform-box: fill-box; animation: ping 2.8s ease-out infinite; }
+        @keyframes ping { from { transform: scale(.3); opacity: .9; } to { transform: scale(1.6); opacity: 0; } }
+        .rise { transform-origin: bottom; transform-box: fill-box; animation: rise 2.4s ease-in-out infinite alternate; }
+        @keyframes rise { from { transform: scaleY(.45); } to { transform: scaleY(1); } }
+        .blink { animation: blink 2.2s ease-in-out infinite; }
+        @keyframes blink { 50% { opacity: .25; } }
+
+        /* Journey */
+        .journey { position: relative; padding-left: 46px; --p: 0; }
+        .journey::before, .journey::after { content: ""; position: absolute; left: 13px; top: 8px; width: 2px; border-radius: 2px; }
+        .journey::before { bottom: 8px; background: var(--line); }
+        .journey::after { height: calc((100% - 16px) * var(--p)); background: var(--grad); box-shadow: 0 0 14px var(--c1); }
+        .step { position: relative; padding: 0 0 34px; opacity: .35; transition: opacity .5s, transform .5s; transform: translateX(-8px); }
+        .step.on { opacity: 1; transform: none; }
+        .step::before { content: ""; position: absolute; left: -41px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); transition: .4s; }
+        .step.on::before { border-color: var(--c1); background: var(--c1); box-shadow: 0 0 0 5px rgba(34,211,238,.18), 0 0 18px var(--c1); }
+        .step .yr { font-size: .78rem; color: var(--c1); }
+        .step h3 { margin: 2px 0 2px; font-size: 1.25rem; letter-spacing: -.02em; }
+        .step p { margin: 0; color: var(--muted); font-size: .95rem; max-width: 560px; }
+        .step .conf { display: inline-block; margin-top: 6px; font-size: .72rem; padding: 3px 10px; border-radius: 999px; background: rgba(251,191,36,.12); color: var(--c4); border: 1px solid rgba(251,191,36,.3); }
+
+        /* Chips */
         .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-        .chip { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 13px; font-size: .88rem; }
-
-        .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-        .item { padding: 14px 0; border-bottom: 1px solid var(--line); }
+        .chip { padding: 7px 15px; border-radius: 999px; background: var(--glass); border: 1px solid var(--line); font-size: .9rem; transition: .2s; }
+        .chip:hover { border-color: var(--c1); color: var(--c1); transform: translateY(-2px); }
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .box { padding: 28px; }
+        .box h3 { margin: 0 0 14px; font-size: 1.1rem; }
+        .item { padding: 10px 0; border-bottom: 1px solid var(--line); }
         .item:last-child { border-bottom: 0; }
-        .item small { color: var(--muted); display: block; }
+        .item small { display: block; color: var(--muted); }
 
-        footer { border-top: 1px solid var(--line); padding: 36px 0 48px; color: var(--muted); font-size: .9rem; text-align: center; }
+        .contact { text-align: center; padding: 110px 0 80px; }
+        .contact h2 { font-size: clamp(2.4rem, 7vw, 5rem); }
+        .contact .cta { justify-content: center; }
+        footer { position: relative; z-index: 2; text-align: center; padding: 0 0 40px; color: var(--muted); font-size: .85rem; }
 
-        .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
         .reveal.in { opacity: 1; transform: none; }
+
+        @media (max-width: 800px) {
+            .bento { grid-template-columns: 1fr; }
+            .t-a, .t-b, .t-c, .t-d, .t-e { grid-column: auto; }
+            .feature { grid-template-columns: 1fr; padding: 24px; }
+            .split { grid-template-columns: 1fr; }
+            .glow { display: none; }
+        }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
-            .reveal { opacity: 1; transform: none; transition: none; }
-        }
-        @media (max-width: 720px) {
-            .job { grid-template-columns: 1fr; gap: 4px; }
-            .hero { padding-top: 56px; }
-            .brand { display: none; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .reveal, .step { opacity: 1; transform: none; }
+            .dash { stroke-dashoffset: 0; }
+            .gauge .arc { stroke-dashoffset: 62; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="wrap">
-            <a class="brand" href="#top">Simeon Palla</a>
-            <div class="links" id="links">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#project">Featured</a>
-                <a href="#built">Built</a>
-                <a href="#research">Research</a>
-                <a href="#skills">Skills</a>
-                <a href="#education">Education</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <button id="theme" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
-        </div>
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="glow" id="glow" aria-hidden="true"></div>
+
+    <nav id="nav" aria-label="Sections">
+        <a href="#top">Home</a>
+        <a href="#range">Range</a>
+        <a href="#featured">Featured</a>
+        <a href="#built">Built</a>
+        <a href="#journey">Journey</a>
+        <a href="#more">More</a>
+        <a href="#contact">Contact</a>
     </nav>
 
-    <header class="hero wrap" id="top">
-        <div class="eyebrow mono">Data · Policy · Energy · Engineering · Products</div>
-        <h1>A generalist who goes where the problem is.</h1>
-        <p class="lead">I'm Simeon Palla, a mechanical engineer turned data and product builder. In five years I've worked with state governments, a university and research institutes, on everything from grievance systems and road safety to scholarship models and web apps. Right now I'm a Consultant, Power Sector Analytics at the Centre for Policy Research.</p>
-        <div class="cta">
-            <a class="btn primary" href="mailto:simeonpalla@gmail.com">Get in touch</a>
-            <a class="btn" href="https://www.linkedin.com/in/simeon-palla/" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn" href="https://github.com/simeonpalla" target="_blank" rel="noopener">GitHub</a>
+    <header class="hero" id="top">
+        <div class="wrap">
+            <div class="eyebrow mono">Simeon Palla · Visakhapatnam</div>
+            <h1>I follow <span class="grad">interesting problems.</span></h1>
+            <p class="lead">Mechanical engineer turned data and product builder. Governance, energy, education, road safety, radar and apps. Wherever the problem is.</p>
+            <div class="cta">
+                <a class="btn primary" href="#built">See what I've built ↓</a>
+                <a class="btn" href="mailto:simeonpalla@gmail.com">Say hello</a>
+                <a class="btn" href="https://github.com/simeonpalla" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
         </div>
-        <div class="meta">📍 Visakhapatnam, Andhra Pradesh, India</div>
-        <div class="stats">
-            <div class="stat"><b>5 yrs</b><span>Across government, academia and research</span></div>
-            <div class="stat"><b>8+</b><span>Sectors worked in</span></div>
-            <div class="stat"><b>14,711</b><span>Road segments scored for safety</span></div>
-            <div class="stat"><b>Top 10</b><span>ADB AI for Safer Roads 2026</span></div>
-        </div>
+        <div class="scrollhint">Scroll</div>
     </header>
 
+    <div class="marquee" aria-hidden="true">
+        <div class="track">
+            <span>Governance<b>✦</b></span><span>Energy<b>✦</b></span><span>Education<b>✦</b></span><span>Road safety<b>✦</b></span><span>Elections<b>✦</b></span><span>Geospatial<b>✦</b></span><span>Radar research<b>✦</b></span><span>SDGs<b>✦</b></span><span>Tourism<b>✦</b></span><span>Gender<b>✦</b></span><span>Software<b>✦</b></span>
+            <span>Governance<b>✦</b></span><span>Energy<b>✦</b></span><span>Education<b>✦</b></span><span>Road safety<b>✦</b></span><span>Elections<b>✦</b></span><span>Geospatial<b>✦</b></span><span>Radar research<b>✦</b></span><span>SDGs<b>✦</b></span><span>Tourism<b>✦</b></span><span>Gender<b>✦</b></span><span>Software<b>✦</b></span>
+        </div>
+    </div>
+
     <main>
-        <section id="about" class="reveal">
+        <section id="range" class="reveal">
             <div class="wrap">
-                <h2>The range</h2>
-                <p class="sub">I learn a domain fast, work out what the data can and can't say, and ship something people use. That has taken me across very different fields.</p>
-                <div class="cards">
-                    <div class="card"><h3>🏛️ Governance &amp; policy</h3><p>Grievance redressal for a state government, district programmes in Meghalaya, SDG, tourism and investment work, and election analytics across three cycles.</p></div>
-                    <div class="card"><h3>⚡ Energy &amp; infrastructure</h3><p>Analytics and evaluation work in the power sector, turning operational data into evidence for infrastructure decisions. Project details are confidential.</p></div>
-                    <div class="card"><h3>🎓 Education &amp; finance</h3><p>Data for a 10,000+ candidate scholarship exam, plus revenue and scholarship simulation models that set a university's budget.</p></div>
-                    <div class="card"><h3>🚦 Road safety &amp; geospatial</h3><p>Scored 14,711 road segments for the ADB Safer Roads Challenge (Top 10) and mapped forest cover and land use with QGIS.</p></div>
-                    <div class="card"><h3>💻 Software &amp; products</h3><p>Dashboards, scraping and OCR pipelines, field-data systems, and web apps such as an expense tracker and a grievance-intelligence platform.</p></div>
-                    <div class="card"><h3>🔬 Research &amp; engineering</h3><p>Quasi-experimental evaluation, MST radar signal research, gender and development policy briefs, and an e-bike from my engineering degree.</p></div>
+                <div class="kicker mono">01 · The range</div>
+                <h2>Five years, <span class="grad">very different rooms.</span></h2>
+                <p class="sub">State governments, a university, research institutes and my own side projects. The tools change; the method doesn't.</p>
+                <div class="bento">
+                    <div class="glassy tile tilt t-a"><div class="ico">🏛️</div><div><h3>Governance</h3><p>A state grievance system, district programmes in Meghalaya, three election cycles.</p></div></div>
+                    <div class="glassy tile tilt t-b"><div class="ico">⚡</div><div><h3>Energy</h3><p>Analytics and evaluation in the power sector. Details confidential.</p></div></div>
+                    <div class="glassy tile tilt t-c"><div class="ico">🎓</div><div><h3>Education</h3><p>A 10,000+ candidate scholarship exam and the models behind a budget.</p></div></div>
+                    <div class="glassy tile tilt t-d"><div class="ico">🚦</div><div><h3>Road safety</h3><p>14,711 road segments scored. Top 10 at ADB.</p></div></div>
+                    <div class="glassy tile tilt t-e"><div class="ico">💻</div><div><h3>Products</h3><p>AI, dashboards and apps, from idea to live URL.</p></div></div>
                 </div>
             </div>
         </section>
 
-        <section id="experience" class="reveal">
+        <section id="featured" class="reveal">
             <div class="wrap">
-                <h2>Experience</h2>
-                <p class="sub">Five years across governments, a university and research institutes.</p>
-
-                <div class="job">
-                    <div class="when mono">May 2026 – Present</div>
+                <div class="kicker mono">02 · Featured</div>
+                <h2>Are the speed limits <span class="grad">even right?</span></h2>
+                <p class="sub">Most road-safety work counts who breaks the limit. We asked whether the limit is fair for the road.</p>
+                <div class="glassy feature tilt">
                     <div>
-                        <h3>Consultant, Power Sector Analytics <span class="tag">Current</span></h3>
-                        <div class="org">Centre for Policy Research (CPR), New Delhi · Visakhapatnam</div>
-                        <p class="blurb">Analytics, evaluation and capacity-building work in the power sector. Specific projects and clients are confidential under NDA.</p>
+                        <span class="badge">Top 10 · ADB AI for Safer Roads 2026</span>
+                        <h3>Speed Safety Score</h3>
+                        <p>A 0–100 score for every road segment across Maharashtra and Thailand, built from GPS speeds, population, infrastructure and street imagery. Machine learning extends coverage to the full network and flags "hidden danger" roads where drivers comply but speeds are still unsafe.</p>
+                        <span class="formula">Priority = Exposure × Likelihood × Severity</span>
+                        <div class="fstats">
+                            <div><b class="count" data-to="14711">0</b><span>road segments</span></div>
+                            <div><b>2</b><span>countries</span></div>
+                            <div><b>3</b><span>person team</span></div>
+                        </div>
+                        <div class="cta"><a class="btn" href="https://simeonpalla.github.io/ai-safer-roads/" target="_blank" rel="noopener">Live map ↗</a><a class="btn" href="https://github.com/simeonpalla/ai-safer-roads" target="_blank" rel="noopener">Code ↗</a></div>
                     </div>
-                </div>
-
-                <div class="job">
-                    <div class="when mono">Jul 2025 – May 2026</div>
-                    <div>
-                        <h3>Business Analyst</h3>
-                        <div class="org">GITAM Deemed University · Visakhapatnam</div>
-                        <ul>
-                            <li>Managed operational data for <b>Pathway 2026</b>, a President's Office initiative supporting meritorious students from marginalised communities: ~150 exam centres, 10,000+ registered and 8,000+ appearing candidates.</li>
-                            <li>Built revenue simulation models from historical admissions data to project fee-income scenarios for university leadership.</li>
-                            <li>Stress-tested scholarship models against prior-year enrolment; one scenario was adopted by leadership to set the next year's budget allocations.</li>
-                            <li>Produced governance-level performance reports and diagnostics to find programme implementation gaps.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="job">
-                    <div class="when mono">Feb 2025 – Jul 2025</div>
-                    <div>
-                        <h3>Data Scientist</h3>
-                        <div class="org">Bharti Institute of Public Policy, ISB · Govt. of Meghalaya (MDRF)</div>
-                        <ul>
-                            <li>Supported M&amp;E of district-level governance programmes under the Meghalaya Data and Research Fellowship.</li>
-                            <li>Built Power BI dashboards and structured reports for state leadership from multi-departmental administrative data.</li>
-                            <li>Ran QGIS analysis of forest cover and land use/land cover, computing land composition shares by constituency and district.</li>
-                            <li>Deployed and tested KoboToolbox for field data collection, including non-containerised installation.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="job">
-                    <div class="when mono">Jun 2024 – Jan 2025</div>
-                    <div>
-                        <h3>Data Consultant</h3>
-                        <div class="org">Myriad Concepts &amp; Strategies Pvt Ltd · Visakhapatnam</div>
-                        <ul>
-                            <li>Monitoring and performance analysis across SDG, tourism and investment programmes, synthesising quantitative and qualitative evidence for evaluation and strategic planning.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="job">
-                    <div class="when mono">Nov 2022 – Jun 2024</div>
-                    <div>
-                        <h3>Project Lead Analyst</h3>
-                        <div class="org">GVWV &amp; VSWS Dept., Govt. of Andhra Pradesh · Visakhapatnam</div>
-                        <p class="blurb">Led monitoring and analytical reporting for the state's public grievance redressal system, Spandana.</p>
-                        <ul>
-                            <li>Co-developed SOPs and KPIs with senior government officials to institutionalise programme monitoring.</li>
-                            <li>Designed executive dashboards to track service delivery, surface bottlenecks and support administrative decisions.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="job">
-                    <div class="when mono">Aug 2022 – Oct 2022</div>
-                    <div>
-                        <h3>Senior Data Analyst</h3>
-                        <div class="org">Pradical Works · Hyderabad</div>
-                        <ul>
-                            <li>Built automated data-collection pipelines for policy research and programme assessment.</li>
-                            <li>Built dynamic Plotly Dash dashboards on Heroku for field reporting.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="job">
-                    <div class="when mono">Aug 2021 – Aug 2022</div>
-                    <div>
-                        <h3>Data Analyst</h3>
-                        <div class="org">The Ballot House UK (India) · Jaipur</div>
-                        <ul>
-                            <li>Quantitative analysis of demographic and electoral datasets across three election cycles.</li>
-                            <li>Designed dashboards and led field data collection in southern Rajasthan.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="project" class="reveal">
-            <div class="wrap">
-                <h2>Featured project</h2>
-                <p class="sub">Analytical work outside the day job.</p>
-                <div class="project">
-                    <span class="badge">Top 10</span>
-                    <h3>ADB AI for Safer Roads Challenge 2026: Speed Safety Score</h3>
-                    <div class="org">Three-person team · Jun – Jul 2026 · Maharashtra (India) and Thailand</div>
-                    <p class="blurb" style="font-style:normal">Are posted speed limits appropriate for the road, rather than just how many drivers break them? We used ADB-provided GPS speed data enriched with population, infrastructure, settlement and street-imagery layers to assess 14,711 road segments.</p>
-                    <ul>
-                        <li>Built a composite <b>Speed Safety Score</b> combining Safe System alignment, speed-limit credibility gap and vulnerable-road-user risk.</li>
-                        <li>Designed a <span class="formula">Priority Index = Exposure × Likelihood × Severity</span> to rank roads for intervention under resource constraints, using population density, junction density and proximity to schools, hospitals, markets and transit.</li>
-                        <li>Grounded findings in the WHO Safe System approach, the Nilsson Power Model and AASHTO guidance.</li>
-                    </ul>
+                    <svg class="gauge" viewBox="0 0 200 130" role="img" aria-label="Speed Safety Score gauge">
+                        <defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#f472b6"/><stop offset=".5" stop-color="#fbbf24"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
+                        <path d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="14" stroke-linecap="round"/>
+                        <path class="arc" d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="url(#gg)" stroke-width="14" stroke-linecap="round"/>
+                        <text x="100" y="98" text-anchor="middle" font-size="34" font-weight="700" fill="#eef2ff">0–100</text>
+                        <text x="100" y="118" text-anchor="middle" font-size="10" fill="#98a2c3" letter-spacing="2">SAFETY SCORE</text>
+                    </svg>
                 </div>
             </div>
         </section>
 
         <section id="built" class="reveal">
             <div class="wrap">
-                <h2>Things I've built</h2>
-                <p class="sub">Side projects and experiments, across web, data and research.</p>
-                <div class="cards">
-                    <div class="card"><h3><a href="https://github.com/simeonpalla/GovLensAP" target="_blank" rel="noopener">GovLensAP</a></h3><p>Smart grievance intelligence platform. TypeScript.</p></div>
-                    <div class="card"><h3><a href="https://github.com/simeonpalla/ai-safer-roads" target="_blank" rel="noopener">ai-safer-roads</a></h3><p>Speed Safety Score analysis for the ADB AI for Safer Roads Challenge 2026.</p></div>
-                    <div class="card"><h3><a href="https://simeonexpencetracker.netlify.app/" target="_blank" rel="noopener">Expense Tracker</a></h3><p>Web app for tracking spending. <a href="https://github.com/simeonpalla/expensetracker" target="_blank" rel="noopener">Code</a> · live demo.</p></div>
-                    <div class="card"><h3><a href="https://github.com/simeonpalla/mst-abs" target="_blank" rel="noopener">mst-abs</a></h3><p>Adaptive-Bayesian shrinkage for MST radar data. Jupyter.</p></div>
-                    <div class="card"><h3><a href="https://github.com/simeonpalla/E2S" target="_blank" rel="noopener">E2S</a></h3><p>"From the Earth to the Skies". JavaScript.</p></div>
-                    <div class="card"><h3><a href="https://github.com/simeonpalla/Car-Price-Prediction" target="_blank" rel="noopener">Car Price Prediction</a></h3><p>Regression model for used-car prices. Jupyter.</p></div>
+                <div class="kicker mono">03 · Built</div>
+                <h2>Things I'm <span class="grad">proud of.</span></h2>
+                <p class="sub">Six projects I built end to end, from a road-safety map to an AI film studio.</p>
+                <div class="grid3">
+
+                    <article class="glassy proj tilt">
+                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
+                            <defs><linearGradient id="rd" x1="0" x2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset=".55" stop-color="#fbbf24"/><stop offset="1" stop-color="#f472b6"/></linearGradient></defs>
+                            <path class="dash" d="M10 130 C60 120 70 60 120 70 S180 130 230 60 S280 40 292 30" fill="none" stroke="url(#rd)" stroke-width="5" stroke-linecap="round"/>
+                            <path class="dash" style="animation-delay:.5s" d="M20 40 C70 50 90 100 150 96 S230 120 290 130" fill="none" stroke="url(#rd)" stroke-width="3.5" stroke-linecap="round" opacity=".7"/>
+                            <path class="dash" style="animation-delay:1s" d="M120 10 C130 60 110 110 150 160" fill="none" stroke="url(#rd)" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+                            <circle class="ping" cx="230" cy="60" r="14" fill="#f472b6"/><circle cx="230" cy="60" r="4" fill="#fff"/>
+                            <circle class="ping" style="animation-delay:1.2s" cx="120" cy="70" r="14" fill="#fbbf24"/><circle cx="120" cy="70" r="4" fill="#fff"/>
+                        </svg></div>
+                        <div class="pbody">
+                            <h3>Speed Safety Score</h3>
+                            <p>Scores every road for whether its speed limit fits the road, then ranks where to intervene first. Top 10 at ADB's AI for Safer Roads.</p>
+                            <div class="tags"><span>Python</span><span>XGBoost</span><span>Geospatial</span></div>
+                            <div class="links"><a href="https://simeonpalla.github.io/ai-safer-roads/" target="_blank" rel="noopener">Live map ↗</a><a href="https://github.com/simeonpalla/ai-safer-roads" target="_blank" rel="noopener">Code ↗</a></div>
+                        </div>
+                    </article>
+
+                    <article class="glassy proj tilt">
+                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
+                            <g fill="none" stroke="#8b5cf6" stroke-width="2">
+                                <circle class="ping" cx="150" cy="84" r="50"/><circle class="ping" style="animation-delay:.9s" cx="150" cy="84" r="50"/><circle class="ping" style="animation-delay:1.8s" cx="150" cy="84" r="50"/>
+                            </g>
+                            <path d="M138 62 L172 84 L138 106 Z" fill="#f472b6"/>
+                            <g fill="rgba(255,255,255,.18)">
+                                <rect x="8" y="14" width="26" height="18" rx="3"/><rect x="40" y="14" width="26" height="18" rx="3"/><rect x="72" y="14" width="26" height="18" rx="3"/><rect x="204" y="136" width="26" height="18" rx="3"/><rect x="236" y="136" width="26" height="18" rx="3"/><rect x="268" y="136" width="26" height="18" rx="3"/>
+                            </g>
+                            <g class="blink" fill="#22d3ee"><circle cx="40" cy="140" r="4"/><circle cx="60" cy="140" r="4"/><circle cx="80" cy="140" r="4"/><circle cx="100" cy="140" r="4"/><circle cx="120" cy="140" r="4"/><circle cx="140" cy="140" r="4"/></g>
+                        </svg></div>
+                        <div class="pbody">
+                            <h3>FilmECHO</h3>
+                            <p>An AI "studio war room" where six studio personas debate a film and deliver a greenlight verdict with confidence and reasoning.</p>
+                            <div class="tags"><span>Gemini</span><span>Multi-agent</span><span>FastAPI</span></div>
+                            <div class="links"><a href="https://filmecho-795628182324.asia-southeast1.run.app/" target="_blank" rel="noopener">Live ↗</a><a href="https://github.com/simeonpalla/filmecho" target="_blank" rel="noopener">Code ↗</a></div>
+                        </div>
+                    </article>
+
+                    <article class="glassy proj tilt">
+                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
+                            <polyline fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.4" points="8,90 18,70 26,108 36,60 46,112 56,74 66,104 76,50 86,118 96,66 106,100 116,42 126,124 136,64 146,98 156,40 166,120 176,70 186,96 196,56 206,114 216,72 226,100 236,64 246,108 256,80 266,96 278,84 292,88"/>
+                            <path class="dash" d="M8 90 C40 90 60 80 76 60 S110 30 116 46 S140 110 156 60 S190 40 196 60 S230 108 246 82 S280 90 292 88" fill="none" stroke="#22d3ee" stroke-width="3.5" stroke-linecap="round"/>
+                            <text x="10" y="156" font-size="10" fill="#98a2c3" font-family="JetBrains Mono">noisy → shrunk</text>
+                        </svg></div>
+                        <div class="pbody">
+                            <h3>mst-abs</h3>
+                            <p>Adaptive-Bayesian shrinkage applied to MST radar signals, pulling clean structure out of noisy atmospheric data.</p>
+                            <div class="tags"><span>Python</span><span>Bayesian</span><span>Signal</span></div>
+                            <div class="links"><a href="https://github.com/simeonpalla/mst-abs" target="_blank" rel="noopener">Code ↗</a></div>
+                        </div>
+                    </article>
+
+                    <article class="glassy proj tilt">
+                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
+                            <defs><linearGradient id="eb" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
+                            <g fill="url(#eb)">
+                                <rect class="rise" x="24" y="90" width="26" height="60" rx="5"/><rect class="rise" style="animation-delay:.3s" x="62" y="60" width="26" height="90" rx="5"/><rect class="rise" style="animation-delay:.6s" x="100" y="100" width="26" height="50" rx="5"/>
+                                <rect class="rise" style="animation-delay:.9s" x="138" y="40" width="26" height="110" rx="5"/>
+                            </g>
+                            <circle cx="232" cy="84" r="42" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="12"/>
+                            <circle cx="232" cy="84" r="42" fill="none" stroke="#f472b6" stroke-width="12" stroke-linecap="round" stroke-dasharray="180 264" transform="rotate(-90 232 84)"/>
+                            <circle cx="232" cy="84" r="42" fill="none" stroke="#fbbf24" stroke-width="12" stroke-linecap="round" stroke-dasharray="40 264" stroke-dashoffset="-190" transform="rotate(-90 232 84)"/>
+                        </svg></div>
+                        <div class="pbody">
+                            <h3>Expense Tracker</h3>
+                            <p>A salary-cycle finance app with on-device bill scanning, a financial health score and ranked actions. Bill photos never leave your phone.</p>
+                            <div class="tags"><span>React</span><span>TypeScript</span><span>Supabase</span><span>PWA</span></div>
+                            <div class="links"><a href="https://simeonexpencetracker.netlify.app/" target="_blank" rel="noopener">Live ↗</a><a href="https://github.com/simeonpalla/expensetracker" target="_blank" rel="noopener">Code ↗</a></div>
+                        </div>
+                    </article>
+
+                    <article class="glassy proj tilt">
+                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
+                            <g fill="#22d3ee" opacity=".85">
+                                <circle cx="30" cy="132" r="4"/><circle cx="52" cy="120" r="4"/><circle cx="70" cy="128" r="4"/><circle cx="88" cy="104" r="4"/><circle cx="108" cy="112" r="4"/><circle cx="128" cy="88" r="4"/><circle cx="146" cy="96" r="4"/><circle cx="168" cy="72" r="4"/><circle cx="186" cy="82" r="4"/><circle cx="208" cy="56" r="4"/><circle cx="228" cy="62" r="4"/><circle cx="248" cy="40" r="4"/><circle cx="270" cy="46" r="4"/>
+                            </g>
+                            <path class="dash" d="M20 136 L280 36" stroke="#f472b6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                            <text x="10" y="156" font-size="10" fill="#98a2c3" font-family="JetBrains Mono">price ≈ f(features)</text>
+                        </svg></div>
+                        <div class="pbody">
+                            <h3>Car Price Prediction</h3>
+                            <p>Predicting used-car prices, comparing decision trees, random forests, neural nets and polynomial regression with tuned hyperparameters.</p>
+                            <div class="tags"><span>scikit-learn</span><span>Jupyter</span><span>Regression</span></div>
+                            <div class="links"><a href="https://github.com/simeonpalla/Car-Price-Prediction" target="_blank" rel="noopener">Code ↗</a></div>
+                        </div>
+                    </article>
+
+                    <article class="glassy proj tilt">
+                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
+                            <g stroke="rgba(255,255,255,.25)" stroke-width="1.6" fill="none">
+                                <line x1="150" y1="84" x2="50" y2="36"/><line x1="150" y1="84" x2="250" y2="36"/><line x1="150" y1="84" x2="40" y2="128"/><line x1="150" y1="84" x2="260" y2="128"/><line x1="150" y1="84" x2="150" y2="14"/>
+                            </g>
+                            <g fill="#8b5cf6"><circle cx="50" cy="36" r="9"/><circle cx="250" cy="36" r="9"/><circle cx="40" cy="128" r="9"/><circle cx="260" cy="128" r="9"/><circle cx="150" cy="14" r="9"/></g>
+                            <circle class="ping" cx="150" cy="84" r="26" fill="#22d3ee"/><circle cx="150" cy="84" r="14" fill="#22d3ee"/><circle cx="150" cy="84" r="5" fill="#08101f"/>
+                            <circle class="blink" cx="50" cy="36" r="4" fill="#fbbf24"/><circle class="blink" style="animation-delay:1s" cx="260" cy="128" r="4" fill="#fbbf24"/>
+                        </svg></div>
+                        <div class="pbody">
+                            <h3>GovLens AP</h3>
+                            <p>Citizens send a photo, voice note or text. Gemini 3 classifies the grievance, finds the responsible department and estimates the fix.</p>
+                            <div class="tags"><span>Gemini 3</span><span>TypeScript</span><span>Streamlit</span></div>
+                            <div class="links"><a href="https://github.com/simeonpalla/GovLensAP" target="_blank" rel="noopener">Code ↗</a></div>
+                        </div>
+                    </article>
+
                 </div>
-                <p class="sub" style="margin-top:24px">More on <a href="https://github.com/simeonpalla?tab=repositories" target="_blank" rel="noopener">GitHub</a>.</p>
             </div>
         </section>
 
-        <section id="research" class="reveal">
+        <section id="journey" class="reveal">
             <div class="wrap">
-                <h2>Research &amp; writing</h2>
-                <p class="sub">Research Volunteer, Our Gender Lens (Apr 2026 – Present).</p>
-                <div class="cards">
-                    <div class="card"><h3>Understanding the Female Happiness Paradox in India</h3><p>Policy Brief No. 1 · Under revision</p></div>
-                    <div class="card"><h3>Gender, Child Development, and the Gap Between School and Work in India</h3><p>Forthcoming</p></div>
+                <div class="kicker mono">04 · Journey</div>
+                <h2>How I got <span class="grad">here.</span></h2>
+                <p class="sub">A path that zig-zags on purpose.</p>
+                <div class="journey" id="jr">
+                    <div class="step"><div class="yr mono">2015 – 2019</div><h3>Mechanical Engineering</h3><p>JNTU Kakinada. Built an e-bike with a BLDC motor and Li-ion pack for my final-year project.</p></div>
+                    <div class="step"><div class="yr mono">2021 – 2022</div><h3>Data Analyst, The Ballot House</h3><p>Electoral and demographic data across three election cycles, plus field data collection in Rajasthan.</p></div>
+                    <div class="step"><div class="yr mono">2022</div><h3>Senior Data Analyst, Pradical Works</h3><p>Automated data pipelines and live Plotly Dash dashboards.</p></div>
+                    <div class="step"><div class="yr mono">2022 – 2024</div><h3>Project Lead Analyst, Govt. of Andhra Pradesh</h3><p>Led monitoring for the state's Spandana grievance system and built the KPIs and dashboards senior officials used.</p></div>
+                    <div class="step"><div class="yr mono">2023 – 2024</div><h3>Software Engineering for Data Science</h3><p>Post Graduate Certificate, IIIT Hyderabad.</p></div>
+                    <div class="step"><div class="yr mono">2024 – 2025</div><h3>Data Consultant, Myriad Concepts</h3><p>Performance analysis across SDG, tourism and investment programmes.</p></div>
+                    <div class="step"><div class="yr mono">2025</div><h3>Data Scientist, ISB · Govt. of Meghalaya</h3><p>Governance dashboards, QGIS land-use mapping and field-data systems.</p></div>
+                    <div class="step"><div class="yr mono">2025 – 2026</div><h3>Business Analyst, GITAM University</h3><p>Ran the data for Pathway 2026 and built the scholarship models that shaped a budget.</p></div>
+                    <div class="step"><div class="yr mono">2026 – now</div><h3>Consultant, Power Sector Analytics · CPR</h3><p>Centre for Policy Research.</p><span class="conf">Project details confidential (NDA)</span></div>
                 </div>
-                <p class="sub" style="margin-top:24px"><b>Research interests:</b> M&amp;E systems, climate resilience and adaptation, energy access, public-sector performance, infrastructure governance, administrative data systems, evidence-based policymaking.</p>
             </div>
         </section>
 
-        <section id="skills" class="reveal">
+        <section id="more" class="reveal">
             <div class="wrap">
-                <h2>Skills</h2>
-                <p class="sub">Methods first, tools second.</p>
-                <div class="skillrow"><h3>Monitoring &amp; evaluation</h3><div class="chips">
-                    <span class="chip">Impact evaluation</span><span class="chip">Difference-in-differences</span><span class="chip">Quasi-experimental design</span><span class="chip">Regression</span><span class="chip">Time-series</span><span class="chip">Predictive modelling</span><span class="chip">Indicator development</span><span class="chip">Data quality assessment</span><span class="chip">Evidence synthesis</span><span class="chip">Results-based management</span>
-                </div></div>
-                <div class="skillrow"><h3>Programming &amp; data</h3><div class="chips">
-                    <span class="chip">Python (pandas, scikit-learn)</span><span class="chip">SQL (MySQL, PostgreSQL)</span><span class="chip">R</span><span class="chip">MongoDB</span><span class="chip">Spark</span><span class="chip">Excel VBA</span><span class="chip">Power Query</span>
-                </div></div>
-                <div class="skillrow"><h3>Geospatial &amp; visualisation</h3><div class="chips">
-                    <span class="chip">QGIS</span><span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Looker Studio</span><span class="chip">Plotly</span><span class="chip">Excel</span>
-                </div></div>
-                <div class="skillrow"><h3>Tooling &amp; field data</h3><div class="chips">
-                    <span class="chip">Git</span><span class="chip">Docker</span><span class="chip">Jupyter</span><span class="chip">Linux</span><span class="chip">KoboToolbox</span><span class="chip">XLSForms</span>
-                </div></div>
-                <div class="skillrow"><h3>Sectors</h3><div class="chips">
-                    <span class="chip">Energy &amp; power sector</span><span class="chip">Transport &amp; road safety</span><span class="chip">Public service delivery</span><span class="chip">Gender &amp; human development</span><span class="chip">Higher education</span><span class="chip">Sub-national governance</span><span class="chip">SDG monitoring</span><span class="chip">Tourism</span>
-                </div></div>
-            </div>
-        </section>
-
-        <section id="education" class="reveal">
-            <div class="wrap">
-                <h2>Education &amp; credentials</h2>
-                <p class="sub">Formal training, certifications and languages.</p>
-                <div class="two">
-                    <div class="card">
-                        <h3>Education</h3>
-                        <div class="item"><b>PG Certificate, Software Engineering for Data Science</b><small>IIIT Hyderabad · 2023 – 2024</small></div>
-                        <div class="item"><b>B.Tech, Mechanical Engineering</b><small>JNTU Kakinada · 2015 – 2019</small></div>
+                <div class="kicker mono">05 · More</div>
+                <h2>Writing, craft &amp; <span class="grad">languages.</span></h2>
+                <p class="sub"></p>
+                <div class="split">
+                    <div class="glassy box tilt">
+                        <h3>Research &amp; writing · Our Gender Lens</h3>
+                        <div class="item"><b>The Female Happiness Paradox in India</b><small>Policy Brief No. 1 · under revision</small></div>
+                        <div class="item"><b>Gender, Child Development, and the Gap Between School and Work in India</b><small>Forthcoming</small></div>
                     </div>
-                    <div class="card">
-                        <h3>Certifications &amp; other</h3>
-                        <div class="item"><b>Alteryx Designer Core</b><small>Alteryx · 2024 – 2026</small></div>
-                        <div class="item"><b>Data Analysis with Python</b><small>Jovian · June 2022</small></div>
-                        <div class="item"><b>Intern Trainee, Engineering Shops &amp; Foundry</b><small>Rashtriya Ispat Nigam Limited (RINL) · June 2018</small></div>
-                        <div class="item"><b>Languages</b><small>English (professional) · Telugu (native) · Hindi (basic)</small></div>
+                    <div class="glassy box tilt">
+                        <h3>Toolbox</h3>
+                        <div class="chips">
+                            <span class="chip">Python</span><span class="chip">R</span><span class="chip">SQL</span><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">Spark</span><span class="chip">QGIS</span><span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Plotly</span><span class="chip">Docker</span><span class="chip">Git</span><span class="chip">KoboToolbox</span>
+                        </div>
+                        <p style="color:var(--muted);font-size:.9rem;margin:16px 0 0">English · Telugu (native) · Hindi</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="reveal">
+        <section id="contact" class="contact reveal">
             <div class="wrap">
-                <h2>Let's talk</h2>
-                <p class="sub">Open to conversations on data, policy, infrastructure and building useful things.</p>
-                <div class="cta" style="margin-top:0">
+                <div class="kicker mono">06 · Contact</div>
+                <h2>Got a problem <span class="grad">worth solving?</span></h2>
+                <p class="sub" style="margin-inline:auto">Data, policy, infrastructure or building something useful. Let's talk.</p>
+                <div class="cta">
                     <a class="btn primary" href="mailto:simeonpalla@gmail.com">simeonpalla@gmail.com</a>
-                    <a class="btn" href="https://www.linkedin.com/in/simeon-palla/" target="_blank" rel="noopener">LinkedIn</a>
-                    <a class="btn" href="https://github.com/simeonpalla" target="_blank" rel="noopener">GitHub</a>
+                    <a class="btn" href="https://www.linkedin.com/in/simeon-palla/" target="_blank" rel="noopener">LinkedIn ↗</a>
+                    <a class="btn" href="https://github.com/simeonpalla" target="_blank" rel="noopener">GitHub ↗</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="wrap">© <span id="year">2026</span> Simeon Palla</div>
-    </footer>
+    <footer>© <span id="year">2026</span> Simeon Palla</footer>
 
     <script>
-        (function () {
-            var root = document.documentElement;
-            var saved = null;
-            try { saved = localStorage.getItem('theme'); } catch (e) {}
-            var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-            root.setAttribute('data-theme', dark ? 'dark' : 'light');
-            document.getElementById('theme').addEventListener('click', function () {
-                var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-                root.setAttribute('data-theme', next);
-                try { localStorage.setItem('theme', next); } catch (e) {}
-            });
+    (function () {
+        document.getElementById('year').textContent = new Date().getFullYear();
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            document.getElementById('year').textContent = new Date().getFullYear();
-
-            var io = new IntersectionObserver(function (entries) {
-                entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-            }, { threshold: 0.05 });
-            document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-
-            var links = document.querySelectorAll('#links a');
-            var spy = new IntersectionObserver(function (entries) {
-                entries.forEach(function (e) {
-                    if (!e.isIntersecting) return;
-                    links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+        // Reveal sections + count-up
+        var io = new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('in'); io.unobserve(e.target);
+                e.target.querySelectorAll('.count').forEach(function (c) {
+                    var to = +c.dataset.to, t0 = performance.now();
+                    (function tick(t) {
+                        var p = Math.min(1, (t - t0) / 1600);
+                        c.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))).toLocaleString('en-US');
+                        if (p < 1 && !reduce) requestAnimationFrame(tick); else c.textContent = to.toLocaleString('en-US');
+                    })(t0);
                 });
-            }, { rootMargin: '-40% 0px -55% 0px' });
-            document.querySelectorAll('main section').forEach(function (s) { spy.observe(s); });
-        })();
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+        // Nav scroll-spy
+        var links = document.querySelectorAll('nav a');
+        var spy = new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        document.querySelectorAll('header[id], section[id]').forEach(function (s) { spy.observe(s); });
+
+        // Card tilt + spotlight
+        if (!reduce && window.matchMedia('(hover: hover)').matches) {
+            document.querySelectorAll('.tilt').forEach(function (el) {
+                el.addEventListener('mousemove', function (e) {
+                    var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+                    el.style.setProperty('--mx', x * 100 + '%'); el.style.setProperty('--my', y * 100 + '%');
+                    el.style.transform = 'perspective(900px) rotateX(' + ((.5 - y) * 6) + 'deg) rotateY(' + ((x - .5) * 8) + 'deg) translateY(-3px)';
+                });
+                el.addEventListener('mouseleave', function () { el.style.transform = ''; });
+            });
+            var glow = document.getElementById('glow');
+            window.addEventListener('mousemove', function (e) { glow.style.transform = 'translate3d(' + e.clientX + 'px,' + e.clientY + 'px,0)'; });
+        }
+
+        // Journey: line fills as you scroll, steps light up
+        var jr = document.getElementById('jr'), steps = jr.querySelectorAll('.step');
+        function jrUpdate() {
+            var r = jr.getBoundingClientRect(), vh = window.innerHeight;
+            jr.style.setProperty('--p', Math.max(0, Math.min(1, (vh * 0.65 - r.top) / r.height)));
+            steps.forEach(function (s) { s.classList.toggle('on', s.getBoundingClientRect().top < vh * 0.72); });
+        }
+        window.addEventListener('scroll', jrUpdate, { passive: true });
+        window.addEventListener('resize', jrUpdate);
+        jrUpdate();
+    })();
+    </script>
+
+    <script type="module">
+    import * as THREE from 'three';
+
+    (function init() {
+        var canvas = document.getElementById('gl'), renderer;
+        try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); }
+        catch (e) { canvas.remove(); return; }
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+        camera.position.z = 7;
+
+        var globe = new THREE.Group();
+        scene.add(globe);
+
+        // Data globe: points on a Fibonacci sphere, gently waving
+        var N = 2600, pos = new Float32Array(N * 3), R = 2.2, ga = Math.PI * (3 - Math.sqrt(5));
+        for (var i = 0; i < N; i++) {
+            var y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = ga * i;
+            pos.set([Math.cos(th) * r * R, y * R, Math.sin(th) * r * R], i * 3);
+        }
+        var geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        var mat = new THREE.ShaderMaterial({
+            transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+            uniforms: { t: { value: 0 } },
+            vertexShader: 'uniform float t; varying float vY; void main(){ vec3 p = position; vY = p.y / 2.2; p += normalize(p) * sin(p.y * 2.6 + p.x * 1.4 + t) * 0.09; vec4 mv = modelViewMatrix * vec4(p,1.0); gl_PointSize = 34.0 / -mv.z; gl_Position = projectionMatrix * mv; }',
+            fragmentShader: 'varying float vY; void main(){ float d = length(gl_PointCoord - .5); if(d > .5) discard; vec3 a = vec3(.13,.83,.93); vec3 b = vec3(.55,.36,.96); vec3 c = vec3(.96,.45,.71); vec3 col = vY > 0. ? mix(a,b,vY) : mix(a,c,-vY); gl_FragColor = vec4(col, (1.-d*2.) * .9); }'
+        });
+        globe.add(new THREE.Points(geo, mat));
+
+        // Arcs connecting random points: "data flowing"
+        function pt(k) { return new THREE.Vector3(pos[k * 3], pos[k * 3 + 1], pos[k * 3 + 2]); }
+        var arcMat = new THREE.LineBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending });
+        for (var a = 0; a < 16; a++) {
+            var p1 = pt(Math.floor(Math.random() * N)), p2 = pt(Math.floor(Math.random() * N));
+            var mid = p1.clone().add(p2).multiplyScalar(0.5).normalize().multiplyScalar(R + 0.4 + p1.distanceTo(p2) * 0.18);
+            var curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
+            globe.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(40)), arcMat));
+        }
+
+        // Orbiting wire shells
+        var wire = new THREE.Mesh(new THREE.IcosahedronGeometry(3.0, 1), new THREE.MeshBasicMaterial({ color: 0x8b5cf6, wireframe: true, transparent: true, opacity: 0.16 }));
+        scene.add(wire);
+        var ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.008, 8, 160), new THREE.MeshBasicMaterial({ color: 0xf472b6, transparent: true, opacity: 0.55 }));
+        ring.rotation.x = 1.25; scene.add(ring);
+        var ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.9, 0.006, 8, 160), new THREE.MeshBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.4 }));
+        ring2.rotation.set(0.4, 0.5, 0); scene.add(ring2);
+
+        var mx = 0, my = 0, sy = 0;
+        window.addEventListener('mousemove', function (e) { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; });
+        window.addEventListener('scroll', function () { sy = window.scrollY / innerHeight; }, { passive: true });
+
+        function resize() {
+            renderer.setSize(innerWidth, innerHeight, false);
+            camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+        }
+        window.addEventListener('resize', resize); resize();
+
+        var clock = new THREE.Clock(), gx = 0, gy = 0;
+        function frame() {
+            var t = clock.getElapsedTime();
+            mat.uniforms.t.value = t;
+            globe.rotation.y = t * 0.12 + gx; globe.rotation.x = 0.2 + gy;
+            wire.rotation.y = -t * 0.07; wire.rotation.x = t * 0.04;
+            ring.rotation.z = t * 0.15; ring2.rotation.z = -t * 0.1;
+            // ease toward the mouse; drift the whole scene right on wide screens, and fade out as you scroll
+            gx += (mx * 0.6 - gx) * 0.04; gy += (my * 0.4 - gy) * 0.04;
+            var wide = innerWidth > 900, targetX = wide ? 2.4 : 0, s = wide ? 1 : 0.8;
+            scene.position.x += (targetX - sy * 0 - scene.position.x) * 0.05;
+            scene.position.y = sy * 1.6; scene.scale.setScalar(s);
+            canvas.style.opacity = Math.max(0.12, 1 - sy * 0.9);
+            renderer.render(scene, camera);
+            if (!reduce) requestAnimationFrame(frame);
+        }
+        frame();
+    })();
     </script>
 </body>
 </html>

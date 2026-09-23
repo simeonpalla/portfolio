@@ -10,11 +10,13 @@ The range of work, experience, featured project (ADB AI for Safer Roads 2026, To
 
 ## Tech
 
-A single static `index.html` with inline CSS and about 30 lines of vanilla JavaScript. No build step and no framework.
+A single static `index.html`. No build step and no framework.
 
-- Light and dark themes (follows system preference, with a manual toggle)
-- Responsive down to phone width, with scroll-spy navigation
-- Respects `prefers-reduced-motion`
+- 3D hero: a wave-animated data globe with arcs and orbiting rings, built with [Three.js](https://threejs.org) (loaded from a CDN)
+- Aurora and film-grain backdrop, glassmorphism cards with 3D tilt and cursor spotlight
+- A hand-drawn animated SVG artwork for each project
+- A scroll-driven journey timeline that lights up as you read
+- Responsive down to phone width; respects `prefers-reduced-motion`; falls back gracefully without WebGL
 
 ## Run locally
 
