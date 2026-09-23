@@ -1,12 +1,12 @@
 # Simeon Palla | Portfolio
 
-Personal portfolio of Simeon Palla, a Monitoring, Evaluation and Policy Analytics professional working on impact evaluation, power-sector analytics and public-sector performance measurement.
+Personal portfolio of Simeon Palla, a data-driven generalist working across governance, energy, education, road safety and software.
 
 **Live:** [simeonpalla.github.io/portfolio](https://simeonpalla.github.io/portfolio/)
 
 ## Sections
 
-Experience, featured project (ADB AI for Safer Roads 2026, Top 10), research and writing, skills, education and credentials, contact.
+The range of work, experience, featured project (ADB AI for Safer Roads 2026, Top 10), things I've built, research and writing, skills, education and credentials, contact.
 
 ## Tech
 
