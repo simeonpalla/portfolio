@@ -10,442 +10,861 @@
       gtag('config', 'G-SN3M6Y651M');
     </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simeon Palla | Data, Policy, Energy &amp; Products</title>
-    <meta name="description" content="Simeon Palla is a data-driven generalist working across governance, energy, education, road safety and software.">
-    <meta name="theme-color" content="#070b16">
-    <meta property="og:title" content="Simeon Palla | Data, Policy, Energy &amp; Products">
-    <meta property="og:description" content="A generalist who goes where the problem is: governance, energy, education, road safety and software.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Simeon Palla | Data, Policy &amp; Technology</title>
+    <meta name="description" content="Simeon Palla works at the intersection of data, public policy, infrastructure and technology: turning complex problems into evidence, tools and decisions.">
+    <meta name="theme-color" content="#0b0c0f">
+    <meta property="og:title" content="Simeon Palla | Data, Policy &amp; Technology">
+    <meta property="og:description" content="Turning complex problems into evidence, tools and decisions. Public-sector analytics, infrastructure, research and technology.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://simeonpalla.github.io/portfolio/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2322d3ee'/%3E%3Cstop offset='.55' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='%230b0c0f'/%3E%3Ctext x='16' y='24' font-family='Georgia,serif' font-style='italic' font-size='22' text-anchor='middle' fill='url(%23g)'%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="preload" href="fonts/instrument-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/instrument-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
     <style>
+        /* Self-hosted fonts (SIL Open Font License). Fixed-weight files, so every browser renders the same weights. */
+        @font-face { font-family: 'Instrument Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/instrument-sans-400.woff2) format('woff2'); }
+        @font-face { font-family: 'Instrument Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/instrument-sans-500.woff2) format('woff2'); }
+        @font-face { font-family: 'Instrument Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/instrument-sans-600.woff2) format('woff2'); }
+        @font-face { font-family: 'Instrument Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/instrument-sans-700.woff2) format('woff2'); }
+        @font-face { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-display: swap; src: url(fonts/instrument-serif-italic.woff2) format('woff2'); }
+        @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/jetbrains-mono-400.woff2) format('woff2'); }
+        @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/jetbrains-mono-500.woff2) format('woff2'); }
         :root {
-            --bg: #070b16;
-            --ink: #eef2ff;
-            --muted: #98a2c3;
-            --line: rgba(255,255,255,.09);
+            --bg: #0b0c0f;
+            --ink: #f6f6f5;
+            --muted: #adb4bf;
+            --line: rgba(255,255,255,.1);
             --glass: rgba(255,255,255,.045);
             --c1: #22d3ee;
             --c2: #8b5cf6;
             --c3: #f472b6;
-            --c4: #fbbf24;
+            --c4: #ff8a4c;
             --grad: linear-gradient(120deg, var(--c1), var(--c2) 55%, var(--c3));
+            --sans: 'Instrument Sans', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+            --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
         }
         * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+        :root { color-scheme: dark; }
+        html { font-size: clamp(16px, .3vw + 12.8px, 19px); scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 40px; }
         body {
             margin: 0; background: var(--bg); color: var(--ink);
-            font-family: 'Space Grotesk', system-ui, sans-serif; line-height: 1.6;
-            -webkit-font-smoothing: antialiased; overflow-x: hidden;
+            font-family: var(--sans); font-size: 1rem; line-height: 1.7; font-weight: 400;
+            text-rendering: optimizeLegibility; font-optical-sizing: auto; overflow-x: hidden;
         }
         a { color: inherit; text-decoration: none; }
-        a:focus-visible, button:focus-visible { outline: 2px solid var(--c1); outline-offset: 3px; border-radius: 6px; }
-        .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; position: relative; z-index: 2; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--c1); outline-offset: 3px; border-radius: 6px; }
+        .wrap { width: min(100% - 56px, clamp(1080px, 78vw, 1320px)); margin-inline: auto; position: relative; z-index: 2; }
+        .mono { font-family: var(--mono); }
+        .serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: 0; }
+        .grad { background: var(--grad); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; animation: shine 9s ease-in-out infinite alternate; }
+        @keyframes shine { to { background-position: 100% center; } }
+        .ico { width: 1.35rem; height: 1.35rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 
-        /* Backdrop art: aurora blobs + grain */
+        /* Backdrop art */
         .aurora { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-        .aurora i { position: absolute; width: 55vmax; height: 55vmax; border-radius: 50%; filter: blur(90px); opacity: .32; animation: drift 24s ease-in-out infinite alternate; }
+        .aurora i { position: absolute; width: 55vmax; height: 55vmax; border-radius: 50%; filter: blur(90px); opacity: .3; animation: drift 24s ease-in-out infinite alternate; }
         .aurora i:nth-child(1) { background: var(--c2); top: -20vmax; left: -15vmax; }
-        .aurora i:nth-child(2) { background: var(--c1); bottom: -25vmax; right: -12vmax; animation-delay: -8s; opacity: .22; }
-        .aurora i:nth-child(3) { background: var(--c3); top: 35vh; left: 45vw; width: 34vmax; height: 34vmax; animation-delay: -15s; opacity: .16; }
+        .aurora i:nth-child(2) { background: var(--c1); bottom: -25vmax; right: -12vmax; animation-delay: -8s; opacity: .2; }
+        .aurora i:nth-child(3) { background: var(--c3); top: 35vh; left: 45vw; width: 34vmax; height: 34vmax; animation-delay: -15s; opacity: .14; }
         @keyframes drift { to { transform: translate(6vmax, 4vmax) scale(1.12) rotate(20deg); } }
         .grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
-        #gl { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; transition: opacity .3s; }
+        #gl { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         .glow { position: fixed; width: 420px; height: 420px; margin: -210px 0 0 -210px; z-index: 1; pointer-events: none; border-radius: 50%;
-            background: radial-gradient(circle, rgba(139,92,246,.16), transparent 65%); transform: translate3d(-500px,-500px,0); }
+            background: radial-gradient(circle, color-mix(in srgb, var(--c2) 16%, transparent), transparent 65%); transform: translate3d(-500px,-500px,0); }
+        .progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 30; background: var(--grad); transform: scaleX(0); transform-origin: left; }
 
         /* Nav */
-        nav { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 20; max-width: calc(100% - 24px);
-            display: flex; gap: 2px; padding: 6px; border-radius: 999px; background: rgba(12,17,32,.6);
-            border: 1px solid var(--line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); overflow-x: auto; scrollbar-width: none; }
+        nav { position: fixed; top: max(14px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 20; max-width: calc(100% - 24px);
+            display: flex; gap: 2px; padding: 6px; border-radius: 999px; background: rgba(14,15,19,.62); background: color-mix(in srgb, var(--bg) 70%, transparent);
+            border: 1px solid var(--line); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%); overflow-x: auto; scrollbar-width: none; }
         nav::-webkit-scrollbar { display: none; }
-        nav a { padding: 7px 14px; border-radius: 999px; font-size: .86rem; font-weight: 500; color: var(--muted); white-space: nowrap; transition: .2s; }
+        nav a { padding: .45rem .95rem; border-radius: 999px; font-size: .88rem; font-weight: 500; color: var(--muted); white-space: nowrap; transition: color .2s, background .2s; }
         nav a:hover { color: var(--ink); }
-        nav a.active { background: rgba(255,255,255,.1); color: var(--ink); }
+        nav a.active { background: rgba(255,255,255,.11); color: var(--ink); }
+
+        /* Sections: roomy, content-driven */
+        section { position: relative; z-index: 2; padding: clamp(84px, 12vh, 140px) 0; }
+        section[data-n]::before {
+            content: attr(data-n); position: absolute; right: 2vw; top: clamp(60px, 9vh, 110px); z-index: 1; pointer-events: none;
+            font: 700 clamp(9rem, 26vw, 22rem)/1 var(--sans); letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.05);
+        }
+        .kicker { font-family: var(--mono); font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--c1); }
+        h1, h2, h3, h4 { font-family: var(--sans); margin: 0; }
+        h2 { font-size: clamp(2.1rem, 4vw, 3.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -.022em; margin: .55rem 0 1rem; text-wrap: balance; }
+        h2 .serif { font-size: 1.12em; line-height: 1; }
+        h3 { font-weight: 600; letter-spacing: -.012em; line-height: 1.2; }
+        .sub { color: var(--muted); font-size: 1.12rem; max-width: 38rem; margin: 0; text-wrap: pretty; }
+        .sec-head { max-width: 50rem; margin-bottom: 3.2rem; }
 
         /* Hero */
-        .hero { min-height: 100svh; display: flex; align-items: center; padding: 110px 0 70px; }
-        .hero .wrap { width: 100%; }
-        .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: .8rem; color: var(--c1); letter-spacing: .12em; text-transform: uppercase; }
+        .hero { position: relative; z-index: 2; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: clamp(80px, 11vh, 110px) 0 clamp(40px, 7vh, 72px); }
+        .hero h1, .hero .persona, .hero .lead, .hero .eyebrow { text-shadow: 0 2px 30px color-mix(in srgb, var(--bg) 90%, transparent); }
+        .hero .grad { text-shadow: none; }
+        .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: .8rem; color: var(--c1); letter-spacing: .14em; text-transform: uppercase; }
         .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--c1); }
-        h1 { font-size: clamp(2.8rem, 8.5vw, 6.4rem); line-height: .98; letter-spacing: -.045em; margin: 18px 0 22px; font-weight: 700; max-width: 900px; }
-        .lead { font-size: clamp(1.02rem, 2vw, 1.25rem); color: var(--muted); max-width: 560px; margin: 0; }
-        .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: .95rem;
-            background: var(--glass); border: 1px solid var(--line); backdrop-filter: blur(8px); transition: transform .2s, border-color .2s; }
-        .btn:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.35); }
-        .btn.primary { background: var(--grad); border: 0; color: #08101f; }
-        .scrollhint { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); font-size: .75rem; color: var(--muted); letter-spacing: .2em; text-transform: uppercase; z-index: 2; }
-        .scrollhint::after { content: ""; display: block; width: 1px; height: 34px; margin: 8px auto 0; background: linear-gradient(var(--c1), transparent); animation: pulse 2s ease-in-out infinite; }
+        h1 { font-size: clamp(2.6rem, min(6.2vw, 10vh), 4.9rem); line-height: 1.07; font-weight: 600; letter-spacing: -.028em; margin: 1rem 0 1rem; max-width: 11.3em; text-wrap: balance; }
+        h1 .serif { font-size: 1.12em; line-height: 1; }
+        .persona { font-size: clamp(1.35rem, 2.3vw, 1.85rem); color: var(--ink); opacity: .92; margin: 0 0 1rem; }
+        .lead { font-size: 1.15rem; color: var(--muted); max-width: 35rem; margin: 0; text-wrap: pretty; }
+        .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.8rem; }
+        .btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 8px; padding: .8rem 1.4rem; border-radius: 999px; font-weight: 600; font-size: .95rem;
+            background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: transform .25s, border-color .25s; }
+        .btn:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.4); }
+        .btn.primary { background: var(--grad); border: 0; color: #0a0b10; }
+        .btn.primary::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.45) 50%, transparent 65%); transform: translateX(-120%); transition: transform .7s; }
+        .btn.primary:hover::after { transform: translateX(120%); }
+        .btn.small { padding: .55rem 1.05rem; font-size: .86rem; }
+        .scrollcue { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: .68rem; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); display: none; text-align: center; }
+        .scrollcue::after { content: ""; display: block; width: 1px; height: 30px; margin: 8px auto 0; background: linear-gradient(var(--c1), transparent); animation: pulse 2s ease-in-out infinite; }
         @keyframes pulse { 50% { transform: scaleY(.4); opacity: .4; } }
+        @media (min-height: 800px) and (min-width: 901px) { .scrollcue { display: block; } }
 
         /* Marquee */
-        .marquee { position: relative; z-index: 2; overflow: hidden; border-block: 1px solid var(--line); background: rgba(7,11,22,.6); backdrop-filter: blur(6px); padding: 16px 0; }
-        .track { display: flex; gap: 46px; width: max-content; animation: slide 38s linear infinite; }
-        .track span { font-size: clamp(1.1rem, 3vw, 1.7rem); font-weight: 600; letter-spacing: -.02em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.4); white-space: nowrap; }
+        .marquee { position: relative; z-index: 2; overflow: hidden; border-block: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 65%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); padding: 14px 0; }
+        .track { display: flex; gap: 46px; width: max-content; animation: slide 42s linear infinite; }
+        .track span { font-size: clamp(1.15rem, 2.4vw, 1.7rem); font-weight: 600; letter-spacing: -.01em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.42); white-space: nowrap; }
         .track span b { color: var(--c1); -webkit-text-stroke: 0; margin-left: 46px; }
         @keyframes slide { to { transform: translateX(-50%); } }
 
-        /* Sections */
-        section { padding: 96px 0 40px; position: relative; z-index: 2; }
-        .kicker { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--c1); }
-        h2 { font-size: clamp(2rem, 5vw, 3.3rem); letter-spacing: -.035em; line-height: 1.05; margin: 8px 0 14px; }
-        .sub { color: var(--muted); max-width: 540px; margin: 0 0 40px; }
-
-        .glassy { background: var(--glass); border: 1px solid var(--line); border-radius: 24px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); position: relative; overflow: hidden; }
+        /* Glass cards */
+        .glassy { position: relative; overflow: hidden; border-radius: 22px; border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
+            -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 24px 50px -32px rgba(0,0,0,.7); }
         .tilt { transform-style: preserve-3d; transition: transform .25s ease, border-color .25s; will-change: transform; }
         .tilt::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .25s;
             background: radial-gradient(360px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.12), transparent 60%); }
-        .tilt:hover { border-color: rgba(255,255,255,.28); }
+        .tilt:hover { border-color: rgba(255,255,255,.3); }
         .tilt:hover::after { opacity: 1; }
-
-        /* Bento range */
-        .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
-        .tile { padding: 24px; min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; }
-        .tile .ico { font-size: 2.1rem; filter: drop-shadow(0 0 16px currentColor); }
-        .tile h3 { margin: 0; font-size: 1.5rem; letter-spacing: -.03em; line-height: 1.1; }
-        .tile p { margin: 6px 0 0; color: var(--muted); font-size: .92rem; }
-        .tile::before { content: ""; position: absolute; width: 220px; height: 220px; border-radius: 50%; right: -70px; top: -70px; background: var(--tint); filter: blur(60px); opacity: .35; }
-        .t-a { grid-column: span 3; --tint: var(--c2); }
-        .t-b { grid-column: span 3; --tint: var(--c4); }
-        .t-c { grid-column: span 2; --tint: var(--c3); }
-        .t-d { grid-column: span 2; --tint: var(--c1); }
-        .t-e { grid-column: span 2; --tint: #34d399; }
-
-        /* Featured: ADB */
-        .feature { padding: 34px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 34px; align-items: center; }
-        .badge { display: inline-block; background: var(--grad); color: #08101f; font-weight: 700; font-size: .78rem; padding: 4px 12px; border-radius: 999px; margin-bottom: 14px; }
-        .feature h3 { font-size: clamp(1.5rem, 3.4vw, 2.2rem); margin: 0 0 10px; letter-spacing: -.03em; line-height: 1.1; }
-        .feature p { color: var(--muted); margin: 0 0 18px; }
-        .formula { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: .85rem; padding: 8px 14px; border-radius: 10px; background: rgba(34,211,238,.1); color: var(--c1); border: 1px solid rgba(34,211,238,.25); }
-        .fstats { display: flex; gap: 26px; margin-top: 20px; flex-wrap: wrap; }
-        .fstats b { display: block; font-size: 1.7rem; letter-spacing: -.03em; }
-        .fstats span { color: var(--muted); font-size: .8rem; }
-        .gauge { width: 100%; max-width: 320px; margin: 0 auto; display: block; }
-        .gauge .arc { stroke-dasharray: 251; stroke-dashoffset: 251; transition: stroke-dashoffset 1.8s cubic-bezier(.2,.8,.2,1); }
-        .in .gauge .arc { stroke-dashoffset: 62; }
-        .gauge text { font-family: 'Space Grotesk'; }
-
-        /* Projects */
-        .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 18px; }
-        .proj { display: flex; flex-direction: column; }
-        .art { height: 168px; background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,0)); border-bottom: 1px solid var(--line); }
-        .art svg { width: 100%; height: 100%; display: block; }
-        .pbody { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-        .pbody h3 { margin: 0; font-size: 1.35rem; letter-spacing: -.02em; }
-        .pbody p { margin: 0; color: var(--muted); font-size: .93rem; flex: 1; }
         .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-        .tags span { font-size: .72rem; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-family: 'JetBrains Mono', monospace; }
-        .links { display: flex; gap: 16px; margin-top: 4px; font-weight: 600; font-size: .9rem; }
+        .tags span { font-family: var(--mono); font-size: .74rem; padding: .2rem .7rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+        .links { display: flex; gap: 1.2rem; font-weight: 600; font-size: .95rem; }
         .links a { color: var(--c1); }
-        .links a:hover { text-decoration: underline; }
-        /* art animation */
+        .links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+        .badge { display: inline-block; background: var(--grad); color: #0a0b10; font-weight: 700; font-size: .78rem; padding: .25rem .85rem; border-radius: 999px; }
+        .ico-wrap { width: 2.7rem; height: 2.7rem; border-radius: 13px; display: grid; place-items: center; color: var(--c1); background: color-mix(in srgb, var(--c1) 13%, transparent); border: 1px solid color-mix(in srgb, var(--c1) 26%, transparent); }
+        .ico-wrap.o { color: var(--c4); background: color-mix(in srgb, var(--c4) 13%, transparent); border-color: color-mix(in srgb, var(--c4) 28%, transparent); }
+        .ico-wrap.p { color: var(--c3); background: color-mix(in srgb, var(--c3) 13%, transparent); border-color: color-mix(in srgb, var(--c3) 28%, transparent); }
+        .ico-wrap.v { color: var(--c2); background: color-mix(in srgb, var(--c2) 15%, transparent); border-color: color-mix(in srgb, var(--c2) 30%, transparent); }
+
+        /* 01 Approach */
+        .a-head { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(24px, 5vw, 80px); align-items: end; margin-bottom: 2.2rem; }
+        .a-head h2 { margin-bottom: 0; }
+        .intro-p { color: var(--muted); font-size: 1.1rem; margin: 0; text-wrap: pretty; }
+        .domains { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.4rem; }
+        .domains button { font: inherit; font-size: .95rem; font-weight: 500; color: var(--muted); padding: .6rem 1.3rem; border-radius: 999px; background: var(--glass); border: 1px solid var(--line); cursor: pointer; transition: .2s; }
+        .domains button:hover { color: var(--ink); border-color: rgba(255,255,255,.32); }
+        .domains button[aria-selected="true"] { color: #0a0b10; background: var(--grad); border-color: transparent; font-weight: 600; }
+        .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; position: relative; }
+        .flow::before { content: ""; position: absolute; left: 4%; right: 4%; top: 22px; height: 2px; background: linear-gradient(90deg, transparent, var(--c1), var(--c2), var(--c3), transparent); opacity: .35; }
+        .fdot { position: absolute; top: 19px; left: 23px; width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 14px 3px var(--c1); z-index: 2; transition: opacity .6s; pointer-events: none; }
+        .fstep { padding: 3.4rem 1.2rem 1.5rem; border-radius: 18px; background: var(--glass); border: 1px solid var(--line); position: relative; opacity: .42; min-height: 12.5rem;
+            animation: pop .55s backwards; animation-delay: calc(var(--i) * 90ms);
+            transition: opacity .5s, transform .5s, border-color .5s, background .5s, box-shadow .5s; }
+        .fstep::before { content: attr(data-n); position: absolute; top: 12px; left: 16px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font: 500 .7rem var(--mono); background: var(--bg); border: 1px solid var(--c1); color: var(--c1); }
+        .fstep.done { opacity: .82; }
+        .fstep.active { opacity: 1; transform: translateY(-4px); border-color: color-mix(in srgb, var(--c1) 55%, transparent); background: color-mix(in srgb, var(--c1) 8%, var(--glass)); box-shadow: 0 14px 40px -14px var(--c1); }
+        .fstep.active::before { background: var(--c1); color: #0a0b10; }
+        .fstep .fk { font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--c1); }
+        .fstep p { margin: .5rem 0 0; font-size: 1.02rem; line-height: 1.5; }
+        @keyframes pop { from { opacity: 0; transform: translateY(12px); } to { opacity: .42; transform: none; } }
+        .statbar { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 2rem; padding: 1.3rem 0; }
+        .statbar > div { padding: .2rem 1.6rem; border-left: 1px solid var(--line); }
+        .statbar > div:first-child { border-left: 0; }
+        .statbar b { display: block; font-size: 2.1rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+        .statbar span { color: var(--muted); font-size: .92rem; }
+
+        /* 02 Speed Safety Score */
+        .adb { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
+        .adb-l h2 { margin-top: 1rem; }
+        .adb-l > p { color: var(--muted); font-size: 1.1rem; margin: 0 0 1.4rem; text-wrap: pretty; }
+        .fstats { display: flex; gap: 2.6rem; margin: 1.6rem 0 0; flex-wrap: wrap; }
+        .fstats b { display: block; font-size: 2.3rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.1; }
+        .fstats span { color: var(--muted); font-size: .9rem; }
+        .explorer { padding: 1.9rem 2rem; }
+        .explorer h4 { font-size: 1.2rem; font-weight: 600; margin: 0 0 .25rem; letter-spacing: -.01em; }
+        .explorer .note { color: var(--muted); font-size: .86rem; margin: 0 0 .8rem; }
+        .gauge { width: 100%; max-width: 250px; margin: 0 auto; display: block; }
+        .gauge .arc { stroke-dasharray: 251.3; stroke-dashoffset: 251.3; transition: stroke-dashoffset .6s cubic-bezier(.2,.8,.2,1); }
+        .readout { text-align: center; margin-bottom: 1.1rem; }
+        .verdict { font-weight: 600; font-size: 1rem; margin: .2rem auto .4rem; min-height: 3.1em; max-width: 26em; text-wrap: balance; }
+        .facts { display: flex; justify-content: center; gap: 1.6rem; font-size: .88rem; color: var(--muted); flex-wrap: wrap; }
+        .facts b { color: var(--ink); font-family: var(--mono); font-weight: 500; }
+        .ctl { margin-bottom: 1rem; }
+        .ctl label { display: flex; justify-content: space-between; font-size: .9rem; color: var(--muted); margin-bottom: .35rem; }
+        .ctl output { color: var(--ink); font-family: var(--mono); }
+        select, input[type=range] { width: 100%; }
+        select { -webkit-appearance: none; appearance: none; font: inherit; font-size: .95rem; padding: .65rem 2.3rem .65rem .85rem; border-radius: 12px; color: var(--ink); cursor: pointer;
+            background-color: rgba(255,255,255,.06); border: 1px solid var(--line);
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1.5l5 5 5-5' fill='none' stroke='%23a9b0bb' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+            background-repeat: no-repeat; background-position: right .85rem center; }
+        select option { background: #14151a; color: #f6f6f5; }
+        input[type=range] { accent-color: var(--c1); }
+        .how { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 1.3rem; position: relative; }
+        .how-title, .sub-title { font-family: var(--mono); font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--c1); margin: 4.5rem 0 1.2rem; }
+        .how-title { margin-bottom: 0; }
+        .hstep { padding: 1.6rem 1.5rem 1.7rem; }
+        .hstep .num { position: absolute; right: 1.2rem; top: .8rem; font: 700 3.4rem/1 var(--sans); color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.1); }
+        .hstep h3 { font-size: 1.2rem; margin: 1rem 0 .4rem; }
+        .hstep p { margin: 0 0 .9rem; color: var(--muted); font-size: .98rem; line-height: 1.55; }
+        .out { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.4rem; margin-top: 1.4rem; align-items: stretch; }
+        .netcard { padding: 1.6rem 1.7rem 1.4rem; }
+        .netcard h4 { font-size: 1.2rem; font-weight: 600; margin-bottom: .2rem; }
+        .netcard .note { color: var(--muted); font-size: .86rem; margin: 0 0 1rem; }
+        #netmap { border-radius: 14px; background: rgba(255,255,255,.025); border: 1px solid var(--line); overflow: hidden; }
+        #netmap svg { width: 100%; height: auto; display: block; }
+        #netmap line { stroke-width: 5; stroke-linecap: round; cursor: crosshair; transition: stroke-width .15s; }
+        #netmap line:hover { stroke-width: 9; }
+        .reveal.in #netmap line { animation: segin .6s backwards; animation-delay: calc(var(--k) * 7ms + 200ms); }
+        @keyframes segin { from { opacity: 0; } }
+        .netread { min-height: 2.9em; margin-top: .9rem; font-family: var(--mono); font-size: .82rem; color: var(--ink); line-height: 1.5; }
+        .legend { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: .7rem; font-size: .84rem; color: var(--muted); }
+        .legend i { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; margin-right: .45rem; vertical-align: -1px; }
+        .insights { display: grid; gap: 1.4rem; }
+        .insight { padding: 1.6rem 1.7rem; }
+        .insight h4 { font-size: 1.15rem; font-weight: 600; margin: 0 0 .35rem; }
+        .insight p { margin: 0 0 1rem; color: var(--muted); font-size: .98rem; line-height: 1.55; }
+        .cover { display: flex; height: .8rem; border-radius: 99px; background: rgba(255,255,255,.07); overflow: hidden; }
+        .cover .obs { width: 21%; background: var(--c1); }
+        .cover .mod { flex: 1; background: repeating-linear-gradient(45deg, color-mix(in srgb, var(--c2) 75%, transparent) 0 6px, transparent 6px 12px); }
+        .covlab { display: flex; justify-content: space-between; margin-top: .55rem; font-family: var(--mono); font-size: .74rem; color: var(--muted); }
+        .say { display: flex; flex-wrap: wrap; gap: .5rem; }
+        .say span { font-size: .9rem; padding: .35rem .85rem; border-radius: 10px; background: color-mix(in srgb, var(--c4) 11%, transparent); border: 1px solid color-mix(in srgb, var(--c4) 28%, transparent); color: var(--ink); }
+
+        /* GovLens AP */
+        .story { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 1rem; align-items: stretch; }
+        .scard { padding: 1.8rem 1.7rem; display: flex; flex-direction: column; gap: .9rem; }
+        .scard .step-k { font-family: var(--mono); font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--c1); }
+        .scard h3 { font-size: 1.35rem; }
+        .scard p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.6; }
+        .chipline { display: flex; flex-wrap: wrap; gap: .5rem; }
+        .chipline span { display: inline-flex; align-items: center; gap: .45rem; padding: .4rem .85rem; border-radius: 999px; font-size: .9rem; background: color-mix(in srgb, var(--c2) 14%, transparent); border: 1px solid color-mix(in srgb, var(--c2) 34%, transparent); }
+        .chipline.o span { background: color-mix(in srgb, var(--c1) 10%, transparent); border-color: color-mix(in srgb, var(--c1) 30%, transparent); }
+        .chipline .ico { width: 1rem; height: 1rem; }
+        .core { align-self: center; width: 7.2rem; height: 7.2rem; border-radius: 26px; display: grid; place-items: center; text-align: center; font-weight: 600; font-size: .95rem; line-height: 1.25; color: #0a0b10; background: var(--grad); position: relative; margin: .4rem auto; }
+        .core::after { content: ""; position: absolute; inset: -9px; border-radius: 34px; border: 1px solid var(--c1); animation: ping 2.8s ease-out infinite; }
+        .core small { display: block; font-weight: 500; font-size: .72rem; opacity: .8; }
+        .arrow { align-self: center; color: var(--muted); font-size: 1.6rem; }
+        .foot { display: flex; flex-wrap: wrap; align-items: center; gap: 1.4rem 2rem; margin-top: 2rem; }
+        .disclaimer { font-size: .9rem; color: var(--c4); border-left: 2px solid var(--c4); padding-left: .8rem; }
+
+        /* Expense Tracker */
+        .exp2 { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+        .phone { width: min(300px, 100%); margin-inline: auto; border-radius: 38px; padding: 12px; background: linear-gradient(160deg, rgba(255,255,255,.14), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.2); box-shadow: 0 40px 80px -30px rgba(0,0,0,.8), 0 0 80px -20px color-mix(in srgb, var(--c2) 60%, transparent); }
+        .screen { border-radius: 28px; background: #0d0e12; padding: 1.4rem 1.2rem 1.2rem; min-height: 26rem; display: flex; flex-direction: column; gap: 1rem; }
+        .screen .top { display: flex; justify-content: space-between; font-size: .72rem; color: var(--muted); font-family: var(--mono); }
+        .ringrow { display: flex; align-items: center; gap: 1rem; }
+        .ringrow svg { width: 92px; flex: none; }
+        .ringrow small { color: var(--muted); font-size: .74rem; display: block; }
+        .ringrow b { font-size: .95rem; font-weight: 600; }
+        .bars { display: flex; align-items: flex-end; gap: 8px; height: 5.4rem; padding: 0 .2rem; }
+        .bars i { flex: 1; border-radius: 6px 6px 3px 3px; background: linear-gradient(180deg, var(--c1), var(--c2)); transform-origin: bottom; animation: rise 2.6s ease-in-out infinite alternate; }
+        @keyframes rise { from { transform: scaleY(.5); } to { transform: scaleY(1); } }
+        .act { display: flex; align-items: center; gap: .6rem; padding: .6rem .75rem; border-radius: 12px; background: rgba(255,255,255,.05); font-size: .78rem; }
+        .act .ico { width: 1rem; height: 1rem; color: var(--c4); }
+        .feat { display: grid; gap: 1.3rem; margin: 1.8rem 0; }
+        .feat > div { display: grid; grid-template-columns: 2.7rem 1fr; gap: 1rem; align-items: start; }
+        .feat h4 { font-size: 1.08rem; font-weight: 600; margin-bottom: .1rem; }
+        .feat p { margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.55; }
+        .quote { font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.25; color: var(--ink); margin: 0 0 1.6rem; max-width: 28rem; }
+
+        /* More work */
+        .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+        .proj { display: flex; flex-direction: column; }
+        .art { height: 10rem; background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,0)); border-bottom: 1px solid var(--line); }
+        .art svg { width: 100%; height: 100%; display: block; }
+        .pbody { padding: 1.5rem 1.6rem 1.7rem; display: flex; flex-direction: column; gap: .8rem; flex: 1; }
+        .pbody h3 { font-size: 1.35rem; }
+        .pbody p { margin: 0; color: var(--muted); font-size: 1rem; flex: 1; text-wrap: pretty; }
         .dash { stroke-dasharray: 400; stroke-dashoffset: 400; animation: draw 3.2s ease forwards infinite alternate; }
         @keyframes draw { to { stroke-dashoffset: 0; } }
         .ping { transform-origin: center; transform-box: fill-box; animation: ping 2.8s ease-out infinite; }
         @keyframes ping { from { transform: scale(.3); opacity: .9; } to { transform: scale(1.6); opacity: 0; } }
-        .rise { transform-origin: bottom; transform-box: fill-box; animation: rise 2.4s ease-in-out infinite alternate; }
-        @keyframes rise { from { transform: scaleY(.45); } to { transform: scaleY(1); } }
-        .blink { animation: blink 2.2s ease-in-out infinite; }
-        @keyframes blink { 50% { opacity: .25; } }
 
-        /* Journey */
-        .journey { position: relative; padding-left: 46px; --p: 0; }
-        .journey::before, .journey::after { content: ""; position: absolute; left: 13px; top: 8px; width: 2px; border-radius: 2px; }
-        .journey::before { bottom: 8px; background: var(--line); }
-        .journey::after { height: calc((100% - 16px) * var(--p)); background: var(--grad); box-shadow: 0 0 14px var(--c1); }
-        .step { position: relative; padding: 0 0 34px; opacity: .35; transition: opacity .5s, transform .5s; transform: translateX(-8px); }
-        .step.on { opacity: 1; transform: none; }
-        .step::before { content: ""; position: absolute; left: -41px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); transition: .4s; }
-        .step.on::before { border-color: var(--c1); background: var(--c1); box-shadow: 0 0 0 5px rgba(34,211,238,.18), 0 0 18px var(--c1); }
-        .step .yr { font-size: .78rem; color: var(--c1); }
-        .step h3 { margin: 2px 0 2px; font-size: 1.25rem; letter-spacing: -.02em; }
-        .step p { margin: 0; color: var(--muted); font-size: .95rem; max-width: 560px; }
-        .step .conf { display: inline-block; margin-top: 6px; font-size: .72rem; padding: 3px 10px; border-radius: 999px; background: rgba(251,191,36,.12); color: var(--c4); border: 1px solid rgba(251,191,36,.3); }
+        /* 03 Experience: chapters */
+        .chapters { position: relative; padding-left: 4.4rem; --p: 0; }
+        .chapters::before, .chapters::after { content: ""; position: absolute; left: 1.15rem; top: 1rem; width: 2px; border-radius: 2px; }
+        .chapters::before { bottom: 2rem; background: var(--line); }
+        .chapters::after { height: calc((100% - 3rem) * var(--p)); background: var(--grad); box-shadow: 0 0 14px var(--c1); }
+        .chapter { position: relative; margin-bottom: 1.8rem; opacity: .3; transform: translateY(26px); transition: opacity .7s, transform .7s; }
+        .chapter.on { opacity: 1; transform: none; }
+        .chapter::before { content: ""; position: absolute; left: -3.9rem; top: 2.1rem; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); transition: .4s; margin-left: .55rem; }
+        .chapter.on::before { border-color: var(--c1); background: var(--c1); box-shadow: 0 0 0 5px color-mix(in srgb, var(--c1) 18%, transparent), 0 0 18px var(--c1); }
+        .ch { padding: 1.9rem 2.1rem 2rem; }
+        .ch-top { display: grid; grid-template-columns: auto 1fr auto; gap: 1.2rem; align-items: center; }
+        .mono-g { width: 3.6rem; height: 3.6rem; border-radius: 50%; display: grid; place-items: center; font: 600 .85rem var(--mono); letter-spacing: .04em; color: var(--ink); position: relative;
+            background: linear-gradient(var(--bg), var(--bg)) padding-box, var(--grad) border-box; border: 2px solid transparent; }
+        .ch h3 { font-size: 1.4rem; }
+        .ch .org { color: var(--muted); font-size: 1rem; }
+        .ch .yr { font-family: var(--mono); font-size: .8rem; color: var(--c1); padding: .3rem .8rem; border: 1px solid color-mix(in srgb, var(--c1) 30%, transparent); border-radius: 999px; white-space: nowrap; }
+        .doms { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.3rem 0 0; }
+        .doms span { font-size: .78rem; padding: .18rem .7rem; border-radius: 999px; background: color-mix(in srgb, var(--c2) 16%, transparent); border: 1px solid color-mix(in srgb, var(--c2) 34%, transparent); }
+        .ch-lead { font-size: 1.22rem; line-height: 1.4; margin: 1rem 0 .3rem; font-weight: 500; letter-spacing: -.01em; }
+        .ch ul { list-style: none; padding: 0; margin: .9rem 0 0; display: grid; gap: .6rem; }
+        .ch li { position: relative; padding-left: 1.5rem; color: var(--muted); font-size: 1rem; line-height: 1.55; }
+        .ch li::before { content: ""; position: absolute; left: 0; top: .62em; width: .55rem; height: .55rem; border-radius: 3px; background: var(--grad); }
+        .ch .tags { margin-top: 1.2rem; }
+        .conf { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.1rem; font-size: .84rem; padding: .3rem .85rem; border-radius: 999px; color: var(--c4); background: color-mix(in srgb, var(--c4) 12%, transparent); border: 1px solid color-mix(in srgb, var(--c4) 32%, transparent); }
+        .conf .ico { width: .95rem; height: .95rem; }
+        .edu { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; margin-top: 3rem; }
+        .edu > div { padding: 1.5rem 1.7rem; display: grid; grid-template-columns: 2.7rem 1fr; gap: 1rem; }
+        .edu b { font-weight: 600; line-height: 1.3; display: block; font-size: 1.05rem; }
+        .edu small { display: block; color: var(--muted); font-size: .92rem; margin-top: .25rem; line-height: 1.5; }
 
-        /* Chips */
-        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-        .chip { padding: 7px 15px; border-radius: 999px; background: var(--glass); border: 1px solid var(--line); font-size: .9rem; transition: .2s; }
-        .chip:hover { border-color: var(--c1); color: var(--c1); transform: translateY(-2px); }
-        .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 18px; }
-        .box { padding: 28px; }
-        .box h3 { margin: 0 0 14px; font-size: 1.1rem; }
-        .item { padding: 10px 0; border-bottom: 1px solid var(--line); }
-        .item:last-child { border-bottom: 0; }
-        .item small { display: block; color: var(--muted); }
+        /* 04 Research + toolbox */
+        .rgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+        .rcard { overflow: hidden; display: flex; flex-direction: column; }
+        .rcard .cov { height: 11rem; border-bottom: 1px solid var(--line); }
+        .rcard .cov svg { width: 100%; height: 100%; display: block; }
+        .rbody { padding: 1.6rem 1.8rem 1.9rem; display: flex; flex-direction: column; gap: .6rem; }
+        .rbody .st { align-self: flex-start; font-family: var(--mono); font-size: .74rem; padding: .18rem .75rem; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--c4) 40%, transparent); color: var(--c4); }
+        .rbody h3 { font-size: 1.4rem; line-height: 1.25; }
+        .rbody p { margin: 0; color: var(--muted); font-size: 1rem; }
+        .interests { display: flex; flex-wrap: wrap; gap: .7rem; }
+        .interests span { padding: .6rem 1.15rem; border-radius: 999px; font-size: 1rem; background: var(--glass); border: 1px solid var(--line); transition: .25s; }
+        .interests span:hover { border-color: var(--c1); color: var(--c1); transform: translateY(-2px); }
+        .tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+        .tool { padding: 1.6rem 1.7rem; }
+        .tool h3 { font-size: 1.2rem; margin: 1rem 0 .3rem; }
+        .tool p { margin: 0 0 .9rem; color: var(--muted); font-size: .96rem; line-height: 1.5; }
+        .tool .tags span { color: var(--ink); }
 
-        .contact { text-align: center; padding: 110px 0 80px; }
-        .contact h2 { font-size: clamp(2.4rem, 7vw, 5rem); }
-        .contact .cta { justify-content: center; }
-        footer { position: relative; z-index: 2; text-align: center; padding: 0 0 40px; color: var(--muted); font-size: .85rem; }
+        /* 05 About */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+        .about-grid h2 { margin-bottom: 0; }
+        .about-copy p { color: var(--muted); font-size: 1.18rem; margin: 0 0 1.2rem; text-wrap: pretty; }
+        .sig { color: var(--ink); font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.2; margin-top: 1.8rem; }
 
+        /* 06 Contact */
+        .contact { text-align: center; padding-bottom: clamp(70px, 10vh, 120px); }
+        .contact h2 { font-size: clamp(2.4rem, 6vw, 4.8rem); margin-inline: auto; }
+        .contact .sub { margin-inline: auto; }
+        .contact .cta { justify-content: center; margin-top: 2.2rem; }
+        footer { position: relative; z-index: 2; text-align: center; padding: 0 0 2.4rem; color: var(--muted); font-size: .9rem; }
+
+        /* Reveal + stagger (animations, so hover transforms are never slowed) */
         .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
         .reveal.in { opacity: 1; transform: none; }
+        .reveal:not(.in) .stagger > * { opacity: 0; }
+        .reveal.in .stagger > * { animation: rise-in .75s cubic-bezier(.2,.7,.2,1) backwards; animation-delay: calc(var(--i, 0) * 90ms + 140ms); }
+        @keyframes rise-in { from { opacity: 0; transform: translateY(22px); } }
 
-        @media (max-width: 800px) {
-            .bento { grid-template-columns: 1fr; }
-            .t-a, .t-b, .t-c, .t-d, .t-e { grid-column: auto; }
-            .feature { grid-template-columns: 1fr; padding: 24px; }
-            .split { grid-template-columns: 1fr; }
+        /* Tablets and phones */
+        @media (max-width: 1000px) {
+            .how, .tools { grid-template-columns: 1fr 1fr; }
+            .grid3 { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 900px) {
+            section[data-n]::before { display: none; }
+            .a-head, .adb, .out, .exp2, .rgrid, .about-grid, .edu, .grid3, .how, .tools { grid-template-columns: 1fr; }
+            .a-head { gap: 1rem; }
+            .flow { grid-template-columns: 1fr; }
+            .flow::before, .fdot { display: none; }
+            .fstep { padding: 1rem 1.1rem 1.05rem 3.6rem; min-height: 0; }
+            .fstep::before { top: 1rem; left: 1.1rem; }
+            .statbar { grid-template-columns: repeat(2, 1fr); row-gap: 1rem; }
+            .statbar > div:nth-child(3) { border-left: 0; }
+            .story { grid-template-columns: 1fr; }
+            .arrow { transform: rotate(90deg); justify-self: center; }
+            .chapters { padding-left: 2.6rem; }
+            .chapters::before, .chapters::after { left: .35rem; }
+            .chapter::before { left: -2.55rem; margin-left: -.03rem; }
+            .ch { padding: 1.4rem 1.3rem 1.5rem; }
+            .ch-top { grid-template-columns: auto 1fr; }
+            .ch .yr { grid-column: 1 / -1; justify-self: start; }
+            .about-grid > div:first-child { display: contents; }
+            .about-copy { order: 1; }
+            .sig { order: 2; margin-top: .6rem; }
             .glow { display: none; }
+            nav { -webkit-mask-image: linear-gradient(90deg, #000 86%, transparent); mask-image: linear-gradient(90deg, #000 86%, transparent); }
+            .eyebrow { font-size: .7rem; letter-spacing: .08em; }
+            .eyebrow::before { width: 20px; }
+            .explorer { padding: 1.5rem 1.3rem; }
+            .sec-head { margin-bottom: 2.2rem; }
+            .how-title, .sub-title { margin-top: 3rem; }
+            .how { margin-top: 1.2rem; }
         }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             *, *::before, *::after { animation: none !important; transition: none !important; }
-            .reveal, .step { opacity: 1; transform: none; }
+            .reveal, .chapter, .fstep { opacity: 1; transform: none; }
+            .reveal:not(.in) .stagger > * { opacity: 1; }
             .dash { stroke-dashoffset: 0; }
-            .gauge .arc { stroke-dashoffset: 62; }
+            .chapters { --p: 1; }
         }
     </style>
 </head>
 <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+            <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></symbol>
+            <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 6h14M5 11h14M5 16h9"/></symbol>
+            <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
+            <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 20V8l8-4 8 4v12M9 20v-6h6v6M4 20h16"/></symbol>
+            <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M9 9h6M9 12h6M10.5 9c3 0 3.2 3.2-.5 3.2L14 16"/></symbol>
+            <symbol id="i-track" viewBox="0 0 24 24"><path d="M3 12h5l2-5 3 10 2-5h6"/></symbol>
+            <symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 8V5h3M17 5h3v3M20 16v3h-3M7 19H4v-3M7 12h10"/></symbol>
+            <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 10c0 5.5-7 10-7 10z"/></symbol>
+            <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+            <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16M8 16v-4M12 16V8M16 16v-6"/></symbol>
+            <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></symbol>
+            <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></symbol>
+            <symbol id="i-model" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 6h8M7 7.5l4 9M17 7.5l-4 9"/></symbol>
+            <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6-5.5-6-11a6 6 0 0112 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2"/></symbol>
+            <symbol id="i-code" viewBox="0 0 24 24"><path d="M9 8l-5 4 5 4M15 8l5 4-5 4M13 5l-2 14"/></symbol>
+            <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5zM4 20.5A2.5 2.5 0 006.5 23H20"/></symbol>
+            <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></symbol>
+            <symbol id="i-fore" viewBox="0 0 24 24"><path d="M4 17l5-5 4 3 7-8M15 7h5v5"/></symbol>
+            <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5M3 17.5l9 5 9-5"/></symbol>
+            <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></symbol>
+            <symbol id="i-signal" viewBox="0 0 24 24"><path d="M5 12a10 10 0 0114 0M8 15a6 6 0 018 0M12 19h.01"/></symbol>
+            <symbol id="i-grad" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5zM6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/></symbol>
+            <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 16a8 8 0 0116 0M12 16l4-5"/></symbol>
+            <symbol id="i-gear" viewBox="0 0 24 24"><path d="M5 7h14M5 17h14"/><circle cx="9" cy="7" r="2"/><circle cx="15" cy="17" r="2"/></symbol>
+        </defs>
+    </svg>
+
     <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
     <canvas id="gl" aria-hidden="true"></canvas>
     <div class="grain" aria-hidden="true"></div>
     <div class="glow" id="glow" aria-hidden="true"></div>
+    <div class="progress" id="progress" aria-hidden="true"></div>
 
-    <nav id="nav" aria-label="Sections">
+    <nav aria-label="Sections">
         <a href="#top">Home</a>
-        <a href="#range">Range</a>
-        <a href="#featured">Featured</a>
-        <a href="#built">Built</a>
-        <a href="#journey">Journey</a>
-        <a href="#more">More</a>
+        <a href="#approach">Approach</a>
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#research">Research</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
     </nav>
 
     <header class="hero" id="top">
         <div class="wrap">
-            <div class="eyebrow mono">Simeon Palla · Visakhapatnam</div>
-            <h1>I follow <span class="grad">interesting problems.</span></h1>
-            <p class="lead">Mechanical engineer turned data and product builder. Governance, energy, education, road safety, radar and apps. Wherever the problem is.</p>
+            <div class="eyebrow">Simeon Palla · Data · Policy · Technology</div>
+            <h1>I turn complex problems into <span class="serif grad">evidence, tools and decisions.</span></h1>
+            <p class="persona serif">I follow interesting problems.</p>
+            <p class="lead">Data and policy professional working across public-sector analytics, infrastructure, research and technology. I use data, analytical methods and software to understand real-world problems and build things that make them easier to act on.</p>
             <div class="cta">
-                <a class="btn primary" href="#built">See what I've built ↓</a>
-                <a class="btn" href="mailto:simeonpalla@gmail.com">Say hello</a>
+                <a class="btn primary" href="#work">Explore my work ↓</a>
                 <a class="btn" href="https://github.com/simeonpalla" target="_blank" rel="noopener">GitHub ↗</a>
+                <a class="btn" href="https://www.linkedin.com/in/simeon-palla/" target="_blank" rel="noopener">LinkedIn ↗</a>
             </div>
         </div>
-        <div class="scrollhint">Scroll</div>
+        <div class="scrollcue" aria-hidden="true">Scroll</div>
     </header>
 
     <div class="marquee" aria-hidden="true">
         <div class="track">
-            <span>Governance<b>✦</b></span><span>Energy<b>✦</b></span><span>Education<b>✦</b></span><span>Road safety<b>✦</b></span><span>Elections<b>✦</b></span><span>Geospatial<b>✦</b></span><span>Radar research<b>✦</b></span><span>SDGs<b>✦</b></span><span>Tourism<b>✦</b></span><span>Gender<b>✦</b></span><span>Software<b>✦</b></span>
-            <span>Governance<b>✦</b></span><span>Energy<b>✦</b></span><span>Education<b>✦</b></span><span>Road safety<b>✦</b></span><span>Elections<b>✦</b></span><span>Geospatial<b>✦</b></span><span>Radar research<b>✦</b></span><span>SDGs<b>✦</b></span><span>Tourism<b>✦</b></span><span>Gender<b>✦</b></span><span>Software<b>✦</b></span>
+            <span>Governance<b>✦</b></span><span>Infrastructure<b>✦</b></span><span>Energy<b>✦</b></span><span>Policy<b>✦</b></span><span>Education<b>✦</b></span><span>Road safety<b>✦</b></span><span>Geospatial<b>✦</b></span><span>AI<b>✦</b></span><span>Research<b>✦</b></span><span>Products<b>✦</b></span>
+            <span>Governance<b>✦</b></span><span>Infrastructure<b>✦</b></span><span>Energy<b>✦</b></span><span>Policy<b>✦</b></span><span>Education<b>✦</b></span><span>Road safety<b>✦</b></span><span>Geospatial<b>✦</b></span><span>AI<b>✦</b></span><span>Research<b>✦</b></span><span>Products<b>✦</b></span>
         </div>
     </div>
 
     <main>
-        <section id="range" class="reveal">
+        <!-- 01 · Approach -->
+        <section id="approach" data-n="01" class="reveal">
             <div class="wrap">
-                <div class="kicker mono">01 · The range</div>
-                <h2>Five years, <span class="grad">very different rooms.</span></h2>
-                <p class="sub">State governments, a university, research institutes and my own side projects. The tools change; the method doesn't.</p>
-                <div class="bento">
-                    <div class="glassy tile tilt t-a"><div class="ico">🏛️</div><div><h3>Governance</h3><p>A state grievance system, district programmes in Meghalaya, three election cycles.</p></div></div>
-                    <div class="glassy tile tilt t-b"><div class="ico">⚡</div><div><h3>Energy</h3><p>Analytics and evaluation in the power sector. Details confidential.</p></div></div>
-                    <div class="glassy tile tilt t-c"><div class="ico">🎓</div><div><h3>Education</h3><p>A 10,000+ candidate scholarship exam and the models behind a budget.</p></div></div>
-                    <div class="glassy tile tilt t-d"><div class="ico">🚦</div><div><h3>Road safety</h3><p>14,711 road segments scored. Top 10 at ADB.</p></div></div>
-                    <div class="glassy tile tilt t-e"><div class="ico">💻</div><div><h3>Products</h3><p>AI, dashboards and apps, from idea to live URL.</p></div></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="featured" class="reveal">
-            <div class="wrap">
-                <div class="kicker mono">02 · Featured</div>
-                <h2>Are the speed limits <span class="grad">even right?</span></h2>
-                <p class="sub">Most road-safety work counts who breaks the limit. We asked whether the limit is fair for the road.</p>
-                <div class="glassy feature tilt">
+                <div class="a-head">
                     <div>
-                        <span class="badge">Top 10 · ADB AI for Safer Roads 2026</span>
-                        <h3>Speed Safety Score</h3>
-                        <p>A 0–100 score for every road segment across Maharashtra and Thailand, built from GPS speeds, population, infrastructure and street imagery. Machine learning extends coverage to the full network and flags "hidden danger" roads where drivers comply but speeds are still unsafe.</p>
-                        <span class="formula">Priority = Exposure × Likelihood × Severity</span>
-                        <div class="fstats">
-                            <div><b class="count" data-to="14711">0</b><span>road segments</span></div>
-                            <div><b>2</b><span>countries</span></div>
-                            <div><b>3</b><span>person team</span></div>
-                        </div>
-                        <div class="cta"><a class="btn" href="https://simeonpalla.github.io/ai-safer-roads/" target="_blank" rel="noopener">Live map ↗</a><a class="btn" href="https://github.com/simeonpalla/ai-safer-roads" target="_blank" rel="noopener">Code ↗</a></div>
+                        <div class="kicker">01 · Approach</div>
+                        <h2>Different problems. <span class="serif grad">One approach.</span></h2>
                     </div>
-                    <svg class="gauge" viewBox="0 0 200 130" role="img" aria-label="Speed Safety Score gauge">
-                        <defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#f472b6"/><stop offset=".5" stop-color="#fbbf24"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
-                        <path d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="14" stroke-linecap="round"/>
-                        <path class="arc" d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="url(#gg)" stroke-width="14" stroke-linecap="round"/>
-                        <text x="100" y="98" text-anchor="middle" font-size="34" font-weight="700" fill="#eef2ff">0–100</text>
-                        <text x="100" y="118" text-anchor="middle" font-size="10" fill="#98a2c3" letter-spacing="2">SAFETY SCORE</text>
-                    </svg>
+                    <p class="intro-p">My work has taken me from public-service delivery to road safety, education, elections, policy research and software. The domains change. The work is similar: understand the problem, make the data usable, find what matters, and turn it into something people can use. Pick a domain.</p>
+                </div>
+                <div class="domains" role="tablist" id="domains">
+                    <button role="tab" aria-selected="true" data-d="roads">Road safety</button>
+                    <button role="tab" aria-selected="false" data-d="education">Education</button>
+                    <button role="tab" aria-selected="false" data-d="governance">Governance</button>
+                    <button role="tab" aria-selected="false" data-d="products">AI products</button>
+                </div>
+                <div class="flow" id="flow">
+                    <div class="fdot" id="fdot" aria-hidden="true"></div>
+                    <div class="fstep" data-n="1" style="--i:0"><div class="fk">Problem</div><p></p></div>
+                    <div class="fstep" data-n="2" style="--i:1"><div class="fk">Data</div><p></p></div>
+                    <div class="fstep" data-n="3" style="--i:2"><div class="fk">Analysis</div><p></p></div>
+                    <div class="fstep" data-n="4" style="--i:3"><div class="fk">Decision</div><p></p></div>
+                    <div class="fstep" data-n="5" style="--i:4"><div class="fk">Product</div><p></p></div>
+                </div>
+                <div class="glassy statbar stagger">
+                    <div><b>5 yrs</b><span>Public-sector and policy analytics</span></div>
+                    <div><b>7</b><span>Organisations, government to research</span></div>
+                    <div><b>8</b><span>Sectors, from energy to education</span></div>
+                    <div><b>Top 10</b><span>ADB AI for Safer Roads 2026</span></div>
                 </div>
             </div>
         </section>
 
-        <section id="built" class="reveal">
+        <!-- 02a · Speed Safety Score -->
+        <section id="work" data-n="02" class="reveal">
             <div class="wrap">
-                <div class="kicker mono">03 · Built</div>
-                <h2>Selected <span class="grad">work.</span></h2>
-                <p class="sub">Six projects I built end to end, from a road-safety map to an AI film studio.</p>
-                <div class="grid3">
-
-                    <article class="glassy proj tilt">
-                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
-                            <defs><linearGradient id="rd" x1="0" x2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset=".55" stop-color="#fbbf24"/><stop offset="1" stop-color="#f472b6"/></linearGradient></defs>
-                            <path class="dash" d="M10 130 C60 120 70 60 120 70 S180 130 230 60 S280 40 292 30" fill="none" stroke="url(#rd)" stroke-width="5" stroke-linecap="round"/>
-                            <path class="dash" style="animation-delay:.5s" d="M20 40 C70 50 90 100 150 96 S230 120 290 130" fill="none" stroke="url(#rd)" stroke-width="3.5" stroke-linecap="round" opacity=".7"/>
-                            <path class="dash" style="animation-delay:1s" d="M120 10 C130 60 110 110 150 160" fill="none" stroke="url(#rd)" stroke-width="3" stroke-linecap="round" opacity=".5"/>
-                            <circle class="ping" cx="230" cy="60" r="14" fill="#f472b6"/><circle cx="230" cy="60" r="4" fill="#fff"/>
-                            <circle class="ping" style="animation-delay:1.2s" cx="120" cy="70" r="14" fill="#fbbf24"/><circle cx="120" cy="70" r="4" fill="#fff"/>
-                        </svg></div>
-                        <div class="pbody">
-                            <h3>Speed Safety Score</h3>
-                            <p>Scores every road for whether its speed limit fits the road, then ranks where to intervene first. Top 10 at ADB's AI for Safer Roads.</p>
-                            <div class="tags"><span>Python</span><span>XGBoost</span><span>Geospatial</span></div>
-                            <div class="links"><a href="https://simeonpalla.github.io/ai-safer-roads/" target="_blank" rel="noopener">Live map ↗</a><a href="https://github.com/simeonpalla/ai-safer-roads" target="_blank" rel="noopener">Code ↗</a></div>
+                <div class="adb">
+                    <div class="adb-l">
+                        <div class="kicker">02 · Selected work</div>
+                        <span class="badge" style="margin-top:1rem">Top 10 · ADB AI for Safer Roads 2026</span>
+                        <h2>Speed Safety Score: <span class="serif grad">are the limits even right?</span></h2>
+                        <p>Road safety is usually framed around drivers who exceed the limit. We asked a different question: does the posted limit make sense for the road itself? Our three-person team scored road segments across Maharashtra and Thailand from 0 to 100, then ranked where intervention would matter most.</p>
+                        <div class="fstats">
+                            <div><b class="count" data-to="14711">0</b><span>road segments scored</span></div>
+                            <div><b>2</b><span>countries</span></div>
+                            <div><b>Top 10</b><span>ADB challenge</span></div>
                         </div>
-                    </article>
+                        <div class="cta"><a class="btn primary small" href="https://simeonpalla.github.io/ai-safer-roads/" target="_blank" rel="noopener">Explore the live map ↗</a><a class="btn small" href="https://github.com/simeonpalla/ai-safer-roads" target="_blank" rel="noopener">View the code ↗</a></div>
+                    </div>
+                    <div class="glassy explorer stagger" id="explorer">
+                        <div>
+                            <h4>Try the idea: does the limit fit the road?</h4>
+                            <p class="note">Illustrative only. A simplified Safe System speed logic to show the concept, not the competition model.</p>
+                        </div>
+                        <div class="readout">
+                            <svg class="gauge" viewBox="0 0 200 130" role="img" aria-label="Illustrative safety score gauge">
+                                <defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" style="stop-color:var(--c3)"/><stop offset=".5" style="stop-color:var(--c4)"/><stop offset="1" style="stop-color:var(--c1)"/></linearGradient></defs>
+                                <path d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="14" stroke-linecap="round"/>
+                                <path class="arc" id="arc" d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="url(#gg)" stroke-width="14" stroke-linecap="round"/>
+                                <text id="gs" x="100" y="98" text-anchor="middle" font-size="38" font-weight="700" fill="#f6f6f5" font-family="Instrument Sans, sans-serif">--</text>
+                                <text x="100" y="120" text-anchor="middle" font-size="9" fill="#adb4bf" letter-spacing="2" font-family="Instrument Sans, sans-serif">SAFETY SCORE / 100</text>
+                            </svg>
+                            <div class="verdict" id="verdict"></div>
+                            <div class="facts"><span>Safe speed <b id="safe">--</b></span><span>Fatality risk vs safe <b id="risk">--</b></span></div>
+                        </div>
+                        <div>
+                            <div class="ctl"><label for="ctx">Road context</label>
+                                <select id="ctx">
+                                    <option value="30">Local street, mixed with pedestrians</option>
+                                    <option value="50" selected>Urban arterial with junctions</option>
+                                    <option value="70">Undivided highway</option>
+                                    <option value="100">Divided highway, no pedestrians</option>
+                                </select></div>
+                            <div class="ctl"><label for="lim">Posted speed limit <output id="limv">60 km/h</output></label><input type="range" id="lim" min="20" max="120" step="5" value="60"></div>
+                            <div class="ctl" style="margin-bottom:0"><label for="ped">Pedestrian and cyclist activity <output id="pedv">Low</output></label><input type="range" id="ped" min="0" max="100" step="1" value="15"></div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="how-title">How it works</div>
+                <div class="how stagger">
+                    <div class="glassy hstep"><span class="num">1</span><div class="ico-wrap"><svg class="ico"><use href="#i-signal"/></svg></div><h3>Observe</h3><p>Start from ADB-provided GPS speed data: how fast vehicles actually travel on each segment.</p><div class="tags"><span>GPS speed data</span><span>14,711 segments</span></div></div>
+                    <div class="glassy hstep"><span class="num">2</span><div class="ico-wrap v"><svg class="ico"><use href="#i-layers"/></svg></div><h3>Enrich</h3><p>Layer in population, infrastructure, settlement and street imagery to understand who is exposed.</p><div class="tags"><span>WorldPop</span><span>OpenStreetMap</span><span>GHSL</span><span>VIIRS</span><span>Mapillary</span></div></div>
+                    <div class="glassy hstep"><span class="num">3</span><div class="ico-wrap p"><svg class="ico"><use href="#i-gauge"/></svg></div><h3>Score</h3><p>A 0–100 score per segment: Safe System alignment, speed-limit credibility gap and vulnerable-road-user risk.</p><div class="tags"><span>Safe System</span><span>Credibility gap</span><span>Road-user risk</span></div></div>
+                    <div class="glassy hstep"><span class="num">4</span><div class="ico-wrap o"><svg class="ico"><use href="#i-target"/></svg></div><h3>Prioritise</h3><p>Rank roads for intervention under limited budgets, using exposure, likelihood and severity.</p><div class="tags"><span>Exposure</span><span>×</span><span>Likelihood</span><span>×</span><span>Severity</span></div></div>
+                </div>
+
+                <div class="sub-title">What the output looks like</div>
+                <div class="out">
+                    <div class="glassy netcard">
+                        <h4>A road network, scored segment by segment</h4>
+                        <p class="note">Illustrative network, not real data. Hover a segment. Scores use the same simplified logic as the explorer above.</p>
+                        <div id="netmap"></div>
+                        <div class="netread" id="netread">Hover a road segment to read it.</div>
+                        <div class="legend"><span><i style="background:var(--c1)"></i>Limit fits the road</span><span><i style="background:var(--c4)"></i>Watch</span><span><i style="background:var(--c3)"></i>Unsafe</span><span><i style="background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.25)"></i>Hidden danger</span></div>
+                    </div>
+                    <div class="insights stagger">
+                        <div class="glassy insight">
+                            <h4>From a fifth of the network to all of it</h4>
+                            <p>GPS speeds cover only part of the road network. A machine-learning model (XGBoost) extends the score to the rest.</p>
+                            <div class="cover"><div class="obs"></div><div class="mod"></div></div>
+                            <div class="covlab"><span>21% observed</span><span>modelled coverage →</span></div>
+                        </div>
+                        <div class="glassy insight">
+                            <h4>Hidden-danger roads</h4>
+                            <p>Drivers obey the limit, yet the limit itself is unsafe. They are invisible if you only count speeding.</p>
+                            <div class="tags"><span>Isolation Forest</span><span>Anomaly detection</span></div>
+                        </div>
+                        <div class="glassy insight">
+                            <h4>Recommendations in plain English</h4>
+                            <p>Each road gets an action a transport authority can read and act on.</p>
+                            <div class="say"><span>Lower the limit by 25 km/h</span><span>Add enforcement</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02b · GovLens AP -->
+        <section id="govlens" data-n="02" data-spy="work" class="reveal">
+            <div class="wrap">
+                <div class="sec-head">
+                    <div class="kicker">02 · Selected work · AI for public service</div>
+                    <h2>What if citizens could report a problem <span class="serif grad">in their own words?</span></h2>
+                    <p class="sub">GovLens AP is a prototype exploring how multimodal AI could make grievance reporting easier, and turn unstructured complaints into records that can be routed and analysed.</p>
+                </div>
+                <div class="story stagger">
+                    <div class="glassy scard">
+                        <div class="step-k">01 · Capture</div>
+                        <h3>A citizen sends whatever they have</h3>
+                        <div class="chipline"><span><svg class="ico"><use href="#i-camera"/></svg>Photo</span><span><svg class="ico"><use href="#i-mic"/></svg>Voice note</span><span><svg class="ico"><use href="#i-text"/></svg>Text</span></div>
+                        <p>No forms to decode. Voice notes are transcribed and translated automatically.</p>
+                    </div>
+                    <div class="arrow" aria-hidden="true">→</div>
+                    <div class="glassy scard">
+                        <div class="step-k">02 · Understand</div>
+                        <h3>The AI turns it into a structured record</h3>
+                        <div class="core">Gemini 3<small>multimodal</small></div>
+                        <div class="chipline o"><span><svg class="ico"><use href="#i-spark"/></svg>Issue type</span><span><svg class="ico"><use href="#i-building"/></svg>Department</span><span><svg class="ico"><use href="#i-coin"/></svg>Cost estimate</span></div>
+                    </div>
+                    <div class="arrow" aria-hidden="true">→</div>
+                    <div class="glassy scard">
+                        <div class="step-k">03 · Route &amp; track</div>
+                        <h3>The right desk sees it, and the citizen sees progress</h3>
+                        <div class="chipline"><span><svg class="ico"><use href="#i-list"/></svg>Officer queue</span><span><svg class="ico"><use href="#i-track"/></svg>Live status</span><span><svg class="ico"><use href="#i-chart"/></svg>Analytics</span></div>
+                        <p>Officers get an action log and analytics. Scheme details are verified through web search.</p>
+                    </div>
+                </div>
+                <div class="foot">
+                    <div class="tags"><span>Gemini 3</span><span>TypeScript</span><span>React</span><span>Streamlit</span></div>
+                    <div class="links"><a href="https://github.com/simeonpalla/GovLensAP" target="_blank" rel="noopener">View code ↗</a></div>
+                    <div class="disclaimer">Independent prototype. Not an official Government of Andhra Pradesh system.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02c · Expense Tracker -->
+        <section id="expense" data-n="02" data-spy="work" class="reveal">
+            <div class="wrap exp2">
+                <div class="phone" aria-hidden="true">
+                    <div class="screen">
+                        <div class="top"><span>Salary cycle</span><span>Day 18 / 30</span></div>
+                        <div class="ringrow">
+                            <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="11"/><circle cx="50" cy="50" r="38" fill="none" style="stroke:var(--c1)" stroke-width="11" stroke-linecap="round" stroke-dasharray="170 239" transform="rotate(-90 50 50)"/><circle cx="50" cy="50" r="38" fill="none" style="stroke:var(--c2)" stroke-width="11" stroke-linecap="round" stroke-dasharray="40 239" stroke-dashoffset="-178" transform="rotate(-90 50 50)"/></svg>
+                            <div><small>Financial health</small><b>Transparent score</b><small>with a full breakdown</small></div>
+                        </div>
+                        <div class="bars"><i style="height:45%"></i><i style="height:80%;animation-delay:.3s"></i><i style="height:60%;animation-delay:.6s"></i><i style="height:95%;animation-delay:.9s"></i><i style="height:55%;animation-delay:1.2s"></i><i style="height:72%;animation-delay:1.5s"></i></div>
+                        <div class="act"><svg class="ico"><use href="#i-spark"/></svg>Top action, ranked by impact</div>
+                        <div class="act"><svg class="ico"><use href="#i-scan"/></svg>Bill scanned on this device</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="kicker">02 · Selected work · Product</div>
+                    <h2 style="margin-top:.8rem">A personal finance product <span class="serif grad">built around cash flow.</span></h2>
+                    <p class="quote serif">Don't just show people where their money went. Help them understand what to do next.</p>
+                    <div class="feat stagger">
+                        <div><div class="ico-wrap"><svg class="ico"><use href="#i-cal"/></svg></div><div><h4>Built around your salary cycle</h4><p>Months rarely match paydays, so the app tracks from payday to payday.</p></div></div>
+                        <div><div class="ico-wrap v"><svg class="ico"><use href="#i-scan"/></svg></div><div><h4>Bill scanning that stays on your phone</h4><p>On-device OCR reads a bill; the photo is never uploaded to an AI service.</p></div></div>
+                        <div><div class="ico-wrap p"><svg class="ico"><use href="#i-heart"/></svg></div><div><h4>A financial health score you can inspect</h4><p>A 0–100 score with a transparent breakdown, not a black box.</p></div></div>
+                        <div><div class="ico-wrap o"><svg class="ico"><use href="#i-list"/></svg></div><div><h4>Actions ranked by financial impact</h4><p>Recurring bills on their real due dates, spending forecasts and a pace chart.</p></div></div>
+                    </div>
+                    <div class="tags" style="margin-bottom:1.3rem"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Netlify</span><span>PWA</span></div>
+                    <div class="links"><a href="https://simeonexpencetracker.netlify.app/" target="_blank" rel="noopener">Try it ↗</a><a href="https://github.com/simeonpalla/expensetracker" target="_blank" rel="noopener">View code ↗</a></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02d · More work -->
+        <section id="more" data-n="02" data-spy="work" class="reveal">
+            <div class="wrap">
+                <div class="sec-head">
+                    <div class="kicker">More work</div>
+                    <h2>Experiments <span class="serif grad">and studies.</span></h2>
+                    <p class="sub">Smaller projects where I wanted to try an idea: multi-agent AI, signal processing and classical machine learning.</p>
+                </div>
+                <div class="grid3 stagger">
                     <article class="glassy proj tilt">
-                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
-                            <g fill="none" stroke="#8b5cf6" stroke-width="2">
-                                <circle class="ping" cx="150" cy="84" r="50"/><circle class="ping" style="animation-delay:.9s" cx="150" cy="84" r="50"/><circle class="ping" style="animation-delay:1.8s" cx="150" cy="84" r="50"/>
-                            </g>
-                            <path d="M138 62 L172 84 L138 106 Z" fill="#f472b6"/>
-                            <g fill="rgba(255,255,255,.18)">
-                                <rect x="8" y="14" width="26" height="18" rx="3"/><rect x="40" y="14" width="26" height="18" rx="3"/><rect x="72" y="14" width="26" height="18" rx="3"/><rect x="204" y="136" width="26" height="18" rx="3"/><rect x="236" y="136" width="26" height="18" rx="3"/><rect x="268" y="136" width="26" height="18" rx="3"/>
-                            </g>
-                            <g class="blink" fill="#22d3ee"><circle cx="40" cy="140" r="4"/><circle cx="60" cy="140" r="4"/><circle cx="80" cy="140" r="4"/><circle cx="100" cy="140" r="4"/><circle cx="120" cy="140" r="4"/><circle cx="140" cy="140" r="4"/></g>
+                        <div class="art"><svg viewBox="0 0 300 130" aria-hidden="true">
+                            <g fill="none" style="stroke:var(--c2)" stroke-width="2"><circle class="ping" cx="150" cy="65" r="40"/><circle class="ping" style="animation-delay:.9s" cx="150" cy="65" r="40"/><circle class="ping" style="animation-delay:1.8s" cx="150" cy="65" r="40"/></g>
+                            <path d="M139 48 L167 65 L139 82 Z" style="fill:var(--c3)"/>
+                            <g fill="rgba(255,255,255,.18)"><rect x="8" y="12" width="24" height="16" rx="3"/><rect x="38" y="12" width="24" height="16" rx="3"/><rect x="238" y="102" width="24" height="16" rx="3"/><rect x="268" y="102" width="24" height="16" rx="3"/></g>
                         </svg></div>
                         <div class="pbody">
                             <h3>FilmECHO</h3>
-                            <p>An AI "studio war room" where six studio personas debate a film and deliver a greenlight verdict with confidence and reasoning.</p>
-                            <div class="tags"><span>Gemini</span><span>Multi-agent</span><span>FastAPI</span></div>
+                            <p>Can an AI team simulate a studio decision room? Six personas (director, producer, marketing chief and more) debate a film and deliver a greenlight verdict with confidence and reasoning.</p>
+                            <div class="tags"><span>Multi-agent AI</span><span>Gemini</span><span>FastAPI</span></div>
                             <div class="links"><a href="https://filmecho-795628182324.asia-southeast1.run.app/" target="_blank" rel="noopener">Live ↗</a><a href="https://github.com/simeonpalla/filmecho" target="_blank" rel="noopener">Code ↗</a></div>
                         </div>
                     </article>
-
                     <article class="glassy proj tilt">
-                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
-                            <polyline fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.4" points="8,90 18,70 26,108 36,60 46,112 56,74 66,104 76,50 86,118 96,66 106,100 116,42 126,124 136,64 146,98 156,40 166,120 176,70 186,96 196,56 206,114 216,72 226,100 236,64 246,108 256,80 266,96 278,84 292,88"/>
-                            <path class="dash" d="M8 90 C40 90 60 80 76 60 S110 30 116 46 S140 110 156 60 S190 40 196 60 S230 108 246 82 S280 90 292 88" fill="none" stroke="#22d3ee" stroke-width="3.5" stroke-linecap="round"/>
-                            <text x="10" y="156" font-size="10" fill="#98a2c3" font-family="JetBrains Mono">noisy → shrunk</text>
+                        <div class="art"><svg viewBox="0 0 300 130" aria-hidden="true">
+                            <polyline fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.4" points="8,70 18,50 26,88 36,40 46,92 56,54 66,84 76,30 86,98 96,46 106,80 116,22 126,104 136,44 146,78 156,20 166,100 176,50 186,76 196,36 206,94 216,52 226,80 236,44 246,88 256,60 266,76 278,64 292,68"/>
+                            <path class="dash" d="M8 70 C40 70 60 60 76 40 S110 10 116 26 S140 90 156 40 S190 20 196 40 S230 88 246 62 S280 70 292 68" fill="none" style="stroke:var(--c1)" stroke-width="3.5" stroke-linecap="round"/>
                         </svg></div>
                         <div class="pbody">
                             <h3>mst-abs</h3>
-                            <p>Adaptive-Bayesian shrinkage applied to MST radar signals, pulling clean structure out of noisy atmospheric data.</p>
-                            <div class="tags"><span>Python</span><span>Bayesian</span><span>Signal</span></div>
+                            <p>Extracting structure from noisy atmospheric radar signals: adaptive Bayesian shrinkage applied to MST radar data.</p>
+                            <div class="tags"><span>Python</span><span>Bayesian methods</span><span>Signal processing</span></div>
                             <div class="links"><a href="https://github.com/simeonpalla/mst-abs" target="_blank" rel="noopener">Code ↗</a></div>
                         </div>
                     </article>
-
                     <article class="glassy proj tilt">
-                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
-                            <defs><linearGradient id="eb" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
-                            <g fill="url(#eb)">
-                                <rect class="rise" x="24" y="90" width="26" height="60" rx="5"/><rect class="rise" style="animation-delay:.3s" x="62" y="60" width="26" height="90" rx="5"/><rect class="rise" style="animation-delay:.6s" x="100" y="100" width="26" height="50" rx="5"/>
-                                <rect class="rise" style="animation-delay:.9s" x="138" y="40" width="26" height="110" rx="5"/>
-                            </g>
-                            <circle cx="232" cy="84" r="42" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="12"/>
-                            <circle cx="232" cy="84" r="42" fill="none" stroke="#f472b6" stroke-width="12" stroke-linecap="round" stroke-dasharray="180 264" transform="rotate(-90 232 84)"/>
-                            <circle cx="232" cy="84" r="42" fill="none" stroke="#fbbf24" stroke-width="12" stroke-linecap="round" stroke-dasharray="40 264" stroke-dashoffset="-190" transform="rotate(-90 232 84)"/>
-                        </svg></div>
-                        <div class="pbody">
-                            <h3>Expense Tracker</h3>
-                            <p>A salary-cycle finance app with on-device bill scanning, a financial health score and ranked actions. Bill photos never leave your phone.</p>
-                            <div class="tags"><span>React</span><span>TypeScript</span><span>Supabase</span><span>PWA</span></div>
-                            <div class="links"><a href="https://simeonexpencetracker.netlify.app/" target="_blank" rel="noopener">Live ↗</a><a href="https://github.com/simeonpalla/expensetracker" target="_blank" rel="noopener">Code ↗</a></div>
-                        </div>
-                    </article>
-
-                    <article class="glassy proj tilt">
-                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
-                            <g fill="#22d3ee" opacity=".85">
-                                <circle cx="30" cy="132" r="4"/><circle cx="52" cy="120" r="4"/><circle cx="70" cy="128" r="4"/><circle cx="88" cy="104" r="4"/><circle cx="108" cy="112" r="4"/><circle cx="128" cy="88" r="4"/><circle cx="146" cy="96" r="4"/><circle cx="168" cy="72" r="4"/><circle cx="186" cy="82" r="4"/><circle cx="208" cy="56" r="4"/><circle cx="228" cy="62" r="4"/><circle cx="248" cy="40" r="4"/><circle cx="270" cy="46" r="4"/>
-                            </g>
-                            <path class="dash" d="M20 136 L280 36" stroke="#f472b6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-                            <text x="10" y="156" font-size="10" fill="#98a2c3" font-family="JetBrains Mono">price ≈ f(features)</text>
+                        <div class="art"><svg viewBox="0 0 300 130" aria-hidden="true">
+                            <g style="fill:var(--c1)" opacity=".85"><circle cx="30" cy="106" r="4"/><circle cx="52" cy="96" r="4"/><circle cx="70" cy="102" r="4"/><circle cx="88" cy="82" r="4"/><circle cx="108" cy="90" r="4"/><circle cx="128" cy="68" r="4"/><circle cx="146" cy="76" r="4"/><circle cx="168" cy="56" r="4"/><circle cx="186" cy="64" r="4"/><circle cx="208" cy="42" r="4"/><circle cx="228" cy="48" r="4"/><circle cx="248" cy="30" r="4"/><circle cx="270" cy="34" r="4"/></g>
+                            <path class="dash" d="M20 110 L280 26" style="stroke:var(--c3)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
                         </svg></div>
                         <div class="pbody">
                             <h3>Car Price Prediction</h3>
-                            <p>Predicting used-car prices, comparing decision trees, random forests, neural nets and polynomial regression with tuned hyperparameters.</p>
-                            <div class="tags"><span>scikit-learn</span><span>Jupyter</span><span>Regression</span></div>
+                            <p>A comparative study of decision trees, random forests, neural networks and polynomial regression for used-car price prediction, with tuned hyperparameters.</p>
+                            <div class="tags"><span>Python</span><span>scikit-learn</span><span>Jupyter</span></div>
                             <div class="links"><a href="https://github.com/simeonpalla/Car-Price-Prediction" target="_blank" rel="noopener">Code ↗</a></div>
                         </div>
                     </article>
+                </div>
+            </div>
+        </section>
 
-                    <article class="glassy proj tilt">
-                        <div class="art"><svg viewBox="0 0 300 168" aria-hidden="true">
-                            <g stroke="rgba(255,255,255,.25)" stroke-width="1.6" fill="none">
-                                <line x1="150" y1="84" x2="50" y2="36"/><line x1="150" y1="84" x2="250" y2="36"/><line x1="150" y1="84" x2="40" y2="128"/><line x1="150" y1="84" x2="260" y2="128"/><line x1="150" y1="84" x2="150" y2="14"/>
-                            </g>
-                            <g fill="#8b5cf6"><circle cx="50" cy="36" r="9"/><circle cx="250" cy="36" r="9"/><circle cx="40" cy="128" r="9"/><circle cx="260" cy="128" r="9"/><circle cx="150" cy="14" r="9"/></g>
-                            <circle class="ping" cx="150" cy="84" r="26" fill="#22d3ee"/><circle cx="150" cy="84" r="14" fill="#22d3ee"/><circle cx="150" cy="84" r="5" fill="#08101f"/>
-                            <circle class="blink" cx="50" cy="36" r="4" fill="#fbbf24"/><circle class="blink" style="animation-delay:1s" cx="260" cy="128" r="4" fill="#fbbf24"/>
+        <!-- 03 · Experience -->
+        <section id="experience" data-n="03" class="reveal">
+            <div class="wrap">
+                <div class="sec-head">
+                    <div class="kicker">03 · Experience</div>
+                    <h2>Seven roles across government, a university, <span class="serif grad">research and technology.</span></h2>
+                    <p class="sub">Each one started with a messy question and ended with something people could use: a model, a dashboard, a measurement system.</p>
+                </div>
+                <div class="chapters" id="jr">
+                    <article class="chapter"><div class="glassy ch">
+                        <div class="ch-top"><div class="mono-g">CPR</div><div><h3>Consultant, Power Sector Analytics</h3><div class="org">Centre for Policy Research</div></div><div class="yr">2026 – Present</div></div>
+                        <div class="doms"><span>Energy</span><span>Infrastructure</span></div>
+                        <p class="ch-lead">Analytics and evaluation work in the power sector.</p>
+                        <span class="conf"><svg class="ico"><use href="#i-lock"/></svg>Project details are confidential</span>
+                    </div></article>
+
+                    <article class="chapter"><div class="glassy ch">
+                        <div class="ch-top"><div class="mono-g">GITAM</div><div><h3>Business Analyst</h3><div class="org">GITAM University</div></div><div class="yr">2025 – 2026</div></div>
+                        <div class="doms"><span>Higher education</span><span>Financial modelling</span></div>
+                        <p class="ch-lead">The data behind a 10,000+ candidate scholarship exam, and a university's budget decisions.</p>
+                        <ul>
+                            <li>Managed operational data for Pathway 2026, a President's Office initiative to find and support meritorious students from marginalised communities: about 150 exam centres, 10,000+ registered and 8,000+ appearing candidates.</li>
+                            <li>Built revenue and scholarship scenario models from historical admissions data and stress-tested them against prior-year enrolment. Leadership adopted one scenario to set budget allocations.</li>
+                            <li>Produced governance-level performance reports and diagnostics to find where programmes were falling short.</li>
+                        </ul>
+                        <div class="tags"><span>Scenario modelling</span><span>Simulation</span><span>Performance reporting</span></div>
+                    </div></article>
+
+                    <article class="chapter"><div class="glassy ch">
+                        <div class="ch-top"><div class="mono-g">ISB</div><div><h3>Data Scientist</h3><div class="org">Bharti Institute of Public Policy, ISB · Government of Meghalaya</div></div><div class="yr">2025</div></div>
+                        <div class="doms"><span>Governance</span><span>Geospatial</span></div>
+                        <p class="ch-lead">Dashboards and spatial analysis for district-level governance programmes.</p>
+                        <ul>
+                            <li>Consolidated multi-department administrative data into Power BI dashboards and structured reports for state leadership.</li>
+                            <li>Mapped forest cover and land use in QGIS, computing land-composition shares at constituency and district level.</li>
+                            <li>Integrated and validated datasets from several departments to support programme outcome review.</li>
+                            <li>Deployed and tested KoboToolbox for field data collection, including a non-containerised installation.</li>
+                        </ul>
+                        <div class="tags"><span>Power BI</span><span>QGIS</span><span>KoboToolbox</span></div>
+                    </div></article>
+
+                    <article class="chapter"><div class="glassy ch">
+                        <div class="ch-top"><div class="mono-g">MCS</div><div><h3>Data Consultant</h3><div class="org">Myriad Concepts &amp; Strategies</div></div><div class="yr">2024 – 2025</div></div>
+                        <div class="doms"><span>SDG monitoring</span><span>Tourism</span><span>Investment</span></div>
+                        <p class="ch-lead">Performance analysis across SDG, tourism and investment programmes.</p>
+                        <ul><li>Combined quantitative and qualitative evidence to support programme evaluation and strategic planning.</li></ul>
+                    </div></article>
+
+                    <article class="chapter"><div class="glassy ch">
+                        <div class="ch-top"><div class="mono-g">GoAP</div><div><h3>Project Lead Analyst</h3><div class="org">Government of Andhra Pradesh</div></div><div class="yr">2022 – 2024</div></div>
+                        <div class="doms"><span>Governance</span><span>Public service delivery</span></div>
+                        <p class="ch-lead">Made a state grievance system measurable.</p>
+                        <ul>
+                            <li>Led monitoring and analytical reporting for Spandana, the state's public grievance redressal system.</li>
+                            <li>Co-developed SOPs and KPIs with senior officials so that programme monitoring became routine, not ad hoc.</li>
+                            <li>Designed executive dashboards to track service delivery, surface bottlenecks and support administrative decisions.</li>
+                        </ul>
+                        <div class="tags"><span>KPI design</span><span>SOPs</span><span>Executive dashboards</span></div>
+                    </div></article>
+
+                    <article class="chapter"><div class="glassy ch">
+                        <div class="ch-top"><div class="mono-g">PW</div><div><h3>Senior Data Analyst</h3><div class="org">Pradical Works</div></div><div class="yr">2022</div></div>
+                        <div class="doms"><span>Data products</span></div>
+                        <p class="ch-lead">Analytics tooling for policy research and field reporting.</p>
+                        <ul>
+                            <li>Built automated data-collection pipelines to support policy research and programme assessment.</li>
+                            <li>Built dynamic Plotly Dash dashboards on Heroku for field reporting.</li>
+                        </ul>
+                        <div class="tags"><span>Python</span><span>Plotly Dash</span><span>Heroku</span></div>
+                    </div></article>
+
+                    <article class="chapter"><div class="glassy ch">
+                        <div class="ch-top"><div class="mono-g">BH</div><div><h3>Data Analyst</h3><div class="org">The Ballot House UK (India)</div></div><div class="yr">2021 – 2022</div></div>
+                        <div class="doms"><span>Elections</span><span>Field research</span></div>
+                        <p class="ch-lead">Electoral and demographic data across three election cycles.</p>
+                        <ul>
+                            <li>Analysed demographic and electoral datasets to support policy research and field evaluation.</li>
+                            <li>Designed analytical dashboards and carried out extensive field data collection in southern Rajasthan.</li>
+                        </ul>
+                    </div></article>
+                </div>
+
+                <div class="edu stagger">
+                    <div class="glassy"><div class="ico-wrap v"><svg class="ico"><use href="#i-grad"/></svg></div><div><b>Post Graduate Certificate, Software Engineering for Data Science</b><small>IIIT Hyderabad · 2023 – 2024</small></div></div>
+                    <div class="glassy"><div class="ico-wrap o"><svg class="ico"><use href="#i-gear"/></svg></div><div><b>B.Tech, Mechanical Engineering</b><small>JNTU Kakinada · 2015 – 2019. Final-year project: an electric bicycle with a BLDC motor, Li-ion battery and speed controller.</small></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 · Research + toolbox -->
+        <section id="research" data-n="04" class="reveal">
+            <div class="wrap">
+                <div class="sec-head">
+                    <div class="kicker">04 · Research &amp; writing</div>
+                    <h2>Where evidence meets <span class="serif grad">human outcomes.</span></h2>
+                    <p class="sub">Policy writing as a research volunteer with Our Gender Lens.</p>
+                </div>
+                <div class="rgrid stagger">
+                    <article class="glassy rcard tilt">
+                        <div class="cov"><svg viewBox="0 0 400 176" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                            <defs><radialGradient id="o1" cx=".5" cy=".5" r=".5"><stop offset="0" style="stop-color:var(--c3);stop-opacity:.55"/><stop offset="1" style="stop-color:var(--c3);stop-opacity:0"/></radialGradient></defs>
+                            <circle cx="290" cy="70" r="90" fill="url(#o1)"/>
+                            <path class="dash" d="M20 130 C90 130 120 50 190 60 S290 150 380 40" fill="none" style="stroke:var(--c1)" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M20 150 C110 145 150 110 220 105 S330 95 380 90" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.6" stroke-dasharray="4 6"/>
+                            <circle cx="190" cy="60" r="5" style="fill:var(--c1)"/><circle class="ping" cx="190" cy="60" r="12" style="fill:var(--c1)"/>
                         </svg></div>
-                        <div class="pbody">
-                            <h3>GovLens AP</h3>
-                            <p>Citizens send a photo, voice note or text. Gemini 3 classifies the grievance, finds the responsible department and estimates the fix.</p>
-                            <div class="tags"><span>Gemini 3</span><span>TypeScript</span><span>Streamlit</span></div>
-                            <div class="links"><a href="https://github.com/simeonpalla/GovLensAP" target="_blank" rel="noopener">Code ↗</a></div>
-                        </div>
+                        <div class="rbody"><span class="st">Under revision</span><h3>Understanding the Female Happiness Paradox in India</h3><p>Policy Brief No. 1</p></div>
                     </article>
+                    <article class="glassy rcard tilt">
+                        <div class="cov"><svg viewBox="0 0 400 176" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                            <defs><radialGradient id="o2" cx=".5" cy=".5" r=".5"><stop offset="0" style="stop-color:var(--c2);stop-opacity:.55"/><stop offset="1" style="stop-color:var(--c2);stop-opacity:0"/></radialGradient></defs>
+                            <circle cx="110" cy="90" r="95" fill="url(#o2)"/>
+                            <path d="M30 100 H170" style="stroke:var(--c1)" stroke-width="3" stroke-linecap="round"/>
+                            <path class="dash" d="M170 100 C215 100 230 50 300 50 H375" fill="none" style="stroke:var(--c1)" stroke-width="3" stroke-linecap="round"/>
+                            <path class="dash" d="M170 100 C215 100 230 140 300 140 H375" fill="none" style="stroke:var(--c3)" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="170" cy="100" r="6" fill="#fff"/><circle cx="375" cy="50" r="5" style="fill:var(--c1)"/><circle cx="375" cy="140" r="5" style="fill:var(--c3)"/>
+                        </svg></div>
+                        <div class="rbody"><span class="st">Forthcoming</span><h3>Gender, Child Development, and the Gap Between School and Work in India</h3><p>Policy brief</p></div>
+                    </article>
+                </div>
 
+                <div class="sub-title">Research interests</div>
+                <div class="interests stagger">
+                    <span>Monitoring &amp; evaluation systems</span><span>Climate resilience &amp; adaptation</span><span>Energy access</span><span>Public-sector performance</span><span>Infrastructure governance</span><span>Administrative data systems</span><span>Evidence-based policymaking</span>
+                </div>
+
+                <div class="sub-title">Toolbox</div>
+                <div class="tools stagger">
+                    <div class="glassy tool"><div class="ico-wrap"><svg class="ico"><use href="#i-db"/></svg></div><h3>Data &amp; analytics</h3><p>From messy administrative data to something you can analyse.</p><div class="tags"><span>Python</span><span>SQL</span><span>R</span><span>pandas</span><span>Data pipelines</span><span>Web scraping</span></div></div>
+                    <div class="glassy tool"><div class="ico-wrap v"><svg class="ico"><use href="#i-model"/></svg></div><h3>Statistics &amp; machine learning</h3><p>Methods for asking whether something worked, and what comes next.</p><div class="tags"><span>Difference-in-differences</span><span>Regression</span><span>Time series</span><span>scikit-learn</span><span>XGBoost</span></div></div>
+                    <div class="glassy tool"><div class="ico-wrap p"><svg class="ico"><use href="#i-pin"/></svg></div><h3>Visualisation &amp; geospatial</h3><p>Dashboards and maps that a decision-maker can read in a minute.</p><div class="tags"><span>QGIS</span><span>Power BI</span><span>Tableau</span><span>Plotly</span><span>Looker Studio</span></div></div>
+                    <div class="glassy tool"><div class="ico-wrap o"><svg class="ico"><use href="#i-code"/></svg></div><h3>Software &amp; AI</h3><p>Turning an analysis into a tool other people can use.</p><div class="tags"><span>React</span><span>TypeScript</span><span>FastAPI</span><span>Streamlit</span><span>Docker</span><span>LLM apps</span></div></div>
+                    <div class="glassy tool"><div class="ico-wrap"><svg class="ico"><use href="#i-book"/></svg></div><h3>Research &amp; policy</h3><p>Design and measurement for public programmes.</p><div class="tags"><span>Programme monitoring</span><span>Evaluation design</span><span>KPI development</span><span>Field data collection</span></div></div>
+                    <div class="glassy tool"><div class="ico-wrap v"><svg class="ico"><use href="#i-layers"/></svg></div><h3>Data platforms</h3><p>Where the data lives and how it is collected in the field.</p><div class="tags"><span>PostgreSQL</span><span>MongoDB</span><span>Spark</span><span>KoboToolbox</span><span>Git</span></div></div>
                 </div>
             </div>
         </section>
 
-        <section id="journey" class="reveal">
-            <div class="wrap">
-                <div class="kicker mono">04 · Journey</div>
-                <h2>How I got <span class="grad">here.</span></h2>
-                <p class="sub">A path that zig-zags on purpose.</p>
-                <div class="journey" id="jr">
-                    <div class="step"><div class="yr mono">2015 – 2019</div><h3>Mechanical Engineering</h3><p>JNTU Kakinada. Built an e-bike with a BLDC motor and Li-ion pack for my final-year project.</p></div>
-                    <div class="step"><div class="yr mono">2021 – 2022</div><h3>Data Analyst, The Ballot House</h3><p>Electoral and demographic data across three election cycles, plus field data collection in Rajasthan.</p></div>
-                    <div class="step"><div class="yr mono">2022</div><h3>Senior Data Analyst, Pradical Works</h3><p>Automated data pipelines and live Plotly Dash dashboards.</p></div>
-                    <div class="step"><div class="yr mono">2022 – 2024</div><h3>Project Lead Analyst, Govt. of Andhra Pradesh</h3><p>Led monitoring for the state's Spandana grievance system and built the KPIs and dashboards senior officials used.</p></div>
-                    <div class="step"><div class="yr mono">2023 – 2024</div><h3>Software Engineering for Data Science</h3><p>Post Graduate Certificate, IIIT Hyderabad.</p></div>
-                    <div class="step"><div class="yr mono">2024 – 2025</div><h3>Data Consultant, Myriad Concepts</h3><p>Performance analysis across SDG, tourism and investment programmes.</p></div>
-                    <div class="step"><div class="yr mono">2025</div><h3>Data Scientist, ISB · Govt. of Meghalaya</h3><p>Governance dashboards, QGIS land-use mapping and field-data systems.</p></div>
-                    <div class="step"><div class="yr mono">2025 – 2026</div><h3>Business Analyst, GITAM University</h3><p>Ran the data for Pathway 2026 and built the scholarship models that shaped a budget.</p></div>
-                    <div class="step"><div class="yr mono">2026 – now</div><h3>Consultant, Power Sector Analytics · CPR</h3><p>Centre for Policy Research.</p><span class="conf">Project details confidential (NDA)</span></div>
+        <!-- 05 · About -->
+        <section id="about" data-n="05" class="reveal">
+            <div class="wrap about-grid">
+                <div>
+                    <div class="kicker">05 · About</div>
+                    <h2>Mechanical engineer by training. <span class="serif grad">Data person by practice.</span></h2>
+                    <div class="sig serif">Problem solver by habit.</div>
+                </div>
+                <div class="about-copy">
+                    <p>I started in mechanical engineering, moved into data analytics, and gradually found myself working where technology, public policy and real-world systems meet.</p>
+                    <p>I'm drawn to problems where the data is messy, the question isn't fully defined, and the answer needs to be more than a chart. Sometimes that's a model. Sometimes a dashboard, a policy brief or a product.</p>
+                    <p>I'm less attached to a particular tool than to understanding the problem and building something useful.</p>
                 </div>
             </div>
         </section>
 
-        <section id="more" class="reveal">
+        <!-- 06 · Contact -->
+        <section id="contact" data-n="06" class="contact reveal">
             <div class="wrap">
-                <div class="kicker mono">05 · More</div>
-                <h2>Writing, craft &amp; <span class="grad">languages.</span></h2>
-                <p class="sub"></p>
-                <div class="split">
-                    <div class="glassy box tilt">
-                        <h3>Research &amp; writing · Our Gender Lens</h3>
-                        <div class="item"><b>The Female Happiness Paradox in India</b><small>Policy Brief No. 1 · under revision</small></div>
-                        <div class="item"><b>Gender, Child Development, and the Gap Between School and Work in India</b><small>Forthcoming</small></div>
-                    </div>
-                    <div class="glassy box tilt">
-                        <h3>Toolbox</h3>
-                        <div class="chips">
-                            <span class="chip">Python</span><span class="chip">R</span><span class="chip">SQL</span><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">Spark</span><span class="chip">QGIS</span><span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Plotly</span><span class="chip">Docker</span><span class="chip">Git</span><span class="chip">KoboToolbox</span>
-                        </div>
-                        <p style="color:var(--muted);font-size:.9rem;margin:16px 0 0">English · Telugu (native) · Hindi</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact reveal">
-            <div class="wrap">
-                <div class="kicker mono">06 · Contact</div>
-                <h2>Got a problem <span class="grad">worth solving?</span></h2>
-                <p class="sub" style="margin-inline:auto">Data, policy, infrastructure or building something useful. Let's talk.</p>
+                <div class="kicker">06 · Contact</div>
+                <h2>Have a problem <span class="serif grad">worth solving?</span></h2>
+                <p class="sub">I'm interested in analytical, policy, infrastructure and technology problems where better evidence can lead to better decisions.</p>
                 <div class="cta">
                     <a class="btn primary" href="mailto:simeonpalla@gmail.com">simeonpalla@gmail.com</a>
                     <a class="btn" href="https://www.linkedin.com/in/simeon-palla/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -462,6 +881,11 @@
         document.getElementById('year').textContent = new Date().getFullYear();
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+        // Stagger index for grouped children
+        document.querySelectorAll('.stagger').forEach(function (g) {
+            Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty('--i', i); });
+        });
+
         // Reveal sections + count-up
         var io = new IntersectionObserver(function (es) {
             es.forEach(function (e) {
@@ -476,26 +900,32 @@
                     })(t0);
                 });
             });
-        }, { threshold: 0.08 });
+        }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
         document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
-        // Nav scroll-spy
+        // Nav scroll-spy (all the work screens light "Work")
         var links = document.querySelectorAll('nav a');
         var spy = new IntersectionObserver(function (es) {
             es.forEach(function (e) {
                 if (!e.isIntersecting) return;
-                links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+                var key = e.target.dataset.spy || e.target.id;
+                links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + key); });
             });
-        }, { rootMargin: '-45% 0px -50% 0px' });
+        }, { rootMargin: '-40% 0px -55% 0px' });
         document.querySelectorAll('header[id], section[id]').forEach(function (s) { spy.observe(s); });
 
-        // Card tilt + spotlight
+        // Scroll progress line
+        var bar = document.getElementById('progress');
+        function prog() { var h = document.documentElement.scrollHeight - window.innerHeight; bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ')'; }
+        window.addEventListener('scroll', prog, { passive: true }); prog();
+
+        // Card tilt + cursor glow
         if (!reduce && window.matchMedia('(hover: hover)').matches) {
             document.querySelectorAll('.tilt').forEach(function (el) {
                 el.addEventListener('mousemove', function (e) {
                     var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
                     el.style.setProperty('--mx', x * 100 + '%'); el.style.setProperty('--my', y * 100 + '%');
-                    el.style.transform = 'perspective(900px) rotateX(' + ((.5 - y) * 6) + 'deg) rotateY(' + ((x - .5) * 8) + 'deg) translateY(-3px)';
+                    el.style.transform = 'perspective(900px) rotateX(' + ((.5 - y) * 5) + 'deg) rotateY(' + ((x - .5) * 7) + 'deg) translateY(-3px)';
                 });
                 el.addEventListener('mouseleave', function () { el.style.transform = ''; });
             });
@@ -503,16 +933,165 @@
             window.addEventListener('mousemove', function (e) { glow.style.transform = 'translate3d(' + e.clientX + 'px,' + e.clientY + 'px,0)'; });
         }
 
-        // Journey: line fills as you scroll, steps light up
-        var jr = document.getElementById('jr'), steps = jr.querySelectorAll('.step');
+        // Experience: the spine fills and each chapter lights up as you scroll to it
+        var jr = document.getElementById('jr'), chapters = jr.querySelectorAll('.chapter');
         function jrUpdate() {
             var r = jr.getBoundingClientRect(), vh = window.innerHeight;
-            jr.style.setProperty('--p', Math.max(0, Math.min(1, (vh * 0.65 - r.top) / r.height)));
-            steps.forEach(function (s) { s.classList.toggle('on', s.getBoundingClientRect().top < vh * 0.72); });
+            jr.style.setProperty('--p', Math.max(0, Math.min(1, (vh * 0.7 - r.top) / r.height)));
+            chapters.forEach(function (c) { c.classList.toggle('on', c.getBoundingClientRect().top < vh * 0.82); });
         }
-        window.addEventListener('scroll', jrUpdate, { passive: true });
-        window.addEventListener('resize', jrUpdate);
-        jrUpdate();
+        if (reduce) { jr.style.setProperty('--p', 1); chapters.forEach(function (c) { c.classList.add('on'); }); }
+        else { window.addEventListener('scroll', jrUpdate, { passive: true }); window.addEventListener('resize', jrUpdate); jrUpdate(); }
+
+        // Shared, illustrative Safe System logic (Nilsson power model exponent 4 for risk)
+        function ssScore(limit, safe) {
+            var diff = limit - safe;
+            if (diff > 0) return { score: Math.max(0, 100 - 2.2 * diff), diff: diff };
+            if (diff < -25) return { score: 100 - Math.min(20, (-diff - 25) * 0.6), diff: diff };
+            return { score: 100, diff: diff };
+        }
+
+        // Approach: problem-to-decision flow, switchable by domain
+        var DOMAINS = {
+            roads: ['Are posted speed limits right for the road, not just who breaks them?', 'GPS speeds, population, infrastructure, satellite and street imagery', 'A 0–100 safety score per segment; machine learning to extend coverage', 'Roads ranked by exposure, likelihood and severity', 'Interactive map and priority brief'],
+            education: ['How should scholarships be designed within a fixed budget?', 'Prior-year admissions and enrolment data', 'Revenue and scholarship scenarios, stress-tested', 'One scenario adopted to set budget allocations', 'Models and reports for university leadership'],
+            governance: ['Where does public service delivery stall?', 'Administrative data from a state grievance system', 'KPIs and performance tracking co-designed with officials', 'Bottlenecks flagged for administrative action', 'Executive dashboards and SOPs'],
+            products: ['Citizens find it hard to report government problems', 'Photos, voice notes and text', 'Multimodal classification with Gemini 3', 'Which department, and an estimated cost to resolve', 'GovLens AP, an independent prototype']
+        };
+        // Each box stays lit for about its reading time (~230 wpm plus a beat to take it in).
+        // The dot glides continuously along the line, box by box; after the fifth box the next domain starts.
+        var tabs = document.querySelectorAll('#domains button'), flow = document.getElementById('flow'), cells = flow.querySelectorAll('.fstep'), dot = document.getElementById('fdot'),
+            order = ['roads', 'education', 'governance', 'products'], idx = 0, step = 0, elapsed = 0, durs = [], bounds = [], last = 0, hoverPause = false, viewPause = true;
+        function readMs(text) { return Math.round(1800 + text.trim().split(/\s+/).length / 3.8 * 1000); }
+        function measure() {
+            var r = []; cells.forEach(function (c) { r.push([c.offsetLeft, c.offsetLeft + c.offsetWidth]); });
+            bounds = [r[0][0] + 23];
+            for (var i = 1; i < r.length; i++) bounds.push((r[i - 1][1] + r[i][0]) / 2);
+            bounds.push(r[r.length - 1][1] - 23);
+        }
+        function setDomain(k) {
+            tabs.forEach(function (b) { b.setAttribute('aria-selected', b.dataset.d === k ? 'true' : 'false'); });
+            cells.forEach(function (c, i) {
+                c.querySelector('p').textContent = DOMAINS[k][i];
+                c.classList.remove('active', 'done');
+                c.style.animation = 'none'; void c.offsetWidth; c.style.animation = '';
+            });
+            durs = Array.prototype.map.call(cells, function (c) { return readMs(c.querySelector('p').textContent); });
+        }
+        function activate(i) {
+            step = i; elapsed = 0;
+            cells.forEach(function (c, j) { c.classList.toggle('done', j < i); c.classList.toggle('active', j === i); });
+        }
+        // The dot only ever travels right; a new domain fades it in at box 1
+        function restart() {
+            measure(); activate(0);
+            dot.style.transition = 'none'; dot.style.opacity = '0'; dot.style.left = (bounds[0] - 4) + 'px'; void dot.offsetWidth;
+            dot.style.transition = ''; dot.style.opacity = '1';
+        }
+        function tick(now) {
+            requestAnimationFrame(tick);
+            var dt = Math.min(100, now - (last || now)); last = now;
+            if (hoverPause || viewPause) return;
+            elapsed += dt;
+            if (elapsed >= durs[step]) {
+                if (step < cells.length - 1) activate(step + 1);
+                else { idx = (idx + 1) % order.length; setDomain(order[idx]); restart(); }
+            }
+            var f = Math.min(1, elapsed / durs[step]);
+            dot.style.left = (bounds[step] + (bounds[step + 1] - bounds[step]) * f - 4) + 'px';
+        }
+        if (reduce) {
+            var showAll = function (k) { setDomain(k); cells.forEach(function (c) { c.classList.add('done'); }); };
+            tabs.forEach(function (b) { b.addEventListener('click', function () { showAll(b.dataset.d); }); });
+            showAll('roads');
+        } else {
+            tabs.forEach(function (b) {
+                b.addEventListener('click', function () { idx = order.indexOf(b.dataset.d); setDomain(b.dataset.d); restart(); });
+            });
+            flow.addEventListener('mouseenter', function () { hoverPause = true; });
+            flow.addEventListener('mouseleave', function () { hoverPause = false; });
+            new IntersectionObserver(function (es) { viewPause = !es[0].isIntersecting; }, { threshold: 0.4 }).observe(flow);
+            window.addEventListener('resize', measure);
+            window.addEventListener('load', measure);
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+            setDomain('roads'); restart();
+            requestAnimationFrame(tick);
+        }
+
+        // Speed-limit explorer
+        var ctx = document.getElementById('ctx'), lim = document.getElementById('lim'), ped = document.getElementById('ped');
+        function explore() {
+            var limit = +lim.value, p = +ped.value, safe = +ctx.value;
+            if (p > 66) safe = Math.min(safe, 30); else if (p > 33) safe = Math.min(safe, 50);
+            var r = ssScore(limit, safe), score = Math.round(r.score), msg;
+            if (r.diff > 0) msg = 'Limit is ' + r.diff + ' km/h above the safe speed. Lower it or add engineering controls.';
+            else if (r.diff < -25) msg = 'Limit is well below the safe speed. Drivers may not find it credible.';
+            else msg = 'The limit fits this road context.';
+            document.getElementById('limv').textContent = limit + ' km/h';
+            document.getElementById('pedv').textContent = p > 66 ? 'High' : p > 33 ? 'Medium' : 'Low';
+            document.getElementById('gs').textContent = score;
+            document.getElementById('arc').style.strokeDashoffset = 251.3 * (1 - score / 100);
+            document.getElementById('verdict').textContent = msg;
+            document.getElementById('safe').textContent = safe + ' km/h';
+            document.getElementById('risk').textContent = limit > safe ? '≈ ' + Math.pow(limit / safe, 4).toFixed(1) + '×' : '1×';
+        }
+        [ctx, lim, ped].forEach(function (el) { el.addEventListener('input', explore); });
+        explore();
+
+        // Illustrative road network: segments coloured by the same score logic
+        (function netmap() {
+            var host = document.getElementById('netmap'); if (!host) return;
+            var NS = 'http://www.w3.org/2000/svg', read = document.getElementById('netread');
+            var YS = 1.16, seed = 7; function rnd() { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
+            var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 640 440'); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', 'Illustrative road network with segments coloured by safety score');
+            var defs = document.createElementNS(NS, 'defs');
+            defs.innerHTML = '<radialGradient id="pop" cx=".5" cy=".5" r=".5"><stop offset="0" style="stop-color:var(--c2);stop-opacity:.35"/><stop offset="1" style="stop-color:var(--c2);stop-opacity:0"/></radialGradient>';
+            svg.appendChild(defs);
+            [[150, 200, 120], [330, 190, 150], [520, 220, 110]].forEach(function (c) { var el = document.createElementNS(NS, 'circle'); el.setAttribute('cx', c[0]); el.setAttribute('cy', c[1] * YS); el.setAttribute('r', c[2]); el.setAttribute('fill', 'url(#pop)'); svg.appendChild(el); });
+            var roads = [
+                { d: 'M-10 200 C120 190 200 235 320 195 S520 145 650 185', safe: 50 },
+                { d: 'M320 -10 C300 80 345 140 322 195 S300 300 332 390', safe: 30 },
+                { d: 'M-10 80 C100 100 180 55 300 82 S500 52 650 74', safe: 70 },
+                { d: 'M-10 320 C140 292 240 340 360 310 S540 340 650 292', safe: 70 },
+                { d: 'M120 -10 C142 80 108 155 130 230 S110 320 142 390', safe: 50 },
+                { d: 'M520 -10 C500 85 542 145 512 222 S532 310 522 390', safe: 100 },
+                { d: 'M170 140 C232 165 258 222 330 245 S462 272 522 232', safe: 30 }
+            ];
+            var postedOpts = [30, 40, 50, 60, 70, 80, 100], k = 0, segs = [], hidden = [];
+            roads.forEach(function (rd, ri) {
+                var p = document.createElementNS(NS, 'path'); p.setAttribute('d', rd.d);
+                var L = p.getTotalLength(), step = 20, n = Math.ceil(L / step);
+                var runLeft = 0, runPosted = rd.safe;
+                for (var i = 0; i < n; i++) {
+                    var a0 = p.getPointAtLength(i * step), b0 = p.getPointAtLength(Math.min(L, (i + 1) * step));
+                    var a = { x: a0.x, y: a0.y * YS }, b = { x: b0.x, y: b0.y * YS };
+                    if (runLeft <= 0) { runLeft = 4 + Math.floor(rnd() * 6); runPosted = Math.max(20, rd.safe + [0, 0, 0, 0, 10, 10, 20, 30, -20][Math.floor(rnd() * 9)]); }
+                    runLeft--;
+                    var posted = runPosted;
+                    var res = ssScore(posted, rd.safe), sc = Math.round(res.score);
+                    var cls = sc >= 85 ? 'var(--c1)' : sc >= 60 ? 'var(--c4)' : 'var(--c3)';
+                    var ln = document.createElementNS(NS, 'line');
+                    ln.setAttribute('x1', a.x.toFixed(1)); ln.setAttribute('y1', a.y.toFixed(1)); ln.setAttribute('x2', b.x.toFixed(1)); ln.setAttribute('y2', b.y.toFixed(1));
+                    ln.style.stroke = cls; ln.style.setProperty('--k', k++);
+                    (function (ln, ri, i, posted, safe, sc) {
+                        ln.addEventListener('mouseenter', function () { read.innerHTML = 'Road ' + (ri + 1) + ', segment ' + (i + 1) + ' · posted ' + posted + ' km/h · safe about ' + safe + ' km/h · score <b>' + sc + '</b> (' + (sc >= 85 ? 'limit fits' : sc >= 60 ? 'watch' : 'unsafe') + ')'; });
+                    })(ln, ri, i, posted, rd.safe, sc);
+                    svg.appendChild(ln);
+                    segs.push({ a: a, b: b, sc: sc, diff: res.diff });
+                }
+            });
+            // hidden danger: limits set well above the safe speed, marked with a pulse
+            var cand = segs.filter(function (s) { return s.diff >= 20; }), picked = 0, used = [];
+            for (var m = 0; m < cand.length && picked < 5; m += 2) {
+                var s = cand[m];
+                if (used.some(function (u) { return Math.hypot(u.x - s.a.x, u.y - s.a.y) < 90; })) continue;
+                used.push(s.a); picked++;
+                var ring = document.createElementNS(NS, 'circle'); ring.setAttribute('cx', s.a.x); ring.setAttribute('cy', s.a.y); ring.setAttribute('r', 11); ring.setAttribute('fill', 'none'); ring.setAttribute('stroke', '#fff'); ring.setAttribute('stroke-width', 1.6); ring.setAttribute('class', 'ping');
+                var core = document.createElementNS(NS, 'circle'); core.setAttribute('cx', s.a.x); core.setAttribute('cy', s.a.y); core.setAttribute('r', 3.2); core.setAttribute('fill', '#fff'); core.style.pointerEvents = 'none'; ring.style.pointerEvents = 'none';
+                svg.appendChild(ring); svg.appendChild(core);
+            }
+            host.appendChild(svg);
+        })();
     })();
     </script>
 
@@ -529,12 +1108,17 @@
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
         camera.position.z = 7;
-
         var globe = new THREE.Group();
         scene.add(globe);
 
-        // Data globe: points on a Fibonacci sphere, gently waving
-        var N = 2600, pos = new Float32Array(N * 3), R = 2.2, ga = Math.PI * (3 - Math.sqrt(5));
+        // Palette comes from the CSS tokens so the whole site re-themes from :root
+        THREE.ColorManagement.enabled = false;
+        var cs = getComputedStyle(document.documentElement);
+        function tok(n) { return new THREE.Color(cs.getPropertyValue(n).trim()); }
+        var C1 = tok('--c1'), C2 = tok('--c2'), C3 = tok('--c3');
+
+        // Data globe: a sphere of dots that gently waves, with arcs of flowing data
+        var N = 2800, R = 2.2, ga = Math.PI * (3 - Math.sqrt(5)), pos = new Float32Array(N * 3);
         for (var i = 0; i < N; i++) {
             var y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = ga * i;
             pos.set([Math.cos(th) * r * R, y * R, Math.sin(th) * r * R], i * 3);
@@ -543,53 +1127,46 @@
         geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
         var mat = new THREE.ShaderMaterial({
             transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-            uniforms: { t: { value: 0 } },
+            uniforms: { t: { value: 0 }, ca: { value: C1 }, cb: { value: C2 }, cc: { value: C3 } },
             vertexShader: 'uniform float t; varying float vY; void main(){ vec3 p = position; vY = p.y / 2.2; p += normalize(p) * sin(p.y * 2.6 + p.x * 1.4 + t) * 0.09; vec4 mv = modelViewMatrix * vec4(p,1.0); gl_PointSize = 34.0 / -mv.z; gl_Position = projectionMatrix * mv; }',
-            fragmentShader: 'varying float vY; void main(){ float d = length(gl_PointCoord - .5); if(d > .5) discard; vec3 a = vec3(.13,.83,.93); vec3 b = vec3(.55,.36,.96); vec3 c = vec3(.96,.45,.71); vec3 col = vY > 0. ? mix(a,b,vY) : mix(a,c,-vY); gl_FragColor = vec4(col, (1.-d*2.) * .9); }'
+            fragmentShader: 'uniform vec3 ca; uniform vec3 cb; uniform vec3 cc; varying float vY; void main(){ float d = length(gl_PointCoord - .5); if(d > .5) discard; vec3 col = vY > 0. ? mix(ca,cb,vY) : mix(ca,cc,-vY); gl_FragColor = vec4(col, (1.-d*2.) * .9); }'
         });
         globe.add(new THREE.Points(geo, mat));
 
-        // Arcs connecting random points: "data flowing"
         function pt(k) { return new THREE.Vector3(pos[k * 3], pos[k * 3 + 1], pos[k * 3 + 2]); }
-        var arcMat = new THREE.LineBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending });
-        for (var a = 0; a < 16; a++) {
+        var arcMat = new THREE.LineBasicMaterial({ color: C1, transparent: true, opacity: 0.3, blending: THREE.AdditiveBlending });
+        for (var a2 = 0; a2 < 14; a2++) {
             var p1 = pt(Math.floor(Math.random() * N)), p2 = pt(Math.floor(Math.random() * N));
             var mid = p1.clone().add(p2).multiplyScalar(0.5).normalize().multiplyScalar(R + 0.4 + p1.distanceTo(p2) * 0.18);
-            var curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
-            globe.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(40)), arcMat));
+            globe.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(new THREE.QuadraticBezierCurve3(p1, mid, p2).getPoints(40)), arcMat));
         }
 
-        // Orbiting wire shells
-        var wire = new THREE.Mesh(new THREE.IcosahedronGeometry(3.0, 1), new THREE.MeshBasicMaterial({ color: 0x8b5cf6, wireframe: true, transparent: true, opacity: 0.16 }));
+        // Orbiting shells
+        var wire = new THREE.Mesh(new THREE.IcosahedronGeometry(3.0, 1), new THREE.MeshBasicMaterial({ color: C2, wireframe: true, transparent: true, opacity: 0.16 }));
         scene.add(wire);
-        var ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.008, 8, 160), new THREE.MeshBasicMaterial({ color: 0xf472b6, transparent: true, opacity: 0.55 }));
+        var ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.008, 8, 160), new THREE.MeshBasicMaterial({ color: C3, transparent: true, opacity: 0.5 }));
         ring.rotation.x = 1.25; scene.add(ring);
-        var ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.9, 0.006, 8, 160), new THREE.MeshBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.4 }));
+        var ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.9, 0.006, 8, 160), new THREE.MeshBasicMaterial({ color: C1, transparent: true, opacity: 0.35 }));
         ring2.rotation.set(0.4, 0.5, 0); scene.add(ring2);
 
         var mx = 0, my = 0, sy = 0;
         window.addEventListener('mousemove', function (e) { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; });
         window.addEventListener('scroll', function () { sy = window.scrollY / innerHeight; }, { passive: true });
-
-        function resize() {
-            renderer.setSize(innerWidth, innerHeight, false);
-            camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
-        }
+        function resize() { renderer.setSize(innerWidth, innerHeight, false); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); }
         window.addEventListener('resize', resize); resize();
 
         var clock = new THREE.Clock(), gx = 0, gy = 0;
+        scene.position.x = innerWidth > 900 ? 3.6 : 0;
         function frame() {
-            var t = clock.getElapsedTime();
+            var t = clock.getElapsedTime(), wide = innerWidth > 900;
             mat.uniforms.t.value = t;
             globe.rotation.y = t * 0.12 + gx; globe.rotation.x = 0.2 + gy;
             wire.rotation.y = -t * 0.07; wire.rotation.x = t * 0.04;
             ring.rotation.z = t * 0.15; ring2.rotation.z = -t * 0.1;
-            // ease toward the mouse; drift the whole scene right on wide screens, and fade out as you scroll
             gx += (mx * 0.6 - gx) * 0.04; gy += (my * 0.4 - gy) * 0.04;
-            var wide = innerWidth > 900, targetX = wide ? 2.4 : 0, s = wide ? 1 : 0.8;
-            scene.position.x += (targetX - sy * 0 - scene.position.x) * 0.05;
-            scene.position.y = sy * 1.6; scene.scale.setScalar(s);
-            canvas.style.opacity = Math.max(0.1, (wide ? 1 : 0.5) - sy * 0.9);
+            scene.position.x += ((wide ? 3.6 : 0) - scene.position.x) * 0.05;
+            scene.position.y = Math.min(sy, 1.2) * 1.6; scene.scale.setScalar(wide ? 1 : 0.8);
+            canvas.style.opacity = Math.max(0.09, (wide ? 1 : 0.5) - sy * 0.9);
             renderer.render(scene, camera);
             if (!reduce) requestAnimationFrame(frame);
         }
